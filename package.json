@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/WebWorkerTech/webworker-listening#readme",
   "devDependencies": {
+    "@types/node": "18",
+    "dotenv": "^16.0.3",
+    "tencentcloud-sdk-nodejs": "^4.0.561",
+    "typescript": "^5.0.2",
     "vitepress": "1.0.0-alpha.60"
   },
   "pnpm": {
