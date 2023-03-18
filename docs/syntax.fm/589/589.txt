@@ -1,0 +1,947 @@
+I sure hope you're hungry!
+Cool, I'm starving!
+Wash those hands, pull up a chair, and secure that feedback.
+Because it's time to listen to Scott Tolinsky and Wes Boss attempt to use human language to converse with
+and pick the brains of other developers.
+I thought there was gonna be food!
+So buckle up and grab that old f***ing handle
+because this ride is going to get wild!
+This is...
+The Syntax Supper Club!
+Welcome to Syntax!
+The podcast with the tastiest web development treats out there.
+We've got another banger Supper Club for you today.
+We have somebody who has...
+I'm gonna admit it, a cooler name than I have.
+Dax Rad is on today to talk about...
+I think we're just gonna be talking mostly about serverless hosting Next.js.
+He's behind a couple different projects.
+SST as well as Open Next.js.
+We're excited to talk all about that.
+Welcome, Dax. How you doing?
+I'm doing great. Thanks for having me on.
+You're welcome. You're welcome.
+We're sponsored today by Sentry.
+Let's talk about their new APM.
+What is APM?
+Application, Performance, Monitor.
+So what that will do is...
+You're throwing your application and it's sort of trying to monitor things that will make your website slow.
+We had a show a couple days ago about slow websites and what could possibly cause it.
+So what Sentry will do is it will detect common things.
+Large render blocking assets, slow database queries, file IO on the main thread.
+That's probably not something you want to do.
+You know, in Node, you have that right file sync, which is...
+That will block up your main thread.
+Anything else running on that main thread will not be able to go until you've actually finished writing that file.
+So that could be a big, big no-no.
+You're gonna want to check it out.
+There's lots in this APM.
+I'm sure I'll go into the features of it over the next couple of ad reads.
+You want to check it out at Sentry.io.
+Use a coupon code, tastytreat, for two months for free.
+I also want to check out their blog post, which is the new APM actionable, affordable, and actually built for developers.
+Thank you, Sentry, for sponsoring.
+We'll start this by just saying 2023, I said, is my year for AWS.
+So I've been looking at some of my server bills and whatnot.
+And I say, man, this is real expensive to be able to do this stuff.
+And then I look over at AWS and I go, that's too hard.
+And I'm stuck in this position of something is very expensive and obviously easy,
+versus something that is, I think, cheaper.
+We'll see.
+But it's just like, there's so many pieces to it.
+So we're trying to, like this year, we're trying to get a little bit more into AWS and understand all the different parts and whatnot.
+So you're the first person that we're having on to sort of talk about that type of stuff.
+Let's talk about, you want to give like a quick rundown of who you are and what you do.
+And then I thought we'll get into the open next year stuff first and then we'll get into the SST stuff.
+Yeah, sounds good.
+So again, my name is Dax.
+I work entirely on open source to a pretty lucky situation that I'm in.
+The primary project that I work on is called SST.
+It's a framework that helps people like yourself start to build things on AWS without fully being exposed to the monstrosity that is AWS.
+Because like you said, there's a lot of great reasons to be building on AWS,
+especially for things that are a little bit more serious and as you start to get to a certain scale.
+But it's pretty unapproachable for the average person.
+So our job is to really go dig through all the AWS docs, read everything,
+figure out all the little weird quirks and then expose something that makes a lot more sense for the end user,
+figure out what kind of rough edges there are on their day to day development cycles and make all that smoother.
+I'll start this with a question is, and I went down this rabbit hole the other day.
+I put a tweet out where I logged into AWS and I looked at some of the profiles I had created.
+And one of them was 12 years old.
+And I tweeted like, has it gotten any better in about 12 years?
+And half people are like, no, and half the people are yes.
+So I was like, I just want to deploy a serverless function raw to AWS.
+And I like got into it and like there's no build pipeline and there's all these products.
+Why does AWS not have something like Netlify or Vercel?
+Or like, why don't they have that?
+And like, why is there all these businesses built up on top of AWS being easier?
+The thing is AWS does think they have that and they have like three or four attempts at building something like Netlify
+or Vercel or Heroku or whatever.
+I think I forgot who it was.
+Someone documented all different ways to deploy a container.
+And there's like something create like 18 different ways that you can do it because they represent all these attempts at
+AWS trying to create a higher level abstraction for to make some of these things simpler.
+I just don't think it's in their DNA.
+They are an infrastructure hyperscaler company.
+They're about deploying like a crazy amount of physical hardware across the whole world, have it working.
+That is really far removed to what a developer experiences day to day when they're trying to build something.
+I think it's an awkward fit for them culturally.
+Interesting.
+Yeah, it does feel like that's been a long time thing forever.
+I mean, even into Amazon.com itself, they've never had the polish, I think, in the UI department that many other companies have.
+And that does seem to turn off people from AWS.
+And like you mentioned, Wes, it opens up the door for all these other businesses that are built on top of AWS just to make it
+easier on folks, right?
+So do you think it's a positive thing that AWS hasn't figured this out because it enables all these other companies to exist?
+Or do you think they'll get there eventually?
+Yeah, I think for me, I always, I find myself in a tricky situation because I'll be trying to do something at AWS.
+I'll be really frustrated and wish that it was better.
+And I'll be annoyed with the teams behind certain services that are creating these problems.
+And then I'll realize, oh, well, if they were actually doing all those things, I wouldn't really have a job.
+So I definitely appreciate the gap that it creates.
+I think it is a good system.
+AWS's scope is just massive.
+They're trying to serve every possible business out there.
+And the reality is to build good services.
+You do have to narrow your scope a lot.
+A lot of these companies that people like, like Versailles or Netlify, their scope is a lot narrower in terms of what they try to offer
+and who they try to serve than what AWS can do.
+And that's kind of why they have a good product.
+And I think at some, I think there's a reality of it where at the scope the AWS has, it just, you just can't really build anything that great.
+All right, let's get into the open Next.js stuff.
+So Next.js, huge, probably the largest React framework for building a website out there.
+It sort of encompasses a lot.
+And it is obviously very tightly, not tightly, but it is, it's the baby of Versailles.
+And Versailles is this amazing hosting platform that does images and CDN and caching and deploy previews and serverless and edge functions.
+And they do all the stuff.
+And the like experience of writing an XJS app and hosting it on Versailles is a very, very nice experience.
+We host the, that's the exact stack and hosting platform we use for the syntax website.
+But there's often been people saying, well, it's not that easy to host an XJS site anywhere else.
+They provide some sort of, some outlets and whatnot.
+So do you want to give us like a rundown of like, what is the open Next.js project?
+Yeah, so I think the premise is, like you said, Next.js hosted on Versailles is an incredible experience.
+And trying to host it in other places, you kind of have a variety of different, different options and variety of different experiences you can have.
+So you can self host Next.js in a container.
+It's pretty easy for Versailles to support that because it's just a long running process that can literally just do everything that they needed to do.
+But for a lot of people self hosting Next.js in a container is pretty different than what they get from Versailles.
+Just in terms of costs, yes, I mean, it's always running.
+It's a little bit, it's a lot more expensive to have like global availability, things like that when you have to deploy containers everywhere.
+When most people think of I want to self host Next.js, they expect it to be entirely serverless, deploying to functions and kind of serverless primitives that AWS offers.
+And the process for doing that isn't actually straightforward.
+I'm not going to say Versailles like explicitly doesn't let you do that.
+They actually do put in a lot of effort in creating standard outputs so that you can take an Next.js app and potentially get it to be self hosted in AWS.
+But the gap there of what you get from that build output to actually deploying is pretty massive.
+You need to one be an expert in AWS.
+You really need to understand the different ways you can do things.
+You also need to understand pretty detailed internals of Next.js, understand different components that Next actually offers.
+And there's not just a single way you can deploy AWS.
+There's a lot of different ways you can deploy with different trade offs.
+You can, you know, some functionality just cannot work in an entirely of some environment.
+It's really difficult and takes a lot of man hours to just figure that out.
+So that's what we started to open Next project because there were a lot of kind of disparate efforts of doing this.
+We had a, there's like an older project called serverless Next.js that a lot of companies were using.
+In fact, AWS even used to use this open source project internally to power their Next.js offering.
+Of course, like one person cannot maintain that long term.
+That project kind of died and have kind of few offshoots of trying to do this.
+And there was enough interest in our community of people wanting to run Next.js in AWS where we avoided building this project for a while.
+We really didn't want to do it just because it's a lot of work.
+But we got to a point where there was enough expertise in the community for us to actually go ahead and build that.
+So how many people are involved in an effort like this?
+Yeah. So from our core team, we have Frank who pretty much leads this effort.
+He spends a lot of time on this.
+There is a little bit of upfront work, you know, to get to a place where there is one-to-one parity with what Vercel offers.
+And then from there, it's more maintenance.
+And then in terms of help in the community, I think we have like five or six people that are pretty much talking about this all day.
+None of us at SST are actually Next.js users, which is kind of funny because we're the ones that are behind this effort.
+So we're not experts in the details of how Next.js should work or it's exact features.
+We really rely on our community to report how things are working and what things aren't exactly right.
+And they find a lot of really obscure things like they'll figure out, oh, we need to pass this explicit header for like this very specific feature to work, things like that.
+Let's move through the different parts of Next.js and we'll sort of like map those to what are the Amazon products.
+So at its very core, Next.js splits its routes.
+So every time you go to a URL, it makes that into a serverless function. Is that right?
+So not exactly.
+So the build output outputs a single function that handles all of your routes.
+So that means it's all bundled into like one kind of fat lambda function.
+And then they do have their edge function concept, which is a little bit separate.
+Okay, so literally every single route is all bundled into one app and run on one serverless function.
+Because I remember when Vercel was, was it now?
+And they moved away from node.
+And I had an express app running on node and they're like, yeah, just throw it in a lambda function.
+And it's like that it doesn't fit.
+Like it's way too large for that type of thing.
+So like, is there a hard limit?
+For some reason, I thought that they split it up per URL.
+So they're literally throwing your entire application back end API routes and everything into one serverless function.
+Well, so I suspect what Vercel does internally might be a little bit different than the build output that the open source Next.js produces.
+So yeah, you're right.
+Bundling everything to a single function is not great long term.
+If you have one dependency on one route, that is really large.
+Something that's hitting the cold starts of like all the routes in your application.
+So I suspect that Next.js or Vercel might, when they deploy on to their platform, they might do some kind of splitting.
+It's challenging.
+It's easy with stuff like API routes, like API routes split nicely.
+But it is a little bit trickier with with UI routes that nests and especially with the new app layout stuff.
+Yeah, yeah, that always got me not just on Next.js, but in general, where it's like, yeah, you put everything into your own and every single route has its own package JSON.
+And that's annoying to me because I was like, I don't want every package JSON for every single function.
+And then other people say, well, okay, now you have the special package that shared code.
+And you can put anything you want in there that shared code, but then I'm like, well, okay, now I have to decide.
+Can I just put it where I want it and it will like figure it out from there?
+And I'm assuming, or I'm not assuming, maybe that's what Vercel does on their end is they do a bunch of tree shaking or whatnot to make the functions as small as possible.
+Because nice and small that deploy super quick, you get nice cold starts.
+It's really sweet when that stuff does work.
+Yeah, and that's a pattern that we actually encourage.
+Our main framework SST, we talk about something similar.
+You don't want to, at author time, you don't want to think about it as like these complete discrete separate things.
+You want to build like one big application.
+And at deploy time, you want it to be broken down and tree shaking and all that.
+And that's that's exact pattern we like.
+And that's what we encourage because yeah, thinking that granularly when you're building something is just kind of annoying.
+And then the next jazz has a concept of middleware.
+And those are deployed to the edge.
+Can you give us a quick rundown?
+We've talked about it on the show a few times, but I'm sure people are still not really familiar.
+What is the edge?
+Yeah, so this one is really tricky.
+So the reason this is tricky for us to implement is Vercel itself runs primarily on AWS.
+So when you run a function on XDS, sorry, on Vercel, it's keeping these two confused.
+On Vercel, it runs in AWS.
+But a lot of their edge stuff is powered by CloudFlare.
+So when the middleware runs at the edge, it's not running in AWS data center, it's running in a CloudFlare data center.
+And CloudFlare data centers, there's a lot more of them and they're closer to the end user.
+And they're less capable, but good enough to run things like middleware.
+So a big challenge for us is, okay, if you want to self-host all of next jazz, including the middleware,
+we have to deploy that middleware inside AWS.
+That means there's different constraints that we have to abide by that Vercel does not.
+Because they can pick whatever architecture they want.
+Yeah, yeah.
+It's actually kind of nice if you go to a vendor and they say, you know what?
+We'll just, we'll figure it out for you, we'll make it fast.
+So the limitations we're talking about with edge functions, and this is true for running in Dino in CloudFlare workers.
+And there's a couple other runtimes we've talked about is that it's not a no jazz environment.
+It's a JavaScript web environment.
+And you only have a certain set of APIs available to you.
+So I converted a tiny little site the other day and I was like, you know what?
+I'm going to run it on Netlify Edge, which is it runs in Dino.
+So you can't use any Node.js APIs unless Dino supports them and large packages and whatnot.
+So there's like a little bit of a limitation, but the upside is what?
+It's much faster and quicker to load.
+And they literally deploy them to hundreds of different server locations around the world.
+Yeah, exactly.
+So if you look at traditional Lambda functions on AWS, they're not opinionated about what language you use.
+You can use a variety of different languages that they support natively.
+You can bring your own custom runtime for languages you want.
+And that constrains their architecture.
+They have to build a functions platform for running any arbitrary code.
+Some of these Edge platforms like CloudFlare, they, again, it's all about narrowing scope.
+Whenever you narrow scope, you can really up the quality.
+They're saying you can not only just, you can train not only to JavaScript,
+but a very specific flavor of the runtime that we provide.
+It's good enough for most things.
+If you accept these constraints, we can do some really interesting things.
+And one of those things is basically zero cold start.
+They're billing on the CloudFlare Edge's billing is pretty incredible.
+Let me see if I can explain this.
+So if you only pay for compute time, that means if your function starts, compute some stuff,
+then makes a network request and it waits 500 milliseconds to network request.
+You're not actually being billed for that waiting time.
+You only build when the network request comes back and you're using the CPU again.
+And that creates a very simple concept, but it creates so many things and so many opportunities for things you can build that
+isn't exactly possible on a traditional functions platform.
+I remember seeing that because I remember looking at the 10 milliseconds or something like that on CloudFlare workers.
+I was like, that's not enough.
+And then who's possibly running code in 10 milliseconds?
+And that's it.
+But I've never hit that.
+I've never hit the issue.
+And somebody explained to me, no, it's not.
+If you're fetching a big thing that CloudFlare workers is really good at is proxying web pages.
+So if you're going to NBA.com and downloading all of the HTML and then waiting for it to come back,
+you're not paying for that time.
+And that's wild.
+Like, did they just not charge you for it?
+Or did they literally spin it down while you're waiting for that?
+Yeah.
+So technically they are not paying for like your function is off the CPU at that point.
+It's just waiting for the network hardware to say, hey, it's done downloading.
+I have a payload for you.
+So there still is like a memory cost for them.
+But the CPU cost is what's limited.
+So they can have other customers running on that CPU while you're waiting for your request to come back.
+And that's how they basically sell the same second multiple times multiple people.
+And it's a model that can work really well at scale.
+Wow.
+And that's another thing that people often understand is that like if you look at pricing for a lot of these things,
+they charge you by compute hour.
+Just regular people look at it and go like, how do I do that?
+Do you have any like tips on like, how would you calculate that type of thing?
+Or is it just a, you got to see pricing is a funny thing in a serverless world.
+It's pretty much in hindsight.
+And I would say, I think people try to come up with ways to figure out costs ahead of time.
+I think the reality is you don't know the cost ahead of time.
+It's more around shifting your mindset around what your costs are.
+I think we're used to paying for things in a monthly way.
+Now, like if you think about our personal lives, we pay monthly bills.
+But when it comes to cloud infrastructure and things involving your business,
+I think it's better to think about it as marginal cost where you just need to make sure that you are charging someone else more than what your marginal cost is.
+So to serve one request, it costs you a penny.
+Make sure you're charging 10 cents for that.
+That way it doesn't matter what your monthly bill is because if you scale up 100 X,
+your margin still makes sense, right?
+You're never going to go negative as long as you're thinking about like the unit economics there.
+But it is tricky.
+Like the pricing is on intuitive and it's not even compute hour now.
+It's like per millisecond.
+Like how many milliseconds are you going to use this month?
+It's not really something that you can really guess.
+You can look at it in hindsight and see what's what.
+Can it be like incredibly cheap to run stuff on this as well though?
+Yeah, I think there's a lot of confusion around pricing.
+I think people, I've heard people instinctively say serverless stuff is really expensive.
+I've also heard people instinctively say that it's not expensive.
+In practice, it's insanely cheap.
+And the numbers and the way you compute the numbers are a little bit counterintuitive,
+which is why people might perceive them as being expensive.
+But it is like unbelievably cheap.
+Like I don't think I've had a bill more than like $5 or something.
+And I run some stuff like serious traffic.
+And I think the culture at least with AWS is they have never raised prices ever.
+There's some services that are now 99% cheaper than they were when they launched.
+They know the moment that they leave room that someone else is going to come in and offer a cheaper service.
+So you'll just see prices go down and down and down.
+As one of my favorite examples of this is Lambda, let me see if I can remember the exact numbers.
+So they used to charge per 100 milliseconds.
+So if you had a request that took 20 milliseconds, you were being charged for 100 milliseconds.
+Then one day they came out and they said, okay, we're now going to charge you per millisecond.
+That means your costs are now 80% cheaper overnight without you doing anything.
+And there's a million examples of this.
+And I think people kind of worry about with all these very cloud native services.
+Am I going to get trapped?
+And they're going to jack the price up and I'm going to be screwed.
+Historically, at least with this modern set of companies, they understand the mistakes of the previous generation of companies.
+I try to do that.
+And I know that they got to make sure prices keep going down.
+I'll give you another example of I host my course platform on render as a long-running node app.
+I've been really looking at moving it over to serverless lately because specifically because I have pull request previews on my pull request.
+And I had a pull request sitting there for three or four months.
+I wasn't ready to deal with it.
+And then I had three or four running for a couple of weeks.
+And then I realized like every single pull request is another VM that is spun up and run until I merge the pull request.
+And if your regular VM costs $10 a month and then you have six more pull requests running at $10 each a month, that gets out of hand really quickly.
+And the obvious answer is merge and quick.
+It's cheaper to do that.
+But I thought like, man, if this was serverless functions, it literally would not run until I click the URL and that thing will spin up again.
+Yeah, that's kind of why some of these costs are counterintuitive.
+It's easy to think about just a very narrow version of your production environment.
+Like think about like one container running production.
+But that container has to be at least reasonably highly available.
+Then you have like your dev environments and your pull request environments and all these add up.
+And it's not just your compute part of it.
+It's can you pay for your database in a serverless way?
+If you can, then you can have a separate database for each pull request environment and it's costing you nothing.
+So a lot of we see a lot of people coming to serverless specifically for the developer environments and the pull request environments.
+What about images and assets?
+So I know Next.js has really nice image component.
+I'll let you resize on the fly.
+Is that type of thing something you can also do in the serverless world?
+Yeah, so their standard build output outputs a function that can do that.
+And we just deploy that as another serverless function.
+And it actually that part actually works pretty nicely out of the box.
+I think the thing with that is there's not anything specific to your application.
+Like that image resizing and all those tools are like a generic solution, right?
+You just pass in.
+It's just going to pass an image that you need and handle the resizing.
+So that is something that we support in the self-hosted version.
+And yeah, it's like sitting behind a CDN and all that.
+So it's optimized.
+Awesome.
+And then the CDN is so cloud flare or sorry, not cloud flare.
+Yeah, cloud front and S3, right?
+Is it using both of those?
+Yeah.
+So when we build your Next.js app, there's a few things that it spits out.
+There's a bunch of static files that don't change.
+And those get uploaded to S3 that gets put behind a CDN, which is cloud front.
+Your functions actually get put behind the CDN as well.
+And there's also your functions for your main application.
+We also deploy some edge functions.
+So AWS does support edge functions.
+And those actually live in the same environment as the CDN.
+We deploy edge functions there for the Next.js middleware, middleware stuff.
+So what is, so I'm actually looking at, I primarily use Svelte and Svelte kit myself.
+And they have this adapter situation where you can have an output adapter.
+I found basically the Svelte kit adapter, AWS CDK.
+And they have very similar diagrams to kind of what you have going on, right?
+You have the S3 buckets, you have cloud fronts for the CDN and the static assets
+for an S3 bucket.
+Is the CDK a layer on top of something that Amazon is doing?
+Or is that just a name for how you develop cloud applications locally?
+Yeah, so when you start looking at AWS, you realize it's just like crazy amount of layers.
+So let me see if Anttraces all the way down.
+So AWS has an infrastructure as code tool called CloudFormation.
+All this means is instead of going into AWS UI, clicking a bunch of things to configure something,
+you can do this all in this YAML specification.
+It's terrible.
+Nobody should be using it.
+Everyone hates using it.
+So they built a layer that compiles to CloudFormation called CDK.
+So instead of writing YAML, you can write types.
+I have a lot of issues with CDK.
+They optimize it so you can write it in a variety of different languages, like TypeScript, Python,
+I think Java, Go, a few others and all compiles down into this CloudFormation YAML.
+99% of people, I think they're just using it in TypeScript.
+So I just wish they just optimized for TypeScript.
+I'm trying to make something multi-language.
+And so today, a modern application on AWS, I think CDK is a pretty good option.
+A lot of people are still using CloudFormation directly just because they have the experience with it.
+And SST, the thing that we build is actually built on top of CDK.
+So we have a lot of experience with CDK and some of the internals there.
+So if somebody opts to use CDK, are they opting in to paying for that as a bit more of a service,
+or are they still paying just for the underlying services?
+Yeah, so there's no charges associated with CloudFormation.
+So it's just a way for you to deploy stuff.
+Yeah, so we had a while back, we had Brian LaRue from Begin,
+which they seem to be switching gears a little bit, which is kind of interesting.
+So he runs a project called Architect, which is Arc.Code.
+And that, basically, it's your infrastructure as code,
+and that will compile to a CloudFormation.
+It's funny. There's lots of people building it on top.
+So we talk about that.
+I'll talk about one more, and then let's get into what SST is.
+So there's another one that people keep recommending to me, and that's Terraform.
+Are you familiar with that? Can you explain what that is?
+Yeah, so Terraform is another infrastructure as code tool that is not tied to any specific Cloud provider.
+I actually am a huge fan of the Terraform ecosystem.
+I used to build everything in Terraform, like,
+made for, like, four or five years before I moved to working on SST.
+Their interface is, it's not YAML, but it is a similar configuration language.
+I would say it's a lot better than YAML, but you can basically configure anything.
+You can configure stuff in AWS, you can configure stuff in CloudFlare.
+You can, like, make it turn on a light in your house.
+Like, you can kind of use it for literally anything,
+and it's basically a way to describe the state of any system
+and have it, you know, retain that state and make changes to it over time.
+It's a great, like, neutral open source tool that's not tied to any one specific vendor.
+And we're actually looking not anytime soon, but long-term we would like to be more built on top of Terraform
+than built on top of CDK, just so we have access to some of the larger ecosystem.
+Yeah.
+All right, so you've talked about SST quite a bit, but, like, let's give us a 30-minute or nothing,
+a 30-second, one-minute rundown of what it is and why are you building this?
+Yeah, so that premise here is, like I said earlier, AWS is actually a great choice for most companies
+building products that they're trying to sell to other people.
+It's just extremely hard to understand anything going on in AWS.
+You're not really going to understand it through the console, the documentation.
+There's a ton of stuff to learn before you can even know the right way to do something.
+So the idea here is let's build a framework that is our idea of the best way to build an application on AWS.
+So we don't cover all of AWS.
+I would say we cover maybe, like, 2% of AWS, which is probably the 2% that most people need.
+We focus just on the serverless services, and we provide high-level contracts, things like APIs,
+databases, stuff like cron jobs, queues, long-running jobs, scheduled events, things like that
+that are high-level pieces that you need for most applications that you can just spin up
+and configure and then access in your application code.
+Our scope is pretty broad.
+We'll cover stuff that is very infrastructure-related like that.
+We'll also cover rough edges that show up in your application.
+Like I said, we're doing the open-next stuff, so we help you deploy your front-end, say,
+AWS as well.
+We just want to make it really viable for you to start a project on day 1 AWS without doing all this work
+of understanding and research.
+But, you know, as your company grows, as your product grows, day 100, day 1000,
+you're still built on AWS, so you're not going to really need to eject out into something else.
+So the idea is, you know, keep it simple in the beginning, but it's going to be able to stick with you
+for the long run.
+And if you're out there and you hear 2% of AWS, you think that's not very much,
+just go ahead to services in the top left of AWS,
+click all services and just start scrolling, and then by tomorrow you'll hit the bottom of it.
+Yeah, exactly.
+They have a lot of stuff, and you eventually will need some of it.
+Is this something that you would pick up before you start an application,
+or is I know you have adapters for frameworks, but then I'm looking at the docs,
+and there's also, like, if I want to just have a raw request coming in from a URL,
+does it have a router?
+Like, where does this fit in?
+Do I build on top of this, or do I take my existing app and put it into it?
+Yeah, so we have two different options.
+For most people, we would recommend, if you're starting fresh,
+you start with a fresh SSC project, it sets you up for something that will work for a pretty long time.
+And you can configure that with, I just want an API, or I have an API plus a GraphQL thing,
+or I have, you know, an XJS app.
+You can kind of configure however you want.
+We kind of think of that as an SST app that you're building.
+We also have something called drop-in mode, which we're releasing kind of framework by framework.
+We did a launch for Astro a few weeks ago, and we're doing one for next JS next week.
+Basically, you have an existing Astro app.
+You have an existing next JS app, whatever it is.
+You just want to, like, drop this in and get this deployment at AWS.
+You're not really trying to build the fully fledged SSC application.
+That basically requires you to just drop in a single file, and, you know,
+you can deploy everything you have to AWS.
+Oh, cool.
+And what about, like, a local dev experience?
+That's one thing that always makes me nuts, is that, like, okay,
+I can run this thing locally, but then I have a whole other set of whatever
+and trying to replicate the local environment.
+And, yeah, such a pain.
+Like, do you solve that pain?
+So that's actually where SSC started.
+And that's kind of how I even found the project.
+I was first going to serverless, and, like you said,
+the first question I had was, like, how the hell do I do local development
+when everything is in the cloud?
+And I was building, like, my own, like, crappy solution to this,
+and I found SSC would have just come out that time,
+and they launched with a really, kind of like a single feature.
+It was a live lambda debugging.
+And the idea here is the recommended setup we have for building, like,
+these AWS native systems is most of the stuff you do want remotely,
+like, your database, you want to remotely is great,
+like, your queues running remotely is great.
+The thing that sucks is when you make a change in your function code,
+you don't want to wait for it to upload AWS,
+which can take, like, five seconds to then, like,
+have the whole feedback loop.
+So SST originally has this brilliant idea of,
+let's deploy 99% of your application for real,
+because you're not changing it that frequently.
+But for functions, let's deploy a fake function,
+and when a request hits that function,
+we're going to forward it to your local machine, execute it locally,
+and then send the response back.
+So what that means is when you make changes,
+instead of waiting five seconds for the update,
+it's, like, how fast ES build can run.
+So, like, a 50 millisecond response time.
+So we really originally started with figuring out,
+it made the local development experience really good.
+And since then, we've added a bunch of things around this
+to solve other rough edges.
+But today, when you do SST dev,
+which basically brings up your SST app in local mode,
+it feels like a normal, locally running app,
+with all the benefits of most of it running in cloud.
+And there's not much difference when you deploy to production.
+It's pretty much the exact same environment
+as what you had in the dev mode.
+Oh, that's cool.
+And do you do any...
+I don't know if you said this or not.
+Does SST do edge functions as well?
+Yeah, so we don't have native contract.
+So SST offers, like, a set of, like, native SST contracts.
+We don't have one yet for edge functions.
+But you can drop down into CDK and deploy an edge function yourself.
+It's just a little more complicated and not as nice as the other SST contracts.
+But we probably will support this eventually.
+Yeah, that's one thing I've always been wondering about,
+like, is, like, what does the local development environment look like
+for developing edge functions?
+Because you need to constrain the thing.
+If you run it in Node, then someone's going to accidentally import a Node app
+and then it doesn't work and then you deploy it.
+So I know CloudFlare has MiniFlare, which is...
+I think it's a Node environment that is, like,
+they do something to pair it down.
+You could obviously run it in Dino.
+Do you have any thoughts there or is not something you've gone into?
+No, so the one thing I should mention is AWS's edge functions
+are actually just normal Node.js functions.
+So they are the only provider that lets you run Node at the edge.
+Oh, okay.
+So they're actually...
+We don't really have that problem.
+We're just going to, you know, run Node locally and it'll be fine.
+Yeah, but for the other services like CloudFlare,
+they basically just let you run the exact runtime they're running at edge locally
+and that'll kind of constrain it.
+So you have a replicated environment locally.
+And probably not an issue for all that much longer,
+given last week, CloudFlare announced that it now supports
+a whole bunch more of the Node APIs.
+Dino now has parity with Node and Oban.
+So at a certain point, we're just going to have the Node API
+that will literally run anywhere.
+And maybe at that point, we run everything in an edge function?
+Yeah, I think edge functions...
+I'm just talking about my butt here.
+I don't really know.
+Well, so the reason we haven't built Edge...
+So we're very user driven, so we're only really going to build stuff
+when people start asking for it.
+And no one's really asked for Edge functions.
+And the reason is they're kind of an awkward fit in your infrastructure.
+The way I like to describe it is, imagine you have a string
+and there's different beads that are on the string.
+One bead is a user.
+The other bead is, let's say, your API
+and the other bead is your database.
+If you start to move your API, so your functions closer to the user,
+they're now further away from your database.
+So now, round trips to your database are more expensive.
+So you can move the function closer to the user.
+But if you need to make two database calls to process that request,
+it might actually be slower overall.
+Then there's a question of moving...
+Okay, can we just move the database closer to the user as well?
+But then now that database is further away from the other database nodes.
+So you're always going to be constrained by distributed systems problems.
+I think there's a lot of hype around Edge right now,
+but I think outside of a front-end rendering stuff,
+there's not really much adoption and serving back-end requests.
+Interesting.
+That's really good to know.
+Can you talk a little bit about databases as well in terms of SSD?
+What should we be using?
+Yeah, so we support two databases out of the box.
+One is DynamoDB, and the other is RDS.
+AWS has a relational...
+It's a serverless relational database service.
+So my SQL or Postgres, you can deploy it in this.
+It's not really serverless, like fake serverless.
+They'll kind of turn it on and off and auto-scale it for you.
+We support it.
+We don't recommend anyone to actually use it unless they're forced to use only AWS
+services because things like planet scale and like neon,
+much better options for running relational databases in a serverless way.
+And on a DynamoDB side, DynamoDB is an excellent, excellent database,
+and it works incredibly well with serverless environments
+and serverless architectures.
+It is a challenge to learn.
+There's a pattern in it called single-table design.
+If you're coming from mostly relational databases,
+it's going to seem really, really weird for you.
+It is really great, and I think it's worth the time learning,
+because if you learn it, you can build systems that basically scale infinitely,
+and you never have to worry about database scaling ever again.
+But if you don't really have that burning need,
+then I would say go to some of these new relational database services like planet scale.
+So people coming from non-relational databases like a Mongo context,
+would they be more likely to grasp some of the context,
+or is it his own thing entirely?
+I tried it. It's freaking awful.
+I could not pick it up, yeah.
+So hypothetically, a Mongo developer should be able to pick it up,
+but I think a lot of just given Mongo's history,
+a lot of people using Mongo aren't using it the right way.
+But yeah, so I think if you're coming from something like Cassandra
+or a lot of the other maybe less popular, no-SQL databases,
+it's very familiar, and you kind of understand the constraints.
+There's a little bit of a misconception with no-SQL in that you can't use it
+for relational database, relational data.
+All data is relational, like I've never seen a non-relational dataset.
+You can model all of it in Dynamo.
+It's just very different and very weird.
+I use it for most of my projects, but we definitely acknowledge there's a big learning curve.
+That's good.
+So we have an entire show on serverless databases where we talked about
+relational versus non-relational.
+And I ended up saying I really like the planet scale approach,
+because you can just use whatever adapter, if you know MySQL,
+or you can use whatever library that you're used to using
+and whatever, then local development is great.
+And then you can deploy the thing to a service that does make it serverless.
+And I thought that was a really neat approach.
+Yeah, planet scale is great.
+And it's kind of, we're trying to push most people down that route.
+We just have, because we're in the AWS world, we have a lot of like
+enterprise users that are like, we can't deploy a single thing outside AWS.
+So they're stuck on RDS, which I really want AWS to catch up to planet scale there.
+The gap is like ridiculous.
+It's not even close.
+What about built pipelines?
+That's another thing that I go to Amazon and they tell you,
+literally zip up your serverless function and press the upload button
+and you can upload a zip file of a thing.
+And I'm like, seriously, where's the like,
+get deploy automatic build type of thing?
+What's your solution to that?
+Yeah, I'm going to give you some advice.
+Just never log into AWS console ever again.
+You never need to go into it.
+And all the information in there is wrong.
+So just don't go in there.
+So with SST, because it's an infrastructure as code tool,
+as a part of it is, we know everything that your application needs to deploy.
+And we build everything for you.
+So we like build all your functions in parallel, like do that all efficiently.
+And we output that into a single artifact that we then deploy also for you.
+You can split that up if you want to like build it first and then like deploy it later.
+But typically people just build and deploy all at once.
+So our CLI, you know, SST deploy will deploy everything for you.
+And in terms of CI, that's actually where we make money.
+So we have a product called seed.
+It is a build tool that is optimized for SST and other serverless projects.
+It just does a bunch of things that a generic build tool would never bother doing.
+Just because we know the exact structure of your application.
+So a lot of our users are using that to automate their builds
+and do like PR environments and environments for different branches, things like that.
+And we'll like do stuff like monitoring all this once it's deployed.
+So because we know all the functions are deployed, we can add hooks to watch all the logs.
+And if we see something that looks like an error, we can pull out the error, structure it,
+kind of like how sentry would do.
+So things like that.
+That's how we monetize our open source stuff.
+Thanks.
+Oh, that's cool.
+And would it also tell you things like how long your functions are taking to run?
+And why not?
+Or is that more you have to get into the AWS console and look at the graphs there.
+Our goal is to eventually make it so you never actually need to go there.
+We do have some basic observability tools right now.
+We haven't invested a ton in it, but eventually we do want to understand what types of things
+do people need to really see and service those?
+And so seed is the company that you make money on.
+You pay for that.
+And then you guys just build SST as the open source project.
+Yeah, the history of the company is a little bit funny because seed was originally built
+first.
+So SST didn't exist.
+And the idea was, okay, there's people doing serverless stuff.
+They're using a framework called serverless framework.
+But there's not really a good CI tool for serverless framework.
+Let's build a good CI tool for that.
+So seed originally, and even to this day is really optimized for this other framework.
+And it was launched, it grew, and it kind of continues to grow to this day.
+At some point, we realized, oh, okay, even if we capture 100% of the existing serverless
+market, that's a good business, but it's not an incredible business.
+And we realized that our role actually is to make it so more people are building serverless
+and identify, okay, what's stopping?
+Like you guys, what's stopping any company that's being started right now from building
+in this way?
+And the answer was like, no AWS is really hard to use.
+Yeah, yeah.
+The developer experience sucks.
+So that means we need to build our own framework to make this stuff more accessible.
+Once we grow that more, then we can come back and kind of work on seed again and make it
+more optimized for SSD.
+We're starting to hit that phase right now.
+I think in the second half this year, we're going to be going back to seed and really making
+it a good product for SSD.
+Nice.
+So you're super experienced in AWS.
+Do you have any tips or tricks for anybody who looks at the AWS page and has no idea what
+to do or where to go?
+Do you have any learning resources or ideas for how to pick up and understand AWS in a
+more complete way?
+Yeah.
+The thing that bothers me a lot is I think you're kind of screwed from the second you sign
+up for AWS because even setting up an account correctly, the default path is not puts you
+in the wrong path.
+It puts you into setting up like I am users and like creating credentials and like putting
+them in some random file.
+There's actually a really slick way to set all this stuff up.
+I made a video on it so people can go look that up.
+That's on your YouTube?
+Yeah.
+So that's the YouTube.
+We have a ton of resources there on one using SSD but also just using AWS in like a
+sane way.
+I think the thing is a little bit different about us is we're not AWS like solutions architects.
+Like we're not sitting here with like a bunch of certifications and doing things in this
+like crazy complex AWS way.
+We try to look at AWS and try to find like, okay, this isn't like best practice according
+to like the official AWS guidelines.
+But for most people, this is the right tradeoff and accessibility and like and something that
+actually makes sense.
+So a lot of our content is more geared to I just I'm just trying to get something done.
+I'm trying to be practical and this will work for, you know, the foreseeable future.
+So yeah, things like setting up it's called a AWS single sign on like so you can just log
+in AWS or Google account and don't do all your credentials through that.
+There's a bunch of little things like that that we try to cover in our like in the YouTube
+content we make.
+It is tricky and I think there is not a lot of good content out there for what you're
+asking for.
+There's a lot of AWS content, a lot of it's outdated and a lot of it doesn't have this
+like practical mindset to it and our focus for this year is we're going to be focusing
+a lot more on on the content stuff and helping people do this stuff a lot better.
+A framework does like 90% of it because you can just start using it without really understanding
+some of this stuff and over time you kind of naturally pick it up.
+But like I said, like even the moment you sign up, you probably are led down the wrong
+path.
+So there's still a lot of gaps to fill.
+So now it's the part of the show where we talk about basically we ask you questions.
+We ask everybody that the types of things that are should be kind of quick one off easy
+to answer questions.
+So first and foremost, what kind of computer and set up are you using to work on love
+this question.
+I have a custom built PC that I've been building and rebuilding for years kind of like a ship
+of DC situation.
+It runs Linux.
+I've been a full-time Linux user for 10 years or so, which makes me really annoying.
+I'm a really annoying person.
+Wow.
+What district do you run?
+Of course, I run Arch Linux, which is the most annoying OS to run.
+What text editor theme and font are you rocking?
+So I use NeoVim.
+The theme is I think it's called Tokyo Knight.
+The font is a Haskellogue, I think, which is like, there's a font called Haskellig and
+Haskellogue is like a modified version of it.
+I found it a long time ago and don't remember why I chose it, but here I am.
+If you had to start coding from scratch today, or if you were giving somebody advice who's
+picking up something to work on, what types of things would you recommend?
+Yeah.
+It's funny because when I first started coding, I got into it through C-sharp, which I thought
+was a really great entry point.
+It felt easy, accessible, and today I think everyone's getting into it through TypeScript,
+which effectively just looks exactly like C-sharp.
+You can just write C-sharp code into a TypeScript file and it probably will work.
+From my point of view, it worked really well for me.
+I know a lot of people worry about as a Type system in TypeScript, is that going to overwhelm
+a beginner, I was script first.
+My memory of learning C-sharp was I didn't really, that all made sense to me and having
+structured what I was doing was great.
+So I think TypeScript is a boring answer because I think it's probably what most people would
+say.
+I think it is a great entry point.
+Doing stuff in web is also great because you get to build stuff and you get to look
+at it right away.
+Everyone I was first learning, I loved that feedback loop of visually looking at something.
+I've been loving Astro for that.
+It reminds me of the old PHP days where I would just have a single file and I would
+write stuff and I could refresh the browser and see it.
+I think Astro reminds me a lot of that.
+So I think like the mix of TypeScript and Astro is a good combination because you don't
+have the complexity of Web Dev you would normally get, but you still are kind of learning the
+tools you'll need once you go down that path.
+What terminal and shell are you rocking?
+So I use Alacrity and the shell is ZSH again, just old decisions that stuck that they worked
+for me for years.
+So I haven't reevaluated.
+Ain't broke.
+Don't fix it.
+Yeah.
+That's funny.
+We just we just talked about Alacrity.
+I'm pretty sure we call the Alacrity, which is I mean, I might be saying it wrong too.
+These are words you never have to say out loud because you only just reading them on the
+screen, especially a word like that.
+Yeah.
+Why do you use that terminal is that the best one on Linux?
+So Alacrity, I think just has a lot of energy around it, like it's being actively developed.
+It is somewhat newer.
+It's written in Rust, which, you know, does a lot for a lot of people, but we got excited.
+But yeah, it performs really well.
+I actually don't know.
+I think I used to use something called URVXT, I think it was called.
+To be honest, the terminal wise, I can't really.
+So I use something called i3 in Linux.
+The tiling window manager, it basically puts everything on my screen.
+It's a tiles, whether it's a browser or a terminal, whatever it is, manage all of it
+through my keyboard and I have to use a mouse.
+So the terminal itself doesn't really matter because it's kind of like all the terminal
+specific features you'd expect, like tabs and stuff, it's picked in at a lower layer.
+Nice.
+Yeah.
+Yeah.
+That really is the way to be.
+I'm starting to get into really getting my whole, oh, the entire OS, essentially on
+the same keyboard shortcuts to do everything and just try to lock that down because so
+often I think even like, you know, Wes and I, we write these keyboard shortcuts, we set
+up these macros for like our text editor specifically, but not OS wide.
+I'm sure Linux is way better for that anyways.
+What about, what's something that you're excited for in the future of dev?
+So I'm going to talk a little bit about Cloudflare because I think I'm very interested in their
+path.
+There's a lot of cloud providers or people trying to become cloud providers, but the
+reality is AWS is the only one that really makes any money.
+You can, of course, Azure makes money, but that's more just, they're like monetizing
+the same customer base they've had for decades now.
+Yeah.
+And in terms of like making real money, like having young companies start on your platform
+and grow into a billion dollar companies, AWS is really the only one playing that game
+and winning it because you need to have a lot of primitives in place for it to really
+be viable for you to serve these, you know, like these public companies that are operating
+at huge scale.
+I think Cloudflare is the first company that I'm seeing where they actually have a shot
+at taking the same market share.
+The primitives they have, they have way fewer primitives, but they're starting serverless
+first.
+So they don't have all these like, I'm going to call anything not service like a legacy
+model.
+It doesn't really make sense in the modern world.
+They basically, so Cloudflare basically has like 10 primitives and these 10 primitives
+are everything you need to build like 99% of applications.
+I don't think a lot of people realize this yet, but it is technically possible today.
+I'm really looking forward to new companies realize this and try to build like fully Cloudflare
+native.
+There's a lot of potential there, and I think I'm excited to see what that looks like.
+Yeah, I've been a big Cloudflare user for a while, and I've been dipping into a lot
+of their, both a lot of their hosting products, but also just like a lot of their pro features
+as well.
+And it's funny, whenever I ask about any of the Cloudflare features on Twitter, people
+are just like, it's DNS and DDoS protection.
+That's all they know about Cloudflare second man.
+Little do you know that they're a massive, massive cloud company, and I think they're
+going to really pull up in the next couple of years, if not already have.
+Yeah, I've heavily invested in them also.
+So I'm just going to put that to the slimmer.
+I work on it.
+It'll be a stuff in my hedges, my Cloudflare position in case Cloudflare dominates them.
+That's fine.
+Cool.
+All right.
+Oh, no, sick pics.
+Do you have a sick pic for us today?
+Yeah, I guess I already talked about it.
+So planet scale, which we just talked about a little bit.
+It is, I'm sure a lot of people have heard about it already, is an awesome solution.
+I think what systems look like with and without planet scale, massively different and complexity.
+At this point, if you're starting a new service or starting a new product, you need a database.
+Just go to planet scale.
+It's going to work for you really well and work for you for a long time.
+So yeah, really, really excited about what they're doing, their roadmap and everything.
+It's awesome.
+It's solving problems that I've had for like my whole career, pretty much.
+Sick.
+Awesome.
+And shameless plugs.
+Would you like to plug?
+Where can we find you?
+Yeah.
+So I'm mostly on Twitter.
+THDXR is my username.
+I'm working on something kind of funny that I don't know if you maybe have seen, we announced
+it like a week ago.
+We're working on a game show for developers.
+So if you guys remember HQ trivia, you know, I would like your app would like light up
+once a day and there'd be like a 10 minute game show that everyone could kind of take
+part in live.
+We're doing, we're trying to launch something like that.
+It's called rebase.tv.
+You can find it on Twitter or rebase.tv.
+We haven't like launched our first game yet, but we're like in the process of building
+the app and doing all the production and we want to have really great production quality.
+But yeah, I think it would just be fun to have a thing that like, you know, the whole
+developer community is doing at the same time once a week or whatever it is.
+That's cool.
+Yeah, it's amazing how HQ just came and went, right?
+Well, we'll have to share the link for that, by the way, in the show notes.
+But there was a, um, there's a really fantastic podcast that detailed the entirety of the
+HQ rise and fall boom, bust HQ trivia.
+Yeah.
+And I think there's actually a documentary coming out about it.
+We had this idea last week or two weeks ago as we were looking at HQ and yeah, we really
+coincidentally, there's a new documentary coming out, but it might have, might already
+be out.
+I think TikTok is launching like an HQ concept as well.
+It's smart.
+Yeah.
+It was a, I mean, it was a lot of fun.
+Sick.
+Awesome.
+Well, thank you so much for coming on.
+Appreciate all your time and insights into the world of serverless and AWS and SST.
+Thanks so much for coming on.
+You guys are, you know, moving some of your stuff, AWS and you're understandably confused.
+Yeah.
+Please let me know.
+I kind of love helping people figure that out.
+Free migrations, you say.
+All right.
+I'll take you up on it.
+Cool.
+All right.
+Thanks again.
+I'll talk to you later.
+Head on over to syntax.fm for a full archive of all of our shows.
+And don't forget to subscribe in your podcast player or drop a review.
+If you like this show.

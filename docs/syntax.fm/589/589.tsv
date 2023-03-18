@@ -1,0 +1,948 @@
+start	end	text
+0	2500	I sure hope you're hungry!
+2500	4200	Cool, I'm starving!
+4200	8100	Wash those hands, pull up a chair, and secure that feedback.
+8100	14200	Because it's time to listen to Scott Tolinsky and Wes Boss attempt to use human language to converse with
+14200	16800	and pick the brains of other developers.
+16800	18800	I thought there was gonna be food!
+18800	21700	So buckle up and grab that old f***ing handle
+21700	25000	because this ride is going to get wild!
+26000	27300	This is...
+27300	29700	The Syntax Supper Club!
+30000	38500	Welcome to Syntax!
+38500	41500	The podcast with the tastiest web development treats out there.
+41500	44500	We've got another banger Supper Club for you today.
+44500	46500	We have somebody who has...
+46500	48500	I'm gonna admit it, a cooler name than I have.
+48500	53000	Dax Rad is on today to talk about...
+53000	56900	I think we're just gonna be talking mostly about serverless hosting Next.js.
+56900	58900	He's behind a couple different projects.
+58900	61400	SST as well as Open Next.js.
+61400	63400	We're excited to talk all about that.
+63400	64400	Welcome, Dax. How you doing?
+64400	65900	I'm doing great. Thanks for having me on.
+65900	67400	You're welcome. You're welcome.
+67400	69400	We're sponsored today by Sentry.
+69400	71400	Let's talk about their new APM.
+71400	72400	What is APM?
+72400	74400	Application, Performance, Monitor.
+74400	76400	So what that will do is...
+76400	81400	You're throwing your application and it's sort of trying to monitor things that will make your website slow.
+81400	86400	We had a show a couple days ago about slow websites and what could possibly cause it.
+86400	90400	So what Sentry will do is it will detect common things.
+90400	95400	Large render blocking assets, slow database queries, file IO on the main thread.
+95400	97400	That's probably not something you want to do.
+97400	102400	You know, in Node, you have that right file sync, which is...
+102400	104400	That will block up your main thread.
+104400	110400	Anything else running on that main thread will not be able to go until you've actually finished writing that file.
+110400	112400	So that could be a big, big no-no.
+112400	114400	You're gonna want to check it out.
+114400	116400	There's lots in this APM.
+116400	120400	I'm sure I'll go into the features of it over the next couple of ad reads.
+120400	122400	You want to check it out at Sentry.io.
+122400	125400	Use a coupon code, tastytreat, for two months for free.
+125400	132400	I also want to check out their blog post, which is the new APM actionable, affordable, and actually built for developers.
+132400	134400	Thank you, Sentry, for sponsoring.
+134400	140400	We'll start this by just saying 2023, I said, is my year for AWS.
+140400	145400	So I've been looking at some of my server bills and whatnot.
+145400	150400	And I say, man, this is real expensive to be able to do this stuff.
+150400	155400	And then I look over at AWS and I go, that's too hard.
+155400	160400	And I'm stuck in this position of something is very expensive and obviously easy,
+160400	164400	versus something that is, I think, cheaper.
+164400	165400	We'll see.
+165400	168400	But it's just like, there's so many pieces to it.
+168400	173400	So we're trying to, like this year, we're trying to get a little bit more into AWS and understand all the different parts and whatnot.
+173400	178400	So you're the first person that we're having on to sort of talk about that type of stuff.
+178400	182400	Let's talk about, you want to give like a quick rundown of who you are and what you do.
+182400	187400	And then I thought we'll get into the open next year stuff first and then we'll get into the SST stuff.
+187400	188400	Yeah, sounds good.
+188400	190400	So again, my name is Dax.
+190400	194400	I work entirely on open source to a pretty lucky situation that I'm in.
+194400	198400	The primary project that I work on is called SST.
+198400	207400	It's a framework that helps people like yourself start to build things on AWS without fully being exposed to the monstrosity that is AWS.
+207400	211400	Because like you said, there's a lot of great reasons to be building on AWS,
+211400	216400	especially for things that are a little bit more serious and as you start to get to a certain scale.
+216400	220400	But it's pretty unapproachable for the average person.
+220400	226400	So our job is to really go dig through all the AWS docs, read everything,
+226400	232400	figure out all the little weird quirks and then expose something that makes a lot more sense for the end user,
+232400	239400	figure out what kind of rough edges there are on their day to day development cycles and make all that smoother.
+239400	244400	I'll start this with a question is, and I went down this rabbit hole the other day.
+244400	250400	I put a tweet out where I logged into AWS and I looked at some of the profiles I had created.
+250400	253400	And one of them was 12 years old.
+253400	256400	And I tweeted like, has it gotten any better in about 12 years?
+256400	259400	And half people are like, no, and half the people are yes.
+259400	265400	So I was like, I just want to deploy a serverless function raw to AWS.
+265400	269400	And I like got into it and like there's no build pipeline and there's all these products.
+269400	275400	Why does AWS not have something like Netlify or Vercel?
+275400	277400	Or like, why don't they have that?
+277400	282400	And like, why is there all these businesses built up on top of AWS being easier?
+282400	288400	The thing is AWS does think they have that and they have like three or four attempts at building something like Netlify
+288400	291400	or Vercel or Heroku or whatever.
+291400	292400	I think I forgot who it was.
+292400	295400	Someone documented all different ways to deploy a container.
+295400	300400	And there's like something create like 18 different ways that you can do it because they represent all these attempts at
+300400	306400	AWS trying to create a higher level abstraction for to make some of these things simpler.
+306400	308400	I just don't think it's in their DNA.
+308400	311400	They are an infrastructure hyperscaler company.
+311400	317400	They're about deploying like a crazy amount of physical hardware across the whole world, have it working.
+317400	322400	That is really far removed to what a developer experiences day to day when they're trying to build something.
+323400	325400	I think it's an awkward fit for them culturally.
+325400	326400	Interesting.
+326400	330400	Yeah, it does feel like that's been a long time thing forever.
+330400	341400	I mean, even into Amazon.com itself, they've never had the polish, I think, in the UI department that many other companies have.
+341400	345400	And that does seem to turn off people from AWS.
+345400	351400	And like you mentioned, Wes, it opens up the door for all these other businesses that are built on top of AWS just to make it
+351400	353400	easier on folks, right?
+353400	361400	So do you think it's a positive thing that AWS hasn't figured this out because it enables all these other companies to exist?
+361400	364400	Or do you think they'll get there eventually?
+364400	370400	Yeah, I think for me, I always, I find myself in a tricky situation because I'll be trying to do something at AWS.
+370400	373400	I'll be really frustrated and wish that it was better.
+373400	377400	And I'll be annoyed with the teams behind certain services that are creating these problems.
+377400	383400	And then I'll realize, oh, well, if they were actually doing all those things, I wouldn't really have a job.
+383400	386400	So I definitely appreciate the gap that it creates.
+386400	388400	I think it is a good system.
+388400	391400	AWS's scope is just massive.
+391400	394400	They're trying to serve every possible business out there.
+394400	398400	And the reality is to build good services.
+398400	400400	You do have to narrow your scope a lot.
+400400	406400	A lot of these companies that people like, like Versailles or Netlify, their scope is a lot narrower in terms of what they try to offer
+406400	410400	and who they try to serve than what AWS can do.
+410400	412400	And that's kind of why they have a good product.
+412400	421400	And I think at some, I think there's a reality of it where at the scope the AWS has, it just, you just can't really build anything that great.
+421400	424400	All right, let's get into the open Next.js stuff.
+424400	430400	So Next.js, huge, probably the largest React framework for building a website out there.
+430400	432400	It sort of encompasses a lot.
+433400	438400	And it is obviously very tightly, not tightly, but it is, it's the baby of Versailles.
+438400	448400	And Versailles is this amazing hosting platform that does images and CDN and caching and deploy previews and serverless and edge functions.
+448400	450400	And they do all the stuff.
+450400	457400	And the like experience of writing an XJS app and hosting it on Versailles is a very, very nice experience.
+458400	462400	We host the, that's the exact stack and hosting platform we use for the syntax website.
+462400	470400	But there's often been people saying, well, it's not that easy to host an XJS site anywhere else.
+470400	473400	They provide some sort of, some outlets and whatnot.
+473400	478400	So do you want to give us like a rundown of like, what is the open Next.js project?
+478400	485400	Yeah, so I think the premise is, like you said, Next.js hosted on Versailles is an incredible experience.
+486400	492400	And trying to host it in other places, you kind of have a variety of different, different options and variety of different experiences you can have.
+492400	495400	So you can self host Next.js in a container.
+495400	502400	It's pretty easy for Versailles to support that because it's just a long running process that can literally just do everything that they needed to do.
+502400	508400	But for a lot of people self hosting Next.js in a container is pretty different than what they get from Versailles.
+508400	511400	Just in terms of costs, yes, I mean, it's always running.
+511400	518400	It's a little bit, it's a lot more expensive to have like global availability, things like that when you have to deploy containers everywhere.
+518400	530400	When most people think of I want to self host Next.js, they expect it to be entirely serverless, deploying to functions and kind of serverless primitives that AWS offers.
+530400	534400	And the process for doing that isn't actually straightforward.
+535400	538400	I'm not going to say Versailles like explicitly doesn't let you do that.
+538400	548400	They actually do put in a lot of effort in creating standard outputs so that you can take an Next.js app and potentially get it to be self hosted in AWS.
+548400	555400	But the gap there of what you get from that build output to actually deploying is pretty massive.
+555400	557400	You need to one be an expert in AWS.
+557400	560400	You really need to understand the different ways you can do things.
+560400	569400	You also need to understand pretty detailed internals of Next.js, understand different components that Next actually offers.
+569400	572400	And there's not just a single way you can deploy AWS.
+572400	575400	There's a lot of different ways you can deploy with different trade offs.
+575400	580400	You can, you know, some functionality just cannot work in an entirely of some environment.
+580400	584400	It's really difficult and takes a lot of man hours to just figure that out.
+585400	590400	So that's what we started to open Next project because there were a lot of kind of disparate efforts of doing this.
+590400	595400	We had a, there's like an older project called serverless Next.js that a lot of companies were using.
+595400	601400	In fact, AWS even used to use this open source project internally to power their Next.js offering.
+601400	604400	Of course, like one person cannot maintain that long term.
+604400	608400	That project kind of died and have kind of few offshoots of trying to do this.
+608400	617400	And there was enough interest in our community of people wanting to run Next.js in AWS where we avoided building this project for a while.
+617400	619400	We really didn't want to do it just because it's a lot of work.
+619400	624400	But we got to a point where there was enough expertise in the community for us to actually go ahead and build that.
+624400	629400	So how many people are involved in an effort like this?
+629400	634400	Yeah. So from our core team, we have Frank who pretty much leads this effort.
+634400	636400	He spends a lot of time on this.
+636400	642400	There is a little bit of upfront work, you know, to get to a place where there is one-to-one parity with what Vercel offers.
+642400	644400	And then from there, it's more maintenance.
+644400	649400	And then in terms of help in the community, I think we have like five or six people that are pretty much talking about this all day.
+649400	657400	None of us at SST are actually Next.js users, which is kind of funny because we're the ones that are behind this effort.
+657400	661400	So we're not experts in the details of how Next.js should work or it's exact features.
+661400	666400	We really rely on our community to report how things are working and what things aren't exactly right.
+666400	674400	And they find a lot of really obscure things like they'll figure out, oh, we need to pass this explicit header for like this very specific feature to work, things like that.
+674400	683400	Let's move through the different parts of Next.js and we'll sort of like map those to what are the Amazon products.
+683400	688400	So at its very core, Next.js splits its routes.
+688400	693400	So every time you go to a URL, it makes that into a serverless function. Is that right?
+693400	696400	So not exactly.
+696400	703400	So the build output outputs a single function that handles all of your routes.
+703400	710400	So that means it's all bundled into like one kind of fat lambda function.
+710400	715400	And then they do have their edge function concept, which is a little bit separate.
+715400	724400	Okay, so literally every single route is all bundled into one app and run on one serverless function.
+724400	729400	Because I remember when Vercel was, was it now?
+729400	731400	And they moved away from node.
+731400	737400	And I had an express app running on node and they're like, yeah, just throw it in a lambda function.
+737400	739400	And it's like that it doesn't fit.
+739400	742400	Like it's way too large for that type of thing.
+742400	744400	So like, is there a hard limit?
+744400	747400	For some reason, I thought that they split it up per URL.
+747400	754400	So they're literally throwing your entire application back end API routes and everything into one serverless function.
+754400	761400	Well, so I suspect what Vercel does internally might be a little bit different than the build output that the open source Next.js produces.
+761400	762400	So yeah, you're right.
+762400	765400	Bundling everything to a single function is not great long term.
+765400	769400	If you have one dependency on one route, that is really large.
+769400	773400	Something that's hitting the cold starts of like all the routes in your application.
+773400	780400	So I suspect that Next.js or Vercel might, when they deploy on to their platform, they might do some kind of splitting.
+780400	781400	It's challenging.
+781400	784400	It's easy with stuff like API routes, like API routes split nicely.
+784400	790400	But it is a little bit trickier with with UI routes that nests and especially with the new app layout stuff.
+790400	802400	Yeah, yeah, that always got me not just on Next.js, but in general, where it's like, yeah, you put everything into your own and every single route has its own package JSON.
+802400	807400	And that's annoying to me because I was like, I don't want every package JSON for every single function.
+807400	812400	And then other people say, well, okay, now you have the special package that shared code.
+812400	817400	And you can put anything you want in there that shared code, but then I'm like, well, okay, now I have to decide.
+817400	821400	Can I just put it where I want it and it will like figure it out from there?
+821400	830400	And I'm assuming, or I'm not assuming, maybe that's what Vercel does on their end is they do a bunch of tree shaking or whatnot to make the functions as small as possible.
+830400	835400	Because nice and small that deploy super quick, you get nice cold starts.
+835400	838400	It's really sweet when that stuff does work.
+838400	841400	Yeah, and that's a pattern that we actually encourage.
+841400	844400	Our main framework SST, we talk about something similar.
+844400	850400	You don't want to, at author time, you don't want to think about it as like these complete discrete separate things.
+850400	853400	You want to build like one big application.
+853400	856400	And at deploy time, you want it to be broken down and tree shaking and all that.
+856400	859400	And that's that's exact pattern we like.
+859400	866400	And that's what we encourage because yeah, thinking that granularly when you're building something is just kind of annoying.
+866400	870400	And then the next jazz has a concept of middleware.
+870400	873400	And those are deployed to the edge.
+873400	875400	Can you give us a quick rundown?
+875400	879400	We've talked about it on the show a few times, but I'm sure people are still not really familiar.
+879400	880400	What is the edge?
+880400	882400	Yeah, so this one is really tricky.
+882400	888400	So the reason this is tricky for us to implement is Vercel itself runs primarily on AWS.
+888400	895400	So when you run a function on XDS, sorry, on Vercel, it's keeping these two confused.
+895400	899400	On Vercel, it runs in AWS.
+900400	903400	But a lot of their edge stuff is powered by CloudFlare.
+903400	909400	So when the middleware runs at the edge, it's not running in AWS data center, it's running in a CloudFlare data center.
+909400	913400	And CloudFlare data centers, there's a lot more of them and they're closer to the end user.
+913400	917400	And they're less capable, but good enough to run things like middleware.
+917400	922400	So a big challenge for us is, okay, if you want to self-host all of next jazz, including the middleware,
+922400	925400	we have to deploy that middleware inside AWS.
+925400	930400	That means there's different constraints that we have to abide by that Vercel does not.
+930400	933400	Because they can pick whatever architecture they want.
+933400	934400	Yeah, yeah.
+934400	937400	It's actually kind of nice if you go to a vendor and they say, you know what?
+937400	940400	We'll just, we'll figure it out for you, we'll make it fast.
+940400	949400	So the limitations we're talking about with edge functions, and this is true for running in Dino in CloudFlare workers.
+949400	954400	And there's a couple other runtimes we've talked about is that it's not a no jazz environment.
+954400	957400	It's a JavaScript web environment.
+957400	961400	And you only have a certain set of APIs available to you.
+961400	966400	So I converted a tiny little site the other day and I was like, you know what?
+966400	971400	I'm going to run it on Netlify Edge, which is it runs in Dino.
+971400	977400	So you can't use any Node.js APIs unless Dino supports them and large packages and whatnot.
+977400	980400	So there's like a little bit of a limitation, but the upside is what?
+980400	983400	It's much faster and quicker to load.
+983400	988400	And they literally deploy them to hundreds of different server locations around the world.
+988400	989400	Yeah, exactly.
+989400	994400	So if you look at traditional Lambda functions on AWS, they're not opinionated about what language you use.
+994400	997400	You can use a variety of different languages that they support natively.
+997400	1000400	You can bring your own custom runtime for languages you want.
+1000400	1002400	And that constrains their architecture.
+1002400	1006400	They have to build a functions platform for running any arbitrary code.
+1006400	1011400	Some of these Edge platforms like CloudFlare, they, again, it's all about narrowing scope.
+1011400	1014400	Whenever you narrow scope, you can really up the quality.
+1014400	1019400	They're saying you can not only just, you can train not only to JavaScript,
+1019400	1022400	but a very specific flavor of the runtime that we provide.
+1022400	1024400	It's good enough for most things.
+1024400	1027400	If you accept these constraints, we can do some really interesting things.
+1027400	1029400	And one of those things is basically zero cold start.
+1029400	1034400	They're billing on the CloudFlare Edge's billing is pretty incredible.
+1034400	1036400	Let me see if I can explain this.
+1036400	1042400	So if you only pay for compute time, that means if your function starts, compute some stuff,
+1042400	1047400	then makes a network request and it waits 500 milliseconds to network request.
+1047400	1050400	You're not actually being billed for that waiting time.
+1050400	1054400	You only build when the network request comes back and you're using the CPU again.
+1054400	1062400	And that creates a very simple concept, but it creates so many things and so many opportunities for things you can build that
+1062400	1065400	isn't exactly possible on a traditional functions platform.
+1065400	1072400	I remember seeing that because I remember looking at the 10 milliseconds or something like that on CloudFlare workers.
+1072400	1075400	I was like, that's not enough.
+1075400	1079400	And then who's possibly running code in 10 milliseconds?
+1079400	1080400	And that's it.
+1080400	1081400	But I've never hit that.
+1081400	1082400	I've never hit the issue.
+1082400	1085400	And somebody explained to me, no, it's not.
+1085400	1092400	If you're fetching a big thing that CloudFlare workers is really good at is proxying web pages.
+1092400	1097400	So if you're going to NBA.com and downloading all of the HTML and then waiting for it to come back,
+1097400	1099400	you're not paying for that time.
+1099400	1100400	And that's wild.
+1100400	1102400	Like, did they just not charge you for it?
+1102400	1106400	Or did they literally spin it down while you're waiting for that?
+1106400	1107400	Yeah.
+1107400	1111400	So technically they are not paying for like your function is off the CPU at that point.
+1111400	1115400	It's just waiting for the network hardware to say, hey, it's done downloading.
+1115400	1117400	I have a payload for you.
+1117400	1119400	So there still is like a memory cost for them.
+1119400	1122400	But the CPU cost is what's limited.
+1122400	1128400	So they can have other customers running on that CPU while you're waiting for your request to come back.
+1128400	1133400	And that's how they basically sell the same second multiple times multiple people.
+1133400	1136400	And it's a model that can work really well at scale.
+1136400	1137400	Wow.
+1138400	1145400	And that's another thing that people often understand is that like if you look at pricing for a lot of these things,
+1145400	1147400	they charge you by compute hour.
+1147400	1150400	Just regular people look at it and go like, how do I do that?
+1150400	1153400	Do you have any like tips on like, how would you calculate that type of thing?
+1153400	1158400	Or is it just a, you got to see pricing is a funny thing in a serverless world.
+1158400	1160400	It's pretty much in hindsight.
+1160400	1164400	And I would say, I think people try to come up with ways to figure out costs ahead of time.
+1164400	1167400	I think the reality is you don't know the cost ahead of time.
+1167400	1170400	It's more around shifting your mindset around what your costs are.
+1170400	1173400	I think we're used to paying for things in a monthly way.
+1173400	1177400	Now, like if you think about our personal lives, we pay monthly bills.
+1177400	1181400	But when it comes to cloud infrastructure and things involving your business,
+1181400	1190400	I think it's better to think about it as marginal cost where you just need to make sure that you are charging someone else more than what your marginal cost is.
+1191400	1194400	So to serve one request, it costs you a penny.
+1194400	1196400	Make sure you're charging 10 cents for that.
+1196400	1200400	That way it doesn't matter what your monthly bill is because if you scale up 100 X,
+1200400	1202400	your margin still makes sense, right?
+1202400	1206400	You're never going to go negative as long as you're thinking about like the unit economics there.
+1206400	1208400	But it is tricky.
+1208400	1212400	Like the pricing is on intuitive and it's not even compute hour now.
+1212400	1213400	It's like per millisecond.
+1213400	1215400	Like how many milliseconds are you going to use this month?
+1215400	1218400	It's not really something that you can really guess.
+1218400	1221400	You can look at it in hindsight and see what's what.
+1221400	1225400	Can it be like incredibly cheap to run stuff on this as well though?
+1225400	1228400	Yeah, I think there's a lot of confusion around pricing.
+1228400	1234400	I think people, I've heard people instinctively say serverless stuff is really expensive.
+1234400	1238400	I've also heard people instinctively say that it's not expensive.
+1238400	1240400	In practice, it's insanely cheap.
+1240400	1243400	And the numbers and the way you compute the numbers are a little bit counterintuitive,
+1243400	1246400	which is why people might perceive them as being expensive.
+1246400	1249400	But it is like unbelievably cheap.
+1249400	1253400	Like I don't think I've had a bill more than like $5 or something.
+1253400	1257400	And I run some stuff like serious traffic.
+1257400	1263400	And I think the culture at least with AWS is they have never raised prices ever.
+1263400	1267400	There's some services that are now 99% cheaper than they were when they launched.
+1267400	1272400	They know the moment that they leave room that someone else is going to come in and offer a cheaper service.
+1272400	1275400	So you'll just see prices go down and down and down.
+1275400	1281400	As one of my favorite examples of this is Lambda, let me see if I can remember the exact numbers.
+1281400	1284400	So they used to charge per 100 milliseconds.
+1284400	1290400	So if you had a request that took 20 milliseconds, you were being charged for 100 milliseconds.
+1290400	1295400	Then one day they came out and they said, okay, we're now going to charge you per millisecond.
+1295400	1300400	That means your costs are now 80% cheaper overnight without you doing anything.
+1300400	1302400	And there's a million examples of this.
+1302400	1307400	And I think people kind of worry about with all these very cloud native services.
+1307400	1308400	Am I going to get trapped?
+1308400	1311400	And they're going to jack the price up and I'm going to be screwed.
+1311400	1317400	Historically, at least with this modern set of companies, they understand the mistakes of the previous generation of companies.
+1317400	1319400	I try to do that.
+1319400	1322400	And I know that they got to make sure prices keep going down.
+1322400	1329400	I'll give you another example of I host my course platform on render as a long-running node app.
+1329400	1339400	I've been really looking at moving it over to serverless lately because specifically because I have pull request previews on my pull request.
+1339400	1342400	And I had a pull request sitting there for three or four months.
+1342400	1344400	I wasn't ready to deal with it.
+1344400	1347400	And then I had three or four running for a couple of weeks.
+1347400	1355400	And then I realized like every single pull request is another VM that is spun up and run until I merge the pull request.
+1355400	1366400	And if your regular VM costs $10 a month and then you have six more pull requests running at $10 each a month, that gets out of hand really quickly.
+1366400	1369400	And the obvious answer is merge and quick.
+1369400	1370400	It's cheaper to do that.
+1370400	1378400	But I thought like, man, if this was serverless functions, it literally would not run until I click the URL and that thing will spin up again.
+1378400	1381400	Yeah, that's kind of why some of these costs are counterintuitive.
+1381400	1385400	It's easy to think about just a very narrow version of your production environment.
+1385400	1388400	Like think about like one container running production.
+1388400	1391400	But that container has to be at least reasonably highly available.
+1391400	1396400	Then you have like your dev environments and your pull request environments and all these add up.
+1396400	1398400	And it's not just your compute part of it.
+1398400	1401400	It's can you pay for your database in a serverless way?
+1401400	1406400	If you can, then you can have a separate database for each pull request environment and it's costing you nothing.
+1406400	1413400	So a lot of we see a lot of people coming to serverless specifically for the developer environments and the pull request environments.
+1413400	1416400	What about images and assets?
+1416400	1419400	So I know Next.js has really nice image component.
+1419400	1421400	I'll let you resize on the fly.
+1421400	1425400	Is that type of thing something you can also do in the serverless world?
+1425400	1429400	Yeah, so their standard build output outputs a function that can do that.
+1429400	1432400	And we just deploy that as another serverless function.
+1433400	1438400	And it actually that part actually works pretty nicely out of the box.
+1438400	1442400	I think the thing with that is there's not anything specific to your application.
+1442400	1447400	Like that image resizing and all those tools are like a generic solution, right?
+1447400	1448400	You just pass in.
+1448400	1451400	It's just going to pass an image that you need and handle the resizing.
+1451400	1454400	So that is something that we support in the self-hosted version.
+1454400	1458400	And yeah, it's like sitting behind a CDN and all that.
+1458400	1459400	So it's optimized.
+1459400	1460400	Awesome.
+1460400	1465400	And then the CDN is so cloud flare or sorry, not cloud flare.
+1465400	1469400	Yeah, cloud front and S3, right?
+1469400	1470400	Is it using both of those?
+1470400	1471400	Yeah.
+1471400	1475400	So when we build your Next.js app, there's a few things that it spits out.
+1475400	1477400	There's a bunch of static files that don't change.
+1477400	1483400	And those get uploaded to S3 that gets put behind a CDN, which is cloud front.
+1483400	1486400	Your functions actually get put behind the CDN as well.
+1487400	1490400	And there's also your functions for your main application.
+1490400	1492400	We also deploy some edge functions.
+1492400	1494400	So AWS does support edge functions.
+1494400	1498400	And those actually live in the same environment as the CDN.
+1498400	1502400	We deploy edge functions there for the Next.js middleware, middleware stuff.
+1502400	1508400	So what is, so I'm actually looking at, I primarily use Svelte and Svelte kit myself.
+1508400	1512400	And they have this adapter situation where you can have an output adapter.
+1513400	1518400	I found basically the Svelte kit adapter, AWS CDK.
+1518400	1522400	And they have very similar diagrams to kind of what you have going on, right?
+1522400	1526400	You have the S3 buckets, you have cloud fronts for the CDN and the static assets
+1526400	1528400	for an S3 bucket.
+1528400	1533400	Is the CDK a layer on top of something that Amazon is doing?
+1533400	1539400	Or is that just a name for how you develop cloud applications locally?
+1539400	1544400	Yeah, so when you start looking at AWS, you realize it's just like crazy amount of layers.
+1544400	1547400	So let me see if Anttraces all the way down.
+1547400	1553400	So AWS has an infrastructure as code tool called CloudFormation.
+1553400	1558400	All this means is instead of going into AWS UI, clicking a bunch of things to configure something,
+1558400	1561400	you can do this all in this YAML specification.
+1561400	1562400	It's terrible.
+1562400	1563400	Nobody should be using it.
+1563400	1565400	Everyone hates using it.
+1565400	1570400	So they built a layer that compiles to CloudFormation called CDK.
+1570400	1575400	So instead of writing YAML, you can write types.
+1575400	1577400	I have a lot of issues with CDK.
+1577400	1582400	They optimize it so you can write it in a variety of different languages, like TypeScript, Python,
+1582400	1588400	I think Java, Go, a few others and all compiles down into this CloudFormation YAML.
+1588400	1592400	99% of people, I think they're just using it in TypeScript.
+1592400	1594400	So I just wish they just optimized for TypeScript.
+1594400	1597400	I'm trying to make something multi-language.
+1597400	1602400	And so today, a modern application on AWS, I think CDK is a pretty good option.
+1602400	1607400	A lot of people are still using CloudFormation directly just because they have the experience with it.
+1607400	1611400	And SST, the thing that we build is actually built on top of CDK.
+1611400	1614400	So we have a lot of experience with CDK and some of the internals there.
+1614400	1620400	So if somebody opts to use CDK, are they opting in to paying for that as a bit more of a service,
+1620400	1623400	or are they still paying just for the underlying services?
+1623400	1627400	Yeah, so there's no charges associated with CloudFormation.
+1627400	1629400	So it's just a way for you to deploy stuff.
+1629400	1635400	Yeah, so we had a while back, we had Brian LaRue from Begin,
+1635400	1640400	which they seem to be switching gears a little bit, which is kind of interesting.
+1640400	1644400	So he runs a project called Architect, which is Arc.Code.
+1644400	1649400	And that, basically, it's your infrastructure as code,
+1649400	1652400	and that will compile to a CloudFormation.
+1652400	1654400	It's funny. There's lots of people building it on top.
+1654400	1657400	So we talk about that.
+1657400	1660400	I'll talk about one more, and then let's get into what SST is.
+1660400	1664400	So there's another one that people keep recommending to me, and that's Terraform.
+1664400	1667400	Are you familiar with that? Can you explain what that is?
+1667400	1672400	Yeah, so Terraform is another infrastructure as code tool that is not tied to any specific Cloud provider.
+1672400	1674400	I actually am a huge fan of the Terraform ecosystem.
+1674400	1677400	I used to build everything in Terraform, like,
+1677400	1682400	made for, like, four or five years before I moved to working on SST.
+1682400	1688400	Their interface is, it's not YAML, but it is a similar configuration language.
+1688400	1693400	I would say it's a lot better than YAML, but you can basically configure anything.
+1693400	1697400	You can configure stuff in AWS, you can configure stuff in CloudFlare.
+1697400	1699400	You can, like, make it turn on a light in your house.
+1699400	1702400	Like, you can kind of use it for literally anything,
+1702400	1707400	and it's basically a way to describe the state of any system
+1707400	1712400	and have it, you know, retain that state and make changes to it over time.
+1712400	1718400	It's a great, like, neutral open source tool that's not tied to any one specific vendor.
+1718400	1725400	And we're actually looking not anytime soon, but long-term we would like to be more built on top of Terraform
+1725400	1730400	than built on top of CDK, just so we have access to some of the larger ecosystem.
+1730400	1731400	Yeah.
+1731400	1737400	All right, so you've talked about SST quite a bit, but, like, let's give us a 30-minute or nothing,
+1737400	1742400	a 30-second, one-minute rundown of what it is and why are you building this?
+1742400	1749400	Yeah, so that premise here is, like I said earlier, AWS is actually a great choice for most companies
+1749400	1752400	building products that they're trying to sell to other people.
+1752400	1756400	It's just extremely hard to understand anything going on in AWS.
+1756400	1759400	You're not really going to understand it through the console, the documentation.
+1759400	1763400	There's a ton of stuff to learn before you can even know the right way to do something.
+1763400	1771400	So the idea here is let's build a framework that is our idea of the best way to build an application on AWS.
+1771400	1773400	So we don't cover all of AWS.
+1773400	1778400	I would say we cover maybe, like, 2% of AWS, which is probably the 2% that most people need.
+1778400	1785400	We focus just on the serverless services, and we provide high-level contracts, things like APIs,
+1785400	1791400	databases, stuff like cron jobs, queues, long-running jobs, scheduled events, things like that
+1791400	1796400	that are high-level pieces that you need for most applications that you can just spin up
+1796400	1800400	and configure and then access in your application code.
+1800400	1802400	Our scope is pretty broad.
+1802400	1805400	We'll cover stuff that is very infrastructure-related like that.
+1805400	1809400	We'll also cover rough edges that show up in your application.
+1809400	1812400	Like I said, we're doing the open-next stuff, so we help you deploy your front-end, say,
+1812400	1813400	AWS as well.
+1813400	1820400	We just want to make it really viable for you to start a project on day 1 AWS without doing all this work
+1820400	1823400	of understanding and research.
+1823400	1827400	But, you know, as your company grows, as your product grows, day 100, day 1000,
+1827400	1832400	you're still built on AWS, so you're not going to really need to eject out into something else.
+1832400	1837400	So the idea is, you know, keep it simple in the beginning, but it's going to be able to stick with you
+1837400	1838400	for the long run.
+1839400	1843400	And if you're out there and you hear 2% of AWS, you think that's not very much,
+1843400	1846400	just go ahead to services in the top left of AWS,
+1846400	1850400	click all services and just start scrolling, and then by tomorrow you'll hit the bottom of it.
+1850400	1851400	Yeah, exactly.
+1851400	1853400	They have a lot of stuff, and you eventually will need some of it.
+1853400	1857400	Is this something that you would pick up before you start an application,
+1857400	1861400	or is I know you have adapters for frameworks, but then I'm looking at the docs,
+1861400	1866400	and there's also, like, if I want to just have a raw request coming in from a URL,
+1866400	1868400	does it have a router?
+1868400	1870400	Like, where does this fit in?
+1870400	1874400	Do I build on top of this, or do I take my existing app and put it into it?
+1874400	1876400	Yeah, so we have two different options.
+1876400	1879400	For most people, we would recommend, if you're starting fresh,
+1879400	1884400	you start with a fresh SSC project, it sets you up for something that will work for a pretty long time.
+1884400	1890400	And you can configure that with, I just want an API, or I have an API plus a GraphQL thing,
+1890400	1892400	or I have, you know, an XJS app.
+1892400	1894400	You can kind of configure however you want.
+1894400	1897400	We kind of think of that as an SST app that you're building.
+1897400	1902400	We also have something called drop-in mode, which we're releasing kind of framework by framework.
+1902400	1907400	We did a launch for Astro a few weeks ago, and we're doing one for next JS next week.
+1907400	1909400	Basically, you have an existing Astro app.
+1909400	1911400	You have an existing next JS app, whatever it is.
+1911400	1914400	You just want to, like, drop this in and get this deployment at AWS.
+1914400	1918400	You're not really trying to build the fully fledged SSC application.
+1918400	1921400	That basically requires you to just drop in a single file, and, you know,
+1921400	1924400	you can deploy everything you have to AWS.
+1924400	1926400	Oh, cool.
+1926400	1930400	And what about, like, a local dev experience?
+1930400	1935400	That's one thing that always makes me nuts, is that, like, okay,
+1935400	1939400	I can run this thing locally, but then I have a whole other set of whatever
+1939400	1943400	and trying to replicate the local environment.
+1943400	1945400	And, yeah, such a pain.
+1945400	1947400	Like, do you solve that pain?
+1947400	1949400	So that's actually where SSC started.
+1949400	1951400	And that's kind of how I even found the project.
+1951400	1953400	I was first going to serverless, and, like you said,
+1953400	1956400	the first question I had was, like, how the hell do I do local development
+1956400	1958400	when everything is in the cloud?
+1958400	1961400	And I was building, like, my own, like, crappy solution to this,
+1961400	1963400	and I found SSC would have just come out that time,
+1963400	1965400	and they launched with a really, kind of like a single feature.
+1965400	1967400	It was a live lambda debugging.
+1967400	1972400	And the idea here is the recommended setup we have for building, like,
+1972400	1977400	these AWS native systems is most of the stuff you do want remotely,
+1977400	1979400	like, your database, you want to remotely is great,
+1979400	1981400	like, your queues running remotely is great.
+1981400	1986400	The thing that sucks is when you make a change in your function code,
+1986400	1989400	you don't want to wait for it to upload AWS,
+1989400	1991400	which can take, like, five seconds to then, like,
+1991400	1993400	have the whole feedback loop.
+1993400	1997400	So SST originally has this brilliant idea of,
+1997400	2000400	let's deploy 99% of your application for real,
+2000400	2002400	because you're not changing it that frequently.
+2002400	2005400	But for functions, let's deploy a fake function,
+2005400	2007400	and when a request hits that function,
+2007400	2009400	we're going to forward it to your local machine, execute it locally,
+2009400	2011400	and then send the response back.
+2011400	2013400	So what that means is when you make changes,
+2013400	2015400	instead of waiting five seconds for the update,
+2015400	2017400	it's, like, how fast ES build can run.
+2017400	2020400	So, like, a 50 millisecond response time.
+2020400	2022400	So we really originally started with figuring out,
+2022400	2024400	it made the local development experience really good.
+2024400	2026400	And since then, we've added a bunch of things around this
+2026400	2028400	to solve other rough edges.
+2028400	2030400	But today, when you do SST dev,
+2030400	2033400	which basically brings up your SST app in local mode,
+2033400	2035400	it feels like a normal, locally running app,
+2035400	2037400	with all the benefits of most of it running in cloud.
+2037400	2039400	And there's not much difference when you deploy to production.
+2039400	2041400	It's pretty much the exact same environment
+2041400	2043400	as what you had in the dev mode.
+2043400	2045400	Oh, that's cool.
+2045400	2047400	And do you do any...
+2047400	2049400	I don't know if you said this or not.
+2049400	2051400	Does SST do edge functions as well?
+2051400	2054400	Yeah, so we don't have native contract.
+2054400	2058400	So SST offers, like, a set of, like, native SST contracts.
+2058400	2060400	We don't have one yet for edge functions.
+2060400	2064400	But you can drop down into CDK and deploy an edge function yourself.
+2064400	2069400	It's just a little more complicated and not as nice as the other SST contracts.
+2069400	2071400	But we probably will support this eventually.
+2071400	2073400	Yeah, that's one thing I've always been wondering about,
+2073400	2077400	like, is, like, what does the local development environment look like
+2077400	2079400	for developing edge functions?
+2079400	2082400	Because you need to constrain the thing.
+2082400	2086400	If you run it in Node, then someone's going to accidentally import a Node app
+2086400	2088400	and then it doesn't work and then you deploy it.
+2088400	2091400	So I know CloudFlare has MiniFlare, which is...
+2091400	2094400	I think it's a Node environment that is, like,
+2094400	2096400	they do something to pair it down.
+2096400	2098400	You could obviously run it in Dino.
+2098400	2101400	Do you have any thoughts there or is not something you've gone into?
+2101400	2105400	No, so the one thing I should mention is AWS's edge functions
+2105400	2107400	are actually just normal Node.js functions.
+2107400	2109400	So they are the only provider that lets you run Node at the edge.
+2109400	2110400	Oh, okay.
+2110400	2111400	So they're actually...
+2111400	2112400	We don't really have that problem.
+2112400	2115400	We're just going to, you know, run Node locally and it'll be fine.
+2116400	2119400	Yeah, but for the other services like CloudFlare,
+2119400	2123400	they basically just let you run the exact runtime they're running at edge locally
+2123400	2125400	and that'll kind of constrain it.
+2125400	2128400	So you have a replicated environment locally.
+2128400	2132400	And probably not an issue for all that much longer,
+2132400	2136400	given last week, CloudFlare announced that it now supports
+2136400	2138400	a whole bunch more of the Node APIs.
+2138400	2142400	Dino now has parity with Node and Oban.
+2143400	2146400	So at a certain point, we're just going to have the Node API
+2146400	2148400	that will literally run anywhere.
+2148400	2151400	And maybe at that point, we run everything in an edge function?
+2151400	2152400	Yeah, I think edge functions...
+2152400	2153400	I'm just talking about my butt here.
+2153400	2154400	I don't really know.
+2154400	2157400	Well, so the reason we haven't built Edge...
+2157400	2160400	So we're very user driven, so we're only really going to build stuff
+2160400	2162400	when people start asking for it.
+2162400	2164400	And no one's really asked for Edge functions.
+2164400	2168400	And the reason is they're kind of an awkward fit in your infrastructure.
+2168400	2171400	The way I like to describe it is, imagine you have a string
+2171400	2174400	and there's different beads that are on the string.
+2174400	2175400	One bead is a user.
+2175400	2177400	The other bead is, let's say, your API
+2177400	2180400	and the other bead is your database.
+2180400	2184400	If you start to move your API, so your functions closer to the user,
+2184400	2186400	they're now further away from your database.
+2186400	2189400	So now, round trips to your database are more expensive.
+2189400	2191400	So you can move the function closer to the user.
+2191400	2195400	But if you need to make two database calls to process that request,
+2195400	2197400	it might actually be slower overall.
+2197400	2199400	Then there's a question of moving...
+2199400	2202400	Okay, can we just move the database closer to the user as well?
+2202400	2205400	But then now that database is further away from the other database nodes.
+2205400	2210400	So you're always going to be constrained by distributed systems problems.
+2210400	2212400	I think there's a lot of hype around Edge right now,
+2212400	2216400	but I think outside of a front-end rendering stuff,
+2216400	2220400	there's not really much adoption and serving back-end requests.
+2220400	2221400	Interesting.
+2221400	2222400	That's really good to know.
+2222400	2226400	Can you talk a little bit about databases as well in terms of SSD?
+2226400	2227400	What should we be using?
+2227400	2230400	Yeah, so we support two databases out of the box.
+2230400	2233400	One is DynamoDB, and the other is RDS.
+2233400	2236400	AWS has a relational...
+2236400	2240400	It's a serverless relational database service.
+2240400	2243400	So my SQL or Postgres, you can deploy it in this.
+2243400	2245400	It's not really serverless, like fake serverless.
+2245400	2249400	They'll kind of turn it on and off and auto-scale it for you.
+2249400	2250400	We support it.
+2250400	2254400	We don't recommend anyone to actually use it unless they're forced to use only AWS
+2254400	2258400	services because things like planet scale and like neon,
+2258400	2263400	much better options for running relational databases in a serverless way.
+2263400	2267400	And on a DynamoDB side, DynamoDB is an excellent, excellent database,
+2267400	2271400	and it works incredibly well with serverless environments
+2271400	2273400	and serverless architectures.
+2273400	2275400	It is a challenge to learn.
+2275400	2278400	There's a pattern in it called single-table design.
+2278400	2281400	If you're coming from mostly relational databases,
+2281400	2284400	it's going to seem really, really weird for you.
+2284400	2287400	It is really great, and I think it's worth the time learning,
+2287400	2290400	because if you learn it, you can build systems that basically scale infinitely,
+2290400	2293400	and you never have to worry about database scaling ever again.
+2293400	2296400	But if you don't really have that burning need,
+2296400	2301400	then I would say go to some of these new relational database services like planet scale.
+2301400	2305400	So people coming from non-relational databases like a Mongo context,
+2305400	2309400	would they be more likely to grasp some of the context,
+2309400	2312400	or is it his own thing entirely?
+2312400	2314400	I tried it. It's freaking awful.
+2314400	2316400	I could not pick it up, yeah.
+2316400	2320400	So hypothetically, a Mongo developer should be able to pick it up,
+2320400	2323400	but I think a lot of just given Mongo's history,
+2323400	2326400	a lot of people using Mongo aren't using it the right way.
+2326400	2330400	But yeah, so I think if you're coming from something like Cassandra
+2330400	2335400	or a lot of the other maybe less popular, no-SQL databases,
+2335400	2338400	it's very familiar, and you kind of understand the constraints.
+2338400	2342400	There's a little bit of a misconception with no-SQL in that you can't use it
+2342400	2345400	for relational database, relational data.
+2345400	2349400	All data is relational, like I've never seen a non-relational dataset.
+2349400	2351400	You can model all of it in Dynamo.
+2351400	2353400	It's just very different and very weird.
+2353400	2358400	I use it for most of my projects, but we definitely acknowledge there's a big learning curve.
+2358400	2359400	That's good.
+2359400	2366400	So we have an entire show on serverless databases where we talked about
+2366400	2368400	relational versus non-relational.
+2368400	2372400	And I ended up saying I really like the planet scale approach,
+2372400	2377400	because you can just use whatever adapter, if you know MySQL,
+2377400	2380400	or you can use whatever library that you're used to using
+2380400	2385400	and whatever, then local development is great.
+2385400	2389400	And then you can deploy the thing to a service that does make it serverless.
+2389400	2392400	And I thought that was a really neat approach.
+2392400	2393400	Yeah, planet scale is great.
+2393400	2397400	And it's kind of, we're trying to push most people down that route.
+2397400	2400400	We just have, because we're in the AWS world, we have a lot of like
+2400400	2404400	enterprise users that are like, we can't deploy a single thing outside AWS.
+2404400	2410400	So they're stuck on RDS, which I really want AWS to catch up to planet scale there.
+2410400	2412400	The gap is like ridiculous.
+2412400	2413400	It's not even close.
+2413400	2415400	What about built pipelines?
+2415400	2420400	That's another thing that I go to Amazon and they tell you,
+2420400	2425400	literally zip up your serverless function and press the upload button
+2425400	2428400	and you can upload a zip file of a thing.
+2428400	2430400	And I'm like, seriously, where's the like,
+2430400	2433400	get deploy automatic build type of thing?
+2433400	2435400	What's your solution to that?
+2435400	2436400	Yeah, I'm going to give you some advice.
+2436400	2439400	Just never log into AWS console ever again.
+2439400	2442400	You never need to go into it.
+2442400	2444400	And all the information in there is wrong.
+2444400	2447400	So just don't go in there.
+2448400	2451400	So with SST, because it's an infrastructure as code tool,
+2451400	2456400	as a part of it is, we know everything that your application needs to deploy.
+2456400	2458400	And we build everything for you.
+2458400	2461400	So we like build all your functions in parallel, like do that all efficiently.
+2461400	2467400	And we output that into a single artifact that we then deploy also for you.
+2467400	2470400	You can split that up if you want to like build it first and then like deploy it later.
+2470400	2473400	But typically people just build and deploy all at once.
+2474400	2479400	So our CLI, you know, SST deploy will deploy everything for you.
+2479400	2483400	And in terms of CI, that's actually where we make money.
+2483400	2485400	So we have a product called seed.
+2485400	2490400	It is a build tool that is optimized for SST and other serverless projects.
+2490400	2494400	It just does a bunch of things that a generic build tool would never bother doing.
+2494400	2498400	Just because we know the exact structure of your application.
+2498400	2501400	So a lot of our users are using that to automate their builds
+2501400	2505400	and do like PR environments and environments for different branches, things like that.
+2505400	2508400	And we'll like do stuff like monitoring all this once it's deployed.
+2508400	2513400	So because we know all the functions are deployed, we can add hooks to watch all the logs.
+2513400	2516400	And if we see something that looks like an error, we can pull out the error, structure it,
+2516400	2518400	kind of like how sentry would do.
+2518400	2519400	So things like that.
+2519400	2521400	That's how we monetize our open source stuff.
+2521400	2522400	Thanks.
+2522400	2523400	Oh, that's cool.
+2523400	2529400	And would it also tell you things like how long your functions are taking to run?
+2530400	2531400	And why not?
+2531400	2534400	Or is that more you have to get into the AWS console and look at the graphs there.
+2534400	2537400	Our goal is to eventually make it so you never actually need to go there.
+2537400	2540400	We do have some basic observability tools right now.
+2540400	2544400	We haven't invested a ton in it, but eventually we do want to understand what types of things
+2544400	2548400	do people need to really see and service those?
+2548400	2552400	And so seed is the company that you make money on.
+2552400	2553400	You pay for that.
+2553400	2558400	And then you guys just build SST as the open source project.
+2558400	2563400	Yeah, the history of the company is a little bit funny because seed was originally built
+2563400	2564400	first.
+2564400	2566400	So SST didn't exist.
+2566400	2570400	And the idea was, okay, there's people doing serverless stuff.
+2570400	2572400	They're using a framework called serverless framework.
+2572400	2575400	But there's not really a good CI tool for serverless framework.
+2575400	2578400	Let's build a good CI tool for that.
+2578400	2583400	So seed originally, and even to this day is really optimized for this other framework.
+2583400	2587400	And it was launched, it grew, and it kind of continues to grow to this day.
+2587400	2592400	At some point, we realized, oh, okay, even if we capture 100% of the existing serverless
+2592400	2595400	market, that's a good business, but it's not an incredible business.
+2595400	2600400	And we realized that our role actually is to make it so more people are building serverless
+2600400	2602400	and identify, okay, what's stopping?
+2602400	2607400	Like you guys, what's stopping any company that's being started right now from building
+2607400	2608400	in this way?
+2608400	2611400	And the answer was like, no AWS is really hard to use.
+2611400	2612400	Yeah, yeah.
+2612400	2613400	The developer experience sucks.
+2614400	2617400	So that means we need to build our own framework to make this stuff more accessible.
+2617400	2622400	Once we grow that more, then we can come back and kind of work on seed again and make it
+2622400	2623400	more optimized for SSD.
+2623400	2625400	We're starting to hit that phase right now.
+2625400	2629400	I think in the second half this year, we're going to be going back to seed and really making
+2629400	2631400	it a good product for SSD.
+2631400	2632400	Nice.
+2632400	2635400	So you're super experienced in AWS.
+2635400	2642400	Do you have any tips or tricks for anybody who looks at the AWS page and has no idea what
+2642400	2643400	to do or where to go?
+2643400	2649400	Do you have any learning resources or ideas for how to pick up and understand AWS in a
+2649400	2650400	more complete way?
+2650400	2651400	Yeah.
+2651400	2655000	The thing that bothers me a lot is I think you're kind of screwed from the second you sign
+2655000	2661040	up for AWS because even setting up an account correctly, the default path is not puts you
+2661040	2662040	in the wrong path.
+2662040	2666520	It puts you into setting up like I am users and like creating credentials and like putting
+2666520	2668320	them in some random file.
+2668320	2671000	There's actually a really slick way to set all this stuff up.
+2671000	2674160	I made a video on it so people can go look that up.
+2674160	2675160	That's on your YouTube?
+2675160	2676160	Yeah.
+2676160	2677160	So that's the YouTube.
+2677160	2681120	We have a ton of resources there on one using SSD but also just using AWS in like a
+2681120	2682120	sane way.
+2682120	2686920	I think the thing is a little bit different about us is we're not AWS like solutions architects.
+2686920	2690000	Like we're not sitting here with like a bunch of certifications and doing things in this
+2690000	2693120	like crazy complex AWS way.
+2693120	2699600	We try to look at AWS and try to find like, okay, this isn't like best practice according
+2699600	2702120	to like the official AWS guidelines.
+2702120	2706920	But for most people, this is the right tradeoff and accessibility and like and something that
+2706920	2708120	actually makes sense.
+2708120	2712160	So a lot of our content is more geared to I just I'm just trying to get something done.
+2712160	2717200	I'm trying to be practical and this will work for, you know, the foreseeable future.
+2717200	2722480	So yeah, things like setting up it's called a AWS single sign on like so you can just log
+2722480	2726640	in AWS or Google account and don't do all your credentials through that.
+2727000	2730960	There's a bunch of little things like that that we try to cover in our like in the YouTube
+2730960	2733680	content we make.
+2733680	2737520	It is tricky and I think there is not a lot of good content out there for what you're
+2737520	2738520	asking for.
+2738520	2742520	There's a lot of AWS content, a lot of it's outdated and a lot of it doesn't have this
+2742520	2747680	like practical mindset to it and our focus for this year is we're going to be focusing
+2747680	2753120	a lot more on on the content stuff and helping people do this stuff a lot better.
+2753120	2757280	A framework does like 90% of it because you can just start using it without really understanding
+2757280	2760840	some of this stuff and over time you kind of naturally pick it up.
+2760840	2764760	But like I said, like even the moment you sign up, you probably are led down the wrong
+2764760	2765760	path.
+2765760	2766760	So there's still a lot of gaps to fill.
+2766760	2770520	So now it's the part of the show where we talk about basically we ask you questions.
+2770520	2775400	We ask everybody that the types of things that are should be kind of quick one off easy
+2775400	2776400	to answer questions.
+2776400	2782080	So first and foremost, what kind of computer and set up are you using to work on love
+2782080	2783080	this question.
+2783080	2789400	I have a custom built PC that I've been building and rebuilding for years kind of like a ship
+2789400	2791120	of DC situation.
+2791120	2792120	It runs Linux.
+2792120	2797440	I've been a full-time Linux user for 10 years or so, which makes me really annoying.
+2797440	2799440	I'm a really annoying person.
+2799440	2800440	Wow.
+2800440	2801440	What district do you run?
+2801440	2807760	Of course, I run Arch Linux, which is the most annoying OS to run.
+2807760	2810360	What text editor theme and font are you rocking?
+2810360	2812200	So I use NeoVim.
+2812200	2815320	The theme is I think it's called Tokyo Knight.
+2815320	2821120	The font is a Haskellogue, I think, which is like, there's a font called Haskellig and
+2821120	2824160	Haskellogue is like a modified version of it.
+2824160	2828880	I found it a long time ago and don't remember why I chose it, but here I am.
+2828880	2834720	If you had to start coding from scratch today, or if you were giving somebody advice who's
+2834720	2838560	picking up something to work on, what types of things would you recommend?
+2838560	2839560	Yeah.
+2839560	2845320	It's funny because when I first started coding, I got into it through C-sharp, which I thought
+2845320	2847280	was a really great entry point.
+2847280	2852560	It felt easy, accessible, and today I think everyone's getting into it through TypeScript,
+2852560	2854560	which effectively just looks exactly like C-sharp.
+2854560	2859200	You can just write C-sharp code into a TypeScript file and it probably will work.
+2859200	2861320	From my point of view, it worked really well for me.
+2861320	2866040	I know a lot of people worry about as a Type system in TypeScript, is that going to overwhelm
+2866040	2869400	a beginner, I was script first.
+2869400	2875360	My memory of learning C-sharp was I didn't really, that all made sense to me and having
+2875360	2877600	structured what I was doing was great.
+2877600	2881400	So I think TypeScript is a boring answer because I think it's probably what most people would
+2881400	2882400	say.
+2882400	2884920	I think it is a great entry point.
+2884920	2888640	Doing stuff in web is also great because you get to build stuff and you get to look
+2888640	2889640	at it right away.
+2889640	2894280	Everyone I was first learning, I loved that feedback loop of visually looking at something.
+2894760	2896280	I've been loving Astro for that.
+2896280	2901720	It reminds me of the old PHP days where I would just have a single file and I would
+2901720	2904360	write stuff and I could refresh the browser and see it.
+2904360	2906560	I think Astro reminds me a lot of that.
+2906560	2911840	So I think like the mix of TypeScript and Astro is a good combination because you don't
+2911840	2917040	have the complexity of Web Dev you would normally get, but you still are kind of learning the
+2917040	2919800	tools you'll need once you go down that path.
+2919800	2921840	What terminal and shell are you rocking?
+2921840	2928720	So I use Alacrity and the shell is ZSH again, just old decisions that stuck that they worked
+2928720	2929720	for me for years.
+2929720	2930720	So I haven't reevaluated.
+2930720	2931720	Ain't broke.
+2931720	2932720	Don't fix it.
+2932720	2933720	Yeah.
+2933720	2934720	That's funny.
+2934720	2935720	We just we just talked about Alacrity.
+2935720	2940720	I'm pretty sure we call the Alacrity, which is I mean, I might be saying it wrong too.
+2940720	2944120	These are words you never have to say out loud because you only just reading them on the
+2944120	2946720	screen, especially a word like that.
+2946720	2947720	Yeah.
+2947720	2950280	Why do you use that terminal is that the best one on Linux?
+2950320	2954000	So Alacrity, I think just has a lot of energy around it, like it's being actively developed.
+2954000	2956160	It is somewhat newer.
+2956160	2961320	It's written in Rust, which, you know, does a lot for a lot of people, but we got excited.
+2961320	2963000	But yeah, it performs really well.
+2963000	2964240	I actually don't know.
+2964240	2970160	I think I used to use something called URVXT, I think it was called.
+2970160	2972200	To be honest, the terminal wise, I can't really.
+2972200	2977040	So I use something called i3 in Linux.
+2977040	2981360	The tiling window manager, it basically puts everything on my screen.
+2981360	2985240	It's a tiles, whether it's a browser or a terminal, whatever it is, manage all of it
+2985240	2987480	through my keyboard and I have to use a mouse.
+2987480	2992320	So the terminal itself doesn't really matter because it's kind of like all the terminal
+2992320	2996600	specific features you'd expect, like tabs and stuff, it's picked in at a lower layer.
+2996600	2997600	Nice.
+2997600	2998600	Yeah.
+2998600	2999600	Yeah.
+2999600	3001280	That really is the way to be.
+3001280	3007800	I'm starting to get into really getting my whole, oh, the entire OS, essentially on
+3007800	3012920	the same keyboard shortcuts to do everything and just try to lock that down because so
+3012920	3017560	often I think even like, you know, Wes and I, we write these keyboard shortcuts, we set
+3017560	3022960	up these macros for like our text editor specifically, but not OS wide.
+3022960	3026840	I'm sure Linux is way better for that anyways.
+3026840	3030640	What about, what's something that you're excited for in the future of dev?
+3031320	3035640	So I'm going to talk a little bit about Cloudflare because I think I'm very interested in their
+3035640	3036640	path.
+3036640	3041440	There's a lot of cloud providers or people trying to become cloud providers, but the
+3041440	3045440	reality is AWS is the only one that really makes any money.
+3045440	3049640	You can, of course, Azure makes money, but that's more just, they're like monetizing
+3049640	3052960	the same customer base they've had for decades now.
+3052960	3053960	Yeah.
+3053960	3060760	And in terms of like making real money, like having young companies start on your platform
+3060760	3065320	and grow into a billion dollar companies, AWS is really the only one playing that game
+3065320	3071360	and winning it because you need to have a lot of primitives in place for it to really
+3071360	3075200	be viable for you to serve these, you know, like these public companies that are operating
+3075200	3076400	at huge scale.
+3076400	3082800	I think Cloudflare is the first company that I'm seeing where they actually have a shot
+3082800	3084720	at taking the same market share.
+3084720	3088720	The primitives they have, they have way fewer primitives, but they're starting serverless
+3088720	3089720	first.
+3089720	3093160	So they don't have all these like, I'm going to call anything not service like a legacy
+3093160	3094160	model.
+3094160	3096480	It doesn't really make sense in the modern world.
+3096480	3100840	They basically, so Cloudflare basically has like 10 primitives and these 10 primitives
+3100840	3105600	are everything you need to build like 99% of applications.
+3105600	3110880	I don't think a lot of people realize this yet, but it is technically possible today.
+3110880	3116480	I'm really looking forward to new companies realize this and try to build like fully Cloudflare
+3116480	3117480	native.
+3117480	3122320	There's a lot of potential there, and I think I'm excited to see what that looks like.
+3122320	3127760	Yeah, I've been a big Cloudflare user for a while, and I've been dipping into a lot
+3127760	3133240	of their, both a lot of their hosting products, but also just like a lot of their pro features
+3133240	3134240	as well.
+3134240	3139080	And it's funny, whenever I ask about any of the Cloudflare features on Twitter, people
+3139080	3142440	are just like, it's DNS and DDoS protection.
+3142440	3145480	That's all they know about Cloudflare second man.
+3145480	3150200	Little do you know that they're a massive, massive cloud company, and I think they're
+3150200	3153680	going to really pull up in the next couple of years, if not already have.
+3153680	3155440	Yeah, I've heavily invested in them also.
+3155440	3159280	So I'm just going to put that to the slimmer.
+3159280	3160280	I work on it.
+3160280	3164680	It'll be a stuff in my hedges, my Cloudflare position in case Cloudflare dominates them.
+3164680	3165680	That's fine.
+3165680	3166680	Cool.
+3166680	3167680	All right.
+3168680	3169880	Oh, no, sick pics.
+3169880	3171280	Do you have a sick pic for us today?
+3171280	3173280	Yeah, I guess I already talked about it.
+3173280	3176280	So planet scale, which we just talked about a little bit.
+3176280	3180520	It is, I'm sure a lot of people have heard about it already, is an awesome solution.
+3180520	3187120	I think what systems look like with and without planet scale, massively different and complexity.
+3187120	3191840	At this point, if you're starting a new service or starting a new product, you need a database.
+3191840	3192840	Just go to planet scale.
+3192840	3195560	It's going to work for you really well and work for you for a long time.
+3195560	3200040	So yeah, really, really excited about what they're doing, their roadmap and everything.
+3200040	3201040	It's awesome.
+3201040	3204640	It's solving problems that I've had for like my whole career, pretty much.
+3204640	3205640	Sick.
+3205640	3206640	Awesome.
+3206640	3207640	And shameless plugs.
+3207640	3208640	Would you like to plug?
+3208640	3209640	Where can we find you?
+3209640	3210640	Yeah.
+3210640	3211640	So I'm mostly on Twitter.
+3211640	3213920	THDXR is my username.
+3213920	3219720	I'm working on something kind of funny that I don't know if you maybe have seen, we announced
+3219720	3221840	it like a week ago.
+3221840	3225960	We're working on a game show for developers.
+3225960	3229680	So if you guys remember HQ trivia, you know, I would like your app would like light up
+3229680	3232840	once a day and there'd be like a 10 minute game show that everyone could kind of take
+3232840	3234360	part in live.
+3234360	3236160	We're doing, we're trying to launch something like that.
+3236160	3237160	It's called rebase.tv.
+3237160	3241760	You can find it on Twitter or rebase.tv.
+3241760	3245240	We haven't like launched our first game yet, but we're like in the process of building
+3245240	3249640	the app and doing all the production and we want to have really great production quality.
+3250640	3253880	But yeah, I think it would just be fun to have a thing that like, you know, the whole
+3253880	3258120	developer community is doing at the same time once a week or whatever it is.
+3258120	3259120	That's cool.
+3259120	3261800	Yeah, it's amazing how HQ just came and went, right?
+3261800	3264400	Well, we'll have to share the link for that, by the way, in the show notes.
+3264400	3271080	But there was a, um, there's a really fantastic podcast that detailed the entirety of the
+3271080	3275480	HQ rise and fall boom, bust HQ trivia.
+3275480	3276480	Yeah.
+3276480	3279320	And I think there's actually a documentary coming out about it.
+3279320	3283640	We had this idea last week or two weeks ago as we were looking at HQ and yeah, we really
+3283640	3287120	coincidentally, there's a new documentary coming out, but it might have, might already
+3287120	3288120	be out.
+3288120	3292720	I think TikTok is launching like an HQ concept as well.
+3292720	3293720	It's smart.
+3293720	3294720	Yeah.
+3294720	3296520	It was a, I mean, it was a lot of fun.
+3296520	3297520	Sick.
+3297520	3298520	Awesome.
+3298520	3299520	Well, thank you so much for coming on.
+3299520	3305520	Appreciate all your time and insights into the world of serverless and AWS and SST.
+3305520	3306520	Thanks so much for coming on.
+3306520	3310520	You guys are, you know, moving some of your stuff, AWS and you're understandably confused.
+3310520	3311520	Yeah.
+3311520	3312520	Please let me know.
+3312520	3314520	I kind of love helping people figure that out.
+3314520	3315920	Free migrations, you say.
+3315920	3316920	All right.
+3316920	3318920	I'll take you up on it.
+3318920	3319920	Cool.
+3319920	3320920	All right.
+3320920	3321920	Thanks again.
+3321920	3322920	I'll talk to you later.
+3322920	3329800	Head on over to syntax.fm for a full archive of all of our shows.
+3329800	3333760	And don't forget to subscribe in your podcast player or drop a review.
+3333760	3334760	If you like this show.

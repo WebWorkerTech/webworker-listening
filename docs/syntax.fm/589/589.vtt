@@ -1,0 +1,2843 @@
+WEBVTT
+
+00:00.000 --> 00:02.500
+I sure hope you're hungry!
+
+00:02.500 --> 00:04.200
+Cool, I'm starving!
+
+00:04.200 --> 00:08.100
+Wash those hands, pull up a chair, and secure that feedback.
+
+00:08.100 --> 00:14.200
+Because it's time to listen to Scott Tolinsky and Wes Boss attempt to use human language to converse with
+
+00:14.200 --> 00:16.800
+and pick the brains of other developers.
+
+00:16.800 --> 00:18.800
+I thought there was gonna be food!
+
+00:18.800 --> 00:21.700
+So buckle up and grab that old f***ing handle
+
+00:21.700 --> 00:25.000
+because this ride is going to get wild!
+
+00:26.000 --> 00:27.300
+This is...
+
+00:27.300 --> 00:29.700
+The Syntax Supper Club!
+
+00:30.000 --> 00:38.500
+Welcome to Syntax!
+
+00:38.500 --> 00:41.500
+The podcast with the tastiest web development treats out there.
+
+00:41.500 --> 00:44.500
+We've got another banger Supper Club for you today.
+
+00:44.500 --> 00:46.500
+We have somebody who has...
+
+00:46.500 --> 00:48.500
+I'm gonna admit it, a cooler name than I have.
+
+00:48.500 --> 00:53.000
+Dax Rad is on today to talk about...
+
+00:53.000 --> 00:56.900
+I think we're just gonna be talking mostly about serverless hosting Next.js.
+
+00:56.900 --> 00:58.900
+He's behind a couple different projects.
+
+00:58.900 --> 01:01.400
+SST as well as Open Next.js.
+
+01:01.400 --> 01:03.400
+We're excited to talk all about that.
+
+01:03.400 --> 01:04.400
+Welcome, Dax. How you doing?
+
+01:04.400 --> 01:05.900
+I'm doing great. Thanks for having me on.
+
+01:05.900 --> 01:07.400
+You're welcome. You're welcome.
+
+01:07.400 --> 01:09.400
+We're sponsored today by Sentry.
+
+01:09.400 --> 01:11.400
+Let's talk about their new APM.
+
+01:11.400 --> 01:12.400
+What is APM?
+
+01:12.400 --> 01:14.400
+Application, Performance, Monitor.
+
+01:14.400 --> 01:16.400
+So what that will do is...
+
+01:16.400 --> 01:21.400
+You're throwing your application and it's sort of trying to monitor things that will make your website slow.
+
+01:21.400 --> 01:26.400
+We had a show a couple days ago about slow websites and what could possibly cause it.
+
+01:26.400 --> 01:30.400
+So what Sentry will do is it will detect common things.
+
+01:30.400 --> 01:35.400
+Large render blocking assets, slow database queries, file IO on the main thread.
+
+01:35.400 --> 01:37.400
+That's probably not something you want to do.
+
+01:37.400 --> 01:42.400
+You know, in Node, you have that right file sync, which is...
+
+01:42.400 --> 01:44.400
+That will block up your main thread.
+
+01:44.400 --> 01:50.400
+Anything else running on that main thread will not be able to go until you've actually finished writing that file.
+
+01:50.400 --> 01:52.400
+So that could be a big, big no-no.
+
+01:52.400 --> 01:54.400
+You're gonna want to check it out.
+
+01:54.400 --> 01:56.400
+There's lots in this APM.
+
+01:56.400 --> 02:00.400
+I'm sure I'll go into the features of it over the next couple of ad reads.
+
+02:00.400 --> 02:02.400
+You want to check it out at Sentry.io.
+
+02:02.400 --> 02:05.400
+Use a coupon code, tastytreat, for two months for free.
+
+02:05.400 --> 02:12.400
+I also want to check out their blog post, which is the new APM actionable, affordable, and actually built for developers.
+
+02:12.400 --> 02:14.400
+Thank you, Sentry, for sponsoring.
+
+02:14.400 --> 02:20.400
+We'll start this by just saying 2023, I said, is my year for AWS.
+
+02:20.400 --> 02:25.400
+So I've been looking at some of my server bills and whatnot.
+
+02:25.400 --> 02:30.400
+And I say, man, this is real expensive to be able to do this stuff.
+
+02:30.400 --> 02:35.400
+And then I look over at AWS and I go, that's too hard.
+
+02:35.400 --> 02:40.400
+And I'm stuck in this position of something is very expensive and obviously easy,
+
+02:40.400 --> 02:44.400
+versus something that is, I think, cheaper.
+
+02:44.400 --> 02:45.400
+We'll see.
+
+02:45.400 --> 02:48.400
+But it's just like, there's so many pieces to it.
+
+02:48.400 --> 02:53.400
+So we're trying to, like this year, we're trying to get a little bit more into AWS and understand all the different parts and whatnot.
+
+02:53.400 --> 02:58.400
+So you're the first person that we're having on to sort of talk about that type of stuff.
+
+02:58.400 --> 03:02.400
+Let's talk about, you want to give like a quick rundown of who you are and what you do.
+
+03:02.400 --> 03:07.400
+And then I thought we'll get into the open next year stuff first and then we'll get into the SST stuff.
+
+03:07.400 --> 03:08.400
+Yeah, sounds good.
+
+03:08.400 --> 03:10.400
+So again, my name is Dax.
+
+03:10.400 --> 03:14.400
+I work entirely on open source to a pretty lucky situation that I'm in.
+
+03:14.400 --> 03:18.400
+The primary project that I work on is called SST.
+
+03:18.400 --> 03:27.400
+It's a framework that helps people like yourself start to build things on AWS without fully being exposed to the monstrosity that is AWS.
+
+03:27.400 --> 03:31.400
+Because like you said, there's a lot of great reasons to be building on AWS,
+
+03:31.400 --> 03:36.400
+especially for things that are a little bit more serious and as you start to get to a certain scale.
+
+03:36.400 --> 03:40.400
+But it's pretty unapproachable for the average person.
+
+03:40.400 --> 03:46.400
+So our job is to really go dig through all the AWS docs, read everything,
+
+03:46.400 --> 03:52.400
+figure out all the little weird quirks and then expose something that makes a lot more sense for the end user,
+
+03:52.400 --> 03:59.400
+figure out what kind of rough edges there are on their day to day development cycles and make all that smoother.
+
+03:59.400 --> 04:04.400
+I'll start this with a question is, and I went down this rabbit hole the other day.
+
+04:04.400 --> 04:10.400
+I put a tweet out where I logged into AWS and I looked at some of the profiles I had created.
+
+04:10.400 --> 04:13.400
+And one of them was 12 years old.
+
+04:13.400 --> 04:16.400
+And I tweeted like, has it gotten any better in about 12 years?
+
+04:16.400 --> 04:19.400
+And half people are like, no, and half the people are yes.
+
+04:19.400 --> 04:25.400
+So I was like, I just want to deploy a serverless function raw to AWS.
+
+04:25.400 --> 04:29.400
+And I like got into it and like there's no build pipeline and there's all these products.
+
+04:29.400 --> 04:35.400
+Why does AWS not have something like Netlify or Vercel?
+
+04:35.400 --> 04:37.400
+Or like, why don't they have that?
+
+04:37.400 --> 04:42.400
+And like, why is there all these businesses built up on top of AWS being easier?
+
+04:42.400 --> 04:48.400
+The thing is AWS does think they have that and they have like three or four attempts at building something like Netlify
+
+04:48.400 --> 04:51.400
+or Vercel or Heroku or whatever.
+
+04:51.400 --> 04:52.400
+I think I forgot who it was.
+
+04:52.400 --> 04:55.400
+Someone documented all different ways to deploy a container.
+
+04:55.400 --> 05:00.400
+And there's like something create like 18 different ways that you can do it because they represent all these attempts at
+
+05:00.400 --> 05:06.400
+AWS trying to create a higher level abstraction for to make some of these things simpler.
+
+05:06.400 --> 05:08.400
+I just don't think it's in their DNA.
+
+05:08.400 --> 05:11.400
+They are an infrastructure hyperscaler company.
+
+05:11.400 --> 05:17.400
+They're about deploying like a crazy amount of physical hardware across the whole world, have it working.
+
+05:17.400 --> 05:22.400
+That is really far removed to what a developer experiences day to day when they're trying to build something.
+
+05:23.400 --> 05:25.400
+I think it's an awkward fit for them culturally.
+
+05:25.400 --> 05:26.400
+Interesting.
+
+05:26.400 --> 05:30.400
+Yeah, it does feel like that's been a long time thing forever.
+
+05:30.400 --> 05:41.400
+I mean, even into Amazon.com itself, they've never had the polish, I think, in the UI department that many other companies have.
+
+05:41.400 --> 05:45.400
+And that does seem to turn off people from AWS.
+
+05:45.400 --> 05:51.400
+And like you mentioned, Wes, it opens up the door for all these other businesses that are built on top of AWS just to make it
+
+05:51.400 --> 05:53.400
+easier on folks, right?
+
+05:53.400 --> 06:01.400
+So do you think it's a positive thing that AWS hasn't figured this out because it enables all these other companies to exist?
+
+06:01.400 --> 06:04.400
+Or do you think they'll get there eventually?
+
+06:04.400 --> 06:10.400
+Yeah, I think for me, I always, I find myself in a tricky situation because I'll be trying to do something at AWS.
+
+06:10.400 --> 06:13.400
+I'll be really frustrated and wish that it was better.
+
+06:13.400 --> 06:17.400
+And I'll be annoyed with the teams behind certain services that are creating these problems.
+
+06:17.400 --> 06:23.400
+And then I'll realize, oh, well, if they were actually doing all those things, I wouldn't really have a job.
+
+06:23.400 --> 06:26.400
+So I definitely appreciate the gap that it creates.
+
+06:26.400 --> 06:28.400
+I think it is a good system.
+
+06:28.400 --> 06:31.400
+AWS's scope is just massive.
+
+06:31.400 --> 06:34.400
+They're trying to serve every possible business out there.
+
+06:34.400 --> 06:38.400
+And the reality is to build good services.
+
+06:38.400 --> 06:40.400
+You do have to narrow your scope a lot.
+
+06:40.400 --> 06:46.400
+A lot of these companies that people like, like Versailles or Netlify, their scope is a lot narrower in terms of what they try to offer
+
+06:46.400 --> 06:50.400
+and who they try to serve than what AWS can do.
+
+06:50.400 --> 06:52.400
+And that's kind of why they have a good product.
+
+06:52.400 --> 07:01.400
+And I think at some, I think there's a reality of it where at the scope the AWS has, it just, you just can't really build anything that great.
+
+07:01.400 --> 07:04.400
+All right, let's get into the open Next.js stuff.
+
+07:04.400 --> 07:10.400
+So Next.js, huge, probably the largest React framework for building a website out there.
+
+07:10.400 --> 07:12.400
+It sort of encompasses a lot.
+
+07:13.400 --> 07:18.400
+And it is obviously very tightly, not tightly, but it is, it's the baby of Versailles.
+
+07:18.400 --> 07:28.400
+And Versailles is this amazing hosting platform that does images and CDN and caching and deploy previews and serverless and edge functions.
+
+07:28.400 --> 07:30.400
+And they do all the stuff.
+
+07:30.400 --> 07:37.400
+And the like experience of writing an XJS app and hosting it on Versailles is a very, very nice experience.
+
+07:38.400 --> 07:42.400
+We host the, that's the exact stack and hosting platform we use for the syntax website.
+
+07:42.400 --> 07:50.400
+But there's often been people saying, well, it's not that easy to host an XJS site anywhere else.
+
+07:50.400 --> 07:53.400
+They provide some sort of, some outlets and whatnot.
+
+07:53.400 --> 07:58.400
+So do you want to give us like a rundown of like, what is the open Next.js project?
+
+07:58.400 --> 08:05.400
+Yeah, so I think the premise is, like you said, Next.js hosted on Versailles is an incredible experience.
+
+08:06.400 --> 08:12.400
+And trying to host it in other places, you kind of have a variety of different, different options and variety of different experiences you can have.
+
+08:12.400 --> 08:15.400
+So you can self host Next.js in a container.
+
+08:15.400 --> 08:22.400
+It's pretty easy for Versailles to support that because it's just a long running process that can literally just do everything that they needed to do.
+
+08:22.400 --> 08:28.400
+But for a lot of people self hosting Next.js in a container is pretty different than what they get from Versailles.
+
+08:28.400 --> 08:31.400
+Just in terms of costs, yes, I mean, it's always running.
+
+08:31.400 --> 08:38.400
+It's a little bit, it's a lot more expensive to have like global availability, things like that when you have to deploy containers everywhere.
+
+08:38.400 --> 08:50.400
+When most people think of I want to self host Next.js, they expect it to be entirely serverless, deploying to functions and kind of serverless primitives that AWS offers.
+
+08:50.400 --> 08:54.400
+And the process for doing that isn't actually straightforward.
+
+08:55.400 --> 08:58.400
+I'm not going to say Versailles like explicitly doesn't let you do that.
+
+08:58.400 --> 09:08.400
+They actually do put in a lot of effort in creating standard outputs so that you can take an Next.js app and potentially get it to be self hosted in AWS.
+
+09:08.400 --> 09:15.400
+But the gap there of what you get from that build output to actually deploying is pretty massive.
+
+09:15.400 --> 09:17.400
+You need to one be an expert in AWS.
+
+09:17.400 --> 09:20.400
+You really need to understand the different ways you can do things.
+
+09:20.400 --> 09:29.400
+You also need to understand pretty detailed internals of Next.js, understand different components that Next actually offers.
+
+09:29.400 --> 09:32.400
+And there's not just a single way you can deploy AWS.
+
+09:32.400 --> 09:35.400
+There's a lot of different ways you can deploy with different trade offs.
+
+09:35.400 --> 09:40.400
+You can, you know, some functionality just cannot work in an entirely of some environment.
+
+09:40.400 --> 09:44.400
+It's really difficult and takes a lot of man hours to just figure that out.
+
+09:45.400 --> 09:50.400
+So that's what we started to open Next project because there were a lot of kind of disparate efforts of doing this.
+
+09:50.400 --> 09:55.400
+We had a, there's like an older project called serverless Next.js that a lot of companies were using.
+
+09:55.400 --> 10:01.400
+In fact, AWS even used to use this open source project internally to power their Next.js offering.
+
+10:01.400 --> 10:04.400
+Of course, like one person cannot maintain that long term.
+
+10:04.400 --> 10:08.400
+That project kind of died and have kind of few offshoots of trying to do this.
+
+10:08.400 --> 10:17.400
+And there was enough interest in our community of people wanting to run Next.js in AWS where we avoided building this project for a while.
+
+10:17.400 --> 10:19.400
+We really didn't want to do it just because it's a lot of work.
+
+10:19.400 --> 10:24.400
+But we got to a point where there was enough expertise in the community for us to actually go ahead and build that.
+
+10:24.400 --> 10:29.400
+So how many people are involved in an effort like this?
+
+10:29.400 --> 10:34.400
+Yeah. So from our core team, we have Frank who pretty much leads this effort.
+
+10:34.400 --> 10:36.400
+He spends a lot of time on this.
+
+10:36.400 --> 10:42.400
+There is a little bit of upfront work, you know, to get to a place where there is one-to-one parity with what Vercel offers.
+
+10:42.400 --> 10:44.400
+And then from there, it's more maintenance.
+
+10:44.400 --> 10:49.400
+And then in terms of help in the community, I think we have like five or six people that are pretty much talking about this all day.
+
+10:49.400 --> 10:57.400
+None of us at SST are actually Next.js users, which is kind of funny because we're the ones that are behind this effort.
+
+10:57.400 --> 11:01.400
+So we're not experts in the details of how Next.js should work or it's exact features.
+
+11:01.400 --> 11:06.400
+We really rely on our community to report how things are working and what things aren't exactly right.
+
+11:06.400 --> 11:14.400
+And they find a lot of really obscure things like they'll figure out, oh, we need to pass this explicit header for like this very specific feature to work, things like that.
+
+11:14.400 --> 11:23.400
+Let's move through the different parts of Next.js and we'll sort of like map those to what are the Amazon products.
+
+11:23.400 --> 11:28.400
+So at its very core, Next.js splits its routes.
+
+11:28.400 --> 11:33.400
+So every time you go to a URL, it makes that into a serverless function. Is that right?
+
+11:33.400 --> 11:36.400
+So not exactly.
+
+11:36.400 --> 11:43.400
+So the build output outputs a single function that handles all of your routes.
+
+11:43.400 --> 11:50.400
+So that means it's all bundled into like one kind of fat lambda function.
+
+11:50.400 --> 11:55.400
+And then they do have their edge function concept, which is a little bit separate.
+
+11:55.400 --> 12:04.400
+Okay, so literally every single route is all bundled into one app and run on one serverless function.
+
+12:04.400 --> 12:09.400
+Because I remember when Vercel was, was it now?
+
+12:09.400 --> 12:11.400
+And they moved away from node.
+
+12:11.400 --> 12:17.400
+And I had an express app running on node and they're like, yeah, just throw it in a lambda function.
+
+12:17.400 --> 12:19.400
+And it's like that it doesn't fit.
+
+12:19.400 --> 12:22.400
+Like it's way too large for that type of thing.
+
+12:22.400 --> 12:24.400
+So like, is there a hard limit?
+
+12:24.400 --> 12:27.400
+For some reason, I thought that they split it up per URL.
+
+12:27.400 --> 12:34.400
+So they're literally throwing your entire application back end API routes and everything into one serverless function.
+
+12:34.400 --> 12:41.400
+Well, so I suspect what Vercel does internally might be a little bit different than the build output that the open source Next.js produces.
+
+12:41.400 --> 12:42.400
+So yeah, you're right.
+
+12:42.400 --> 12:45.400
+Bundling everything to a single function is not great long term.
+
+12:45.400 --> 12:49.400
+If you have one dependency on one route, that is really large.
+
+12:49.400 --> 12:53.400
+Something that's hitting the cold starts of like all the routes in your application.
+
+12:53.400 --> 13:00.400
+So I suspect that Next.js or Vercel might, when they deploy on to their platform, they might do some kind of splitting.
+
+13:00.400 --> 13:01.400
+It's challenging.
+
+13:01.400 --> 13:04.400
+It's easy with stuff like API routes, like API routes split nicely.
+
+13:04.400 --> 13:10.400
+But it is a little bit trickier with with UI routes that nests and especially with the new app layout stuff.
+
+13:10.400 --> 13:22.400
+Yeah, yeah, that always got me not just on Next.js, but in general, where it's like, yeah, you put everything into your own and every single route has its own package JSON.
+
+13:22.400 --> 13:27.400
+And that's annoying to me because I was like, I don't want every package JSON for every single function.
+
+13:27.400 --> 13:32.400
+And then other people say, well, okay, now you have the special package that shared code.
+
+13:32.400 --> 13:37.400
+And you can put anything you want in there that shared code, but then I'm like, well, okay, now I have to decide.
+
+13:37.400 --> 13:41.400
+Can I just put it where I want it and it will like figure it out from there?
+
+13:41.400 --> 13:50.400
+And I'm assuming, or I'm not assuming, maybe that's what Vercel does on their end is they do a bunch of tree shaking or whatnot to make the functions as small as possible.
+
+13:50.400 --> 13:55.400
+Because nice and small that deploy super quick, you get nice cold starts.
+
+13:55.400 --> 13:58.400
+It's really sweet when that stuff does work.
+
+13:58.400 --> 14:01.400
+Yeah, and that's a pattern that we actually encourage.
+
+14:01.400 --> 14:04.400
+Our main framework SST, we talk about something similar.
+
+14:04.400 --> 14:10.400
+You don't want to, at author time, you don't want to think about it as like these complete discrete separate things.
+
+14:10.400 --> 14:13.400
+You want to build like one big application.
+
+14:13.400 --> 14:16.400
+And at deploy time, you want it to be broken down and tree shaking and all that.
+
+14:16.400 --> 14:19.400
+And that's that's exact pattern we like.
+
+14:19.400 --> 14:26.400
+And that's what we encourage because yeah, thinking that granularly when you're building something is just kind of annoying.
+
+14:26.400 --> 14:30.400
+And then the next jazz has a concept of middleware.
+
+14:30.400 --> 14:33.400
+And those are deployed to the edge.
+
+14:33.400 --> 14:35.400
+Can you give us a quick rundown?
+
+14:35.400 --> 14:39.400
+We've talked about it on the show a few times, but I'm sure people are still not really familiar.
+
+14:39.400 --> 14:40.400
+What is the edge?
+
+14:40.400 --> 14:42.400
+Yeah, so this one is really tricky.
+
+14:42.400 --> 14:48.400
+So the reason this is tricky for us to implement is Vercel itself runs primarily on AWS.
+
+14:48.400 --> 14:55.400
+So when you run a function on XDS, sorry, on Vercel, it's keeping these two confused.
+
+14:55.400 --> 14:59.400
+On Vercel, it runs in AWS.
+
+15:00.400 --> 15:03.400
+But a lot of their edge stuff is powered by CloudFlare.
+
+15:03.400 --> 15:09.400
+So when the middleware runs at the edge, it's not running in AWS data center, it's running in a CloudFlare data center.
+
+15:09.400 --> 15:13.400
+And CloudFlare data centers, there's a lot more of them and they're closer to the end user.
+
+15:13.400 --> 15:17.400
+And they're less capable, but good enough to run things like middleware.
+
+15:17.400 --> 15:22.400
+So a big challenge for us is, okay, if you want to self-host all of next jazz, including the middleware,
+
+15:22.400 --> 15:25.400
+we have to deploy that middleware inside AWS.
+
+15:25.400 --> 15:30.400
+That means there's different constraints that we have to abide by that Vercel does not.
+
+15:30.400 --> 15:33.400
+Because they can pick whatever architecture they want.
+
+15:33.400 --> 15:34.400
+Yeah, yeah.
+
+15:34.400 --> 15:37.400
+It's actually kind of nice if you go to a vendor and they say, you know what?
+
+15:37.400 --> 15:40.400
+We'll just, we'll figure it out for you, we'll make it fast.
+
+15:40.400 --> 15:49.400
+So the limitations we're talking about with edge functions, and this is true for running in Dino in CloudFlare workers.
+
+15:49.400 --> 15:54.400
+And there's a couple other runtimes we've talked about is that it's not a no jazz environment.
+
+15:54.400 --> 15:57.400
+It's a JavaScript web environment.
+
+15:57.400 --> 16:01.400
+And you only have a certain set of APIs available to you.
+
+16:01.400 --> 16:06.400
+So I converted a tiny little site the other day and I was like, you know what?
+
+16:06.400 --> 16:11.400
+I'm going to run it on Netlify Edge, which is it runs in Dino.
+
+16:11.400 --> 16:17.400
+So you can't use any Node.js APIs unless Dino supports them and large packages and whatnot.
+
+16:17.400 --> 16:20.400
+So there's like a little bit of a limitation, but the upside is what?
+
+16:20.400 --> 16:23.400
+It's much faster and quicker to load.
+
+16:23.400 --> 16:28.400
+And they literally deploy them to hundreds of different server locations around the world.
+
+16:28.400 --> 16:29.400
+Yeah, exactly.
+
+16:29.400 --> 16:34.400
+So if you look at traditional Lambda functions on AWS, they're not opinionated about what language you use.
+
+16:34.400 --> 16:37.400
+You can use a variety of different languages that they support natively.
+
+16:37.400 --> 16:40.400
+You can bring your own custom runtime for languages you want.
+
+16:40.400 --> 16:42.400
+And that constrains their architecture.
+
+16:42.400 --> 16:46.400
+They have to build a functions platform for running any arbitrary code.
+
+16:46.400 --> 16:51.400
+Some of these Edge platforms like CloudFlare, they, again, it's all about narrowing scope.
+
+16:51.400 --> 16:54.400
+Whenever you narrow scope, you can really up the quality.
+
+16:54.400 --> 16:59.400
+They're saying you can not only just, you can train not only to JavaScript,
+
+16:59.400 --> 17:02.400
+but a very specific flavor of the runtime that we provide.
+
+17:02.400 --> 17:04.400
+It's good enough for most things.
+
+17:04.400 --> 17:07.400
+If you accept these constraints, we can do some really interesting things.
+
+17:07.400 --> 17:09.400
+And one of those things is basically zero cold start.
+
+17:09.400 --> 17:14.400
+They're billing on the CloudFlare Edge's billing is pretty incredible.
+
+17:14.400 --> 17:16.400
+Let me see if I can explain this.
+
+17:16.400 --> 17:22.400
+So if you only pay for compute time, that means if your function starts, compute some stuff,
+
+17:22.400 --> 17:27.400
+then makes a network request and it waits 500 milliseconds to network request.
+
+17:27.400 --> 17:30.400
+You're not actually being billed for that waiting time.
+
+17:30.400 --> 17:34.400
+You only build when the network request comes back and you're using the CPU again.
+
+17:34.400 --> 17:42.400
+And that creates a very simple concept, but it creates so many things and so many opportunities for things you can build that
+
+17:42.400 --> 17:45.400
+isn't exactly possible on a traditional functions platform.
+
+17:45.400 --> 17:52.400
+I remember seeing that because I remember looking at the 10 milliseconds or something like that on CloudFlare workers.
+
+17:52.400 --> 17:55.400
+I was like, that's not enough.
+
+17:55.400 --> 17:59.400
+And then who's possibly running code in 10 milliseconds?
+
+17:59.400 --> 18:00.400
+And that's it.
+
+18:00.400 --> 18:01.400
+But I've never hit that.
+
+18:01.400 --> 18:02.400
+I've never hit the issue.
+
+18:02.400 --> 18:05.400
+And somebody explained to me, no, it's not.
+
+18:05.400 --> 18:12.400
+If you're fetching a big thing that CloudFlare workers is really good at is proxying web pages.
+
+18:12.400 --> 18:17.400
+So if you're going to NBA.com and downloading all of the HTML and then waiting for it to come back,
+
+18:17.400 --> 18:19.400
+you're not paying for that time.
+
+18:19.400 --> 18:20.400
+And that's wild.
+
+18:20.400 --> 18:22.400
+Like, did they just not charge you for it?
+
+18:22.400 --> 18:26.400
+Or did they literally spin it down while you're waiting for that?
+
+18:26.400 --> 18:27.400
+Yeah.
+
+18:27.400 --> 18:31.400
+So technically they are not paying for like your function is off the CPU at that point.
+
+18:31.400 --> 18:35.400
+It's just waiting for the network hardware to say, hey, it's done downloading.
+
+18:35.400 --> 18:37.400
+I have a payload for you.
+
+18:37.400 --> 18:39.400
+So there still is like a memory cost for them.
+
+18:39.400 --> 18:42.400
+But the CPU cost is what's limited.
+
+18:42.400 --> 18:48.400
+So they can have other customers running on that CPU while you're waiting for your request to come back.
+
+18:48.400 --> 18:53.400
+And that's how they basically sell the same second multiple times multiple people.
+
+18:53.400 --> 18:56.400
+And it's a model that can work really well at scale.
+
+18:56.400 --> 18:57.400
+Wow.
+
+18:58.400 --> 19:05.400
+And that's another thing that people often understand is that like if you look at pricing for a lot of these things,
+
+19:05.400 --> 19:07.400
+they charge you by compute hour.
+
+19:07.400 --> 19:10.400
+Just regular people look at it and go like, how do I do that?
+
+19:10.400 --> 19:13.400
+Do you have any like tips on like, how would you calculate that type of thing?
+
+19:13.400 --> 19:18.400
+Or is it just a, you got to see pricing is a funny thing in a serverless world.
+
+19:18.400 --> 19:20.400
+It's pretty much in hindsight.
+
+19:20.400 --> 19:24.400
+And I would say, I think people try to come up with ways to figure out costs ahead of time.
+
+19:24.400 --> 19:27.400
+I think the reality is you don't know the cost ahead of time.
+
+19:27.400 --> 19:30.400
+It's more around shifting your mindset around what your costs are.
+
+19:30.400 --> 19:33.400
+I think we're used to paying for things in a monthly way.
+
+19:33.400 --> 19:37.400
+Now, like if you think about our personal lives, we pay monthly bills.
+
+19:37.400 --> 19:41.400
+But when it comes to cloud infrastructure and things involving your business,
+
+19:41.400 --> 19:50.400
+I think it's better to think about it as marginal cost where you just need to make sure that you are charging someone else more than what your marginal cost is.
+
+19:51.400 --> 19:54.400
+So to serve one request, it costs you a penny.
+
+19:54.400 --> 19:56.400
+Make sure you're charging 10 cents for that.
+
+19:56.400 --> 20:00.400
+That way it doesn't matter what your monthly bill is because if you scale up 100 X,
+
+20:00.400 --> 20:02.400
+your margin still makes sense, right?
+
+20:02.400 --> 20:06.400
+You're never going to go negative as long as you're thinking about like the unit economics there.
+
+20:06.400 --> 20:08.400
+But it is tricky.
+
+20:08.400 --> 20:12.400
+Like the pricing is on intuitive and it's not even compute hour now.
+
+20:12.400 --> 20:13.400
+It's like per millisecond.
+
+20:13.400 --> 20:15.400
+Like how many milliseconds are you going to use this month?
+
+20:15.400 --> 20:18.400
+It's not really something that you can really guess.
+
+20:18.400 --> 20:21.400
+You can look at it in hindsight and see what's what.
+
+20:21.400 --> 20:25.400
+Can it be like incredibly cheap to run stuff on this as well though?
+
+20:25.400 --> 20:28.400
+Yeah, I think there's a lot of confusion around pricing.
+
+20:28.400 --> 20:34.400
+I think people, I've heard people instinctively say serverless stuff is really expensive.
+
+20:34.400 --> 20:38.400
+I've also heard people instinctively say that it's not expensive.
+
+20:38.400 --> 20:40.400
+In practice, it's insanely cheap.
+
+20:40.400 --> 20:43.400
+And the numbers and the way you compute the numbers are a little bit counterintuitive,
+
+20:43.400 --> 20:46.400
+which is why people might perceive them as being expensive.
+
+20:46.400 --> 20:49.400
+But it is like unbelievably cheap.
+
+20:49.400 --> 20:53.400
+Like I don't think I've had a bill more than like $5 or something.
+
+20:53.400 --> 20:57.400
+And I run some stuff like serious traffic.
+
+20:57.400 --> 21:03.400
+And I think the culture at least with AWS is they have never raised prices ever.
+
+21:03.400 --> 21:07.400
+There's some services that are now 99% cheaper than they were when they launched.
+
+21:07.400 --> 21:12.400
+They know the moment that they leave room that someone else is going to come in and offer a cheaper service.
+
+21:12.400 --> 21:15.400
+So you'll just see prices go down and down and down.
+
+21:15.400 --> 21:21.400
+As one of my favorite examples of this is Lambda, let me see if I can remember the exact numbers.
+
+21:21.400 --> 21:24.400
+So they used to charge per 100 milliseconds.
+
+21:24.400 --> 21:30.400
+So if you had a request that took 20 milliseconds, you were being charged for 100 milliseconds.
+
+21:30.400 --> 21:35.400
+Then one day they came out and they said, okay, we're now going to charge you per millisecond.
+
+21:35.400 --> 21:40.400
+That means your costs are now 80% cheaper overnight without you doing anything.
+
+21:40.400 --> 21:42.400
+And there's a million examples of this.
+
+21:42.400 --> 21:47.400
+And I think people kind of worry about with all these very cloud native services.
+
+21:47.400 --> 21:48.400
+Am I going to get trapped?
+
+21:48.400 --> 21:51.400
+And they're going to jack the price up and I'm going to be screwed.
+
+21:51.400 --> 21:57.400
+Historically, at least with this modern set of companies, they understand the mistakes of the previous generation of companies.
+
+21:57.400 --> 21:59.400
+I try to do that.
+
+21:59.400 --> 22:02.400
+And I know that they got to make sure prices keep going down.
+
+22:02.400 --> 22:09.400
+I'll give you another example of I host my course platform on render as a long-running node app.
+
+22:09.400 --> 22:19.400
+I've been really looking at moving it over to serverless lately because specifically because I have pull request previews on my pull request.
+
+22:19.400 --> 22:22.400
+And I had a pull request sitting there for three or four months.
+
+22:22.400 --> 22:24.400
+I wasn't ready to deal with it.
+
+22:24.400 --> 22:27.400
+And then I had three or four running for a couple of weeks.
+
+22:27.400 --> 22:35.400
+And then I realized like every single pull request is another VM that is spun up and run until I merge the pull request.
+
+22:35.400 --> 22:46.400
+And if your regular VM costs $10 a month and then you have six more pull requests running at $10 each a month, that gets out of hand really quickly.
+
+22:46.400 --> 22:49.400
+And the obvious answer is merge and quick.
+
+22:49.400 --> 22:50.400
+It's cheaper to do that.
+
+22:50.400 --> 22:58.400
+But I thought like, man, if this was serverless functions, it literally would not run until I click the URL and that thing will spin up again.
+
+22:58.400 --> 23:01.400
+Yeah, that's kind of why some of these costs are counterintuitive.
+
+23:01.400 --> 23:05.400
+It's easy to think about just a very narrow version of your production environment.
+
+23:05.400 --> 23:08.400
+Like think about like one container running production.
+
+23:08.400 --> 23:11.400
+But that container has to be at least reasonably highly available.
+
+23:11.400 --> 23:16.400
+Then you have like your dev environments and your pull request environments and all these add up.
+
+23:16.400 --> 23:18.400
+And it's not just your compute part of it.
+
+23:18.400 --> 23:21.400
+It's can you pay for your database in a serverless way?
+
+23:21.400 --> 23:26.400
+If you can, then you can have a separate database for each pull request environment and it's costing you nothing.
+
+23:26.400 --> 23:33.400
+So a lot of we see a lot of people coming to serverless specifically for the developer environments and the pull request environments.
+
+23:33.400 --> 23:36.400
+What about images and assets?
+
+23:36.400 --> 23:39.400
+So I know Next.js has really nice image component.
+
+23:39.400 --> 23:41.400
+I'll let you resize on the fly.
+
+23:41.400 --> 23:45.400
+Is that type of thing something you can also do in the serverless world?
+
+23:45.400 --> 23:49.400
+Yeah, so their standard build output outputs a function that can do that.
+
+23:49.400 --> 23:52.400
+And we just deploy that as another serverless function.
+
+23:53.400 --> 23:58.400
+And it actually that part actually works pretty nicely out of the box.
+
+23:58.400 --> 24:02.400
+I think the thing with that is there's not anything specific to your application.
+
+24:02.400 --> 24:07.400
+Like that image resizing and all those tools are like a generic solution, right?
+
+24:07.400 --> 24:08.400
+You just pass in.
+
+24:08.400 --> 24:11.400
+It's just going to pass an image that you need and handle the resizing.
+
+24:11.400 --> 24:14.400
+So that is something that we support in the self-hosted version.
+
+24:14.400 --> 24:18.400
+And yeah, it's like sitting behind a CDN and all that.
+
+24:18.400 --> 24:19.400
+So it's optimized.
+
+24:19.400 --> 24:20.400
+Awesome.
+
+24:20.400 --> 24:25.400
+And then the CDN is so cloud flare or sorry, not cloud flare.
+
+24:25.400 --> 24:29.400
+Yeah, cloud front and S3, right?
+
+24:29.400 --> 24:30.400
+Is it using both of those?
+
+24:30.400 --> 24:31.400
+Yeah.
+
+24:31.400 --> 24:35.400
+So when we build your Next.js app, there's a few things that it spits out.
+
+24:35.400 --> 24:37.400
+There's a bunch of static files that don't change.
+
+24:37.400 --> 24:43.400
+And those get uploaded to S3 that gets put behind a CDN, which is cloud front.
+
+24:43.400 --> 24:46.400
+Your functions actually get put behind the CDN as well.
+
+24:47.400 --> 24:50.400
+And there's also your functions for your main application.
+
+24:50.400 --> 24:52.400
+We also deploy some edge functions.
+
+24:52.400 --> 24:54.400
+So AWS does support edge functions.
+
+24:54.400 --> 24:58.400
+And those actually live in the same environment as the CDN.
+
+24:58.400 --> 25:02.400
+We deploy edge functions there for the Next.js middleware, middleware stuff.
+
+25:02.400 --> 25:08.400
+So what is, so I'm actually looking at, I primarily use Svelte and Svelte kit myself.
+
+25:08.400 --> 25:12.400
+And they have this adapter situation where you can have an output adapter.
+
+25:13.400 --> 25:18.400
+I found basically the Svelte kit adapter, AWS CDK.
+
+25:18.400 --> 25:22.400
+And they have very similar diagrams to kind of what you have going on, right?
+
+25:22.400 --> 25:26.400
+You have the S3 buckets, you have cloud fronts for the CDN and the static assets
+
+25:26.400 --> 25:28.400
+for an S3 bucket.
+
+25:28.400 --> 25:33.400
+Is the CDK a layer on top of something that Amazon is doing?
+
+25:33.400 --> 25:39.400
+Or is that just a name for how you develop cloud applications locally?
+
+25:39.400 --> 25:44.400
+Yeah, so when you start looking at AWS, you realize it's just like crazy amount of layers.
+
+25:44.400 --> 25:47.400
+So let me see if Anttraces all the way down.
+
+25:47.400 --> 25:53.400
+So AWS has an infrastructure as code tool called CloudFormation.
+
+25:53.400 --> 25:58.400
+All this means is instead of going into AWS UI, clicking a bunch of things to configure something,
+
+25:58.400 --> 26:01.400
+you can do this all in this YAML specification.
+
+26:01.400 --> 26:02.400
+It's terrible.
+
+26:02.400 --> 26:03.400
+Nobody should be using it.
+
+26:03.400 --> 26:05.400
+Everyone hates using it.
+
+26:05.400 --> 26:10.400
+So they built a layer that compiles to CloudFormation called CDK.
+
+26:10.400 --> 26:15.400
+So instead of writing YAML, you can write types.
+
+26:15.400 --> 26:17.400
+I have a lot of issues with CDK.
+
+26:17.400 --> 26:22.400
+They optimize it so you can write it in a variety of different languages, like TypeScript, Python,
+
+26:22.400 --> 26:28.400
+I think Java, Go, a few others and all compiles down into this CloudFormation YAML.
+
+26:28.400 --> 26:32.400
+99% of people, I think they're just using it in TypeScript.
+
+26:32.400 --> 26:34.400
+So I just wish they just optimized for TypeScript.
+
+26:34.400 --> 26:37.400
+I'm trying to make something multi-language.
+
+26:37.400 --> 26:42.400
+And so today, a modern application on AWS, I think CDK is a pretty good option.
+
+26:42.400 --> 26:47.400
+A lot of people are still using CloudFormation directly just because they have the experience with it.
+
+26:47.400 --> 26:51.400
+And SST, the thing that we build is actually built on top of CDK.
+
+26:51.400 --> 26:54.400
+So we have a lot of experience with CDK and some of the internals there.
+
+26:54.400 --> 27:00.400
+So if somebody opts to use CDK, are they opting in to paying for that as a bit more of a service,
+
+27:00.400 --> 27:03.400
+or are they still paying just for the underlying services?
+
+27:03.400 --> 27:07.400
+Yeah, so there's no charges associated with CloudFormation.
+
+27:07.400 --> 27:09.400
+So it's just a way for you to deploy stuff.
+
+27:09.400 --> 27:15.400
+Yeah, so we had a while back, we had Brian LaRue from Begin,
+
+27:15.400 --> 27:20.400
+which they seem to be switching gears a little bit, which is kind of interesting.
+
+27:20.400 --> 27:24.400
+So he runs a project called Architect, which is Arc.Code.
+
+27:24.400 --> 27:29.400
+And that, basically, it's your infrastructure as code,
+
+27:29.400 --> 27:32.400
+and that will compile to a CloudFormation.
+
+27:32.400 --> 27:34.400
+It's funny. There's lots of people building it on top.
+
+27:34.400 --> 27:37.400
+So we talk about that.
+
+27:37.400 --> 27:40.400
+I'll talk about one more, and then let's get into what SST is.
+
+27:40.400 --> 27:44.400
+So there's another one that people keep recommending to me, and that's Terraform.
+
+27:44.400 --> 27:47.400
+Are you familiar with that? Can you explain what that is?
+
+27:47.400 --> 27:52.400
+Yeah, so Terraform is another infrastructure as code tool that is not tied to any specific Cloud provider.
+
+27:52.400 --> 27:54.400
+I actually am a huge fan of the Terraform ecosystem.
+
+27:54.400 --> 27:57.400
+I used to build everything in Terraform, like,
+
+27:57.400 --> 28:02.400
+made for, like, four or five years before I moved to working on SST.
+
+28:02.400 --> 28:08.400
+Their interface is, it's not YAML, but it is a similar configuration language.
+
+28:08.400 --> 28:13.400
+I would say it's a lot better than YAML, but you can basically configure anything.
+
+28:13.400 --> 28:17.400
+You can configure stuff in AWS, you can configure stuff in CloudFlare.
+
+28:17.400 --> 28:19.400
+You can, like, make it turn on a light in your house.
+
+28:19.400 --> 28:22.400
+Like, you can kind of use it for literally anything,
+
+28:22.400 --> 28:27.400
+and it's basically a way to describe the state of any system
+
+28:27.400 --> 28:32.400
+and have it, you know, retain that state and make changes to it over time.
+
+28:32.400 --> 28:38.400
+It's a great, like, neutral open source tool that's not tied to any one specific vendor.
+
+28:38.400 --> 28:45.400
+And we're actually looking not anytime soon, but long-term we would like to be more built on top of Terraform
+
+28:45.400 --> 28:50.400
+than built on top of CDK, just so we have access to some of the larger ecosystem.
+
+28:50.400 --> 28:51.400
+Yeah.
+
+28:51.400 --> 28:57.400
+All right, so you've talked about SST quite a bit, but, like, let's give us a 30-minute or nothing,
+
+28:57.400 --> 29:02.400
+a 30-second, one-minute rundown of what it is and why are you building this?
+
+29:02.400 --> 29:09.400
+Yeah, so that premise here is, like I said earlier, AWS is actually a great choice for most companies
+
+29:09.400 --> 29:12.400
+building products that they're trying to sell to other people.
+
+29:12.400 --> 29:16.400
+It's just extremely hard to understand anything going on in AWS.
+
+29:16.400 --> 29:19.400
+You're not really going to understand it through the console, the documentation.
+
+29:19.400 --> 29:23.400
+There's a ton of stuff to learn before you can even know the right way to do something.
+
+29:23.400 --> 29:31.400
+So the idea here is let's build a framework that is our idea of the best way to build an application on AWS.
+
+29:31.400 --> 29:33.400
+So we don't cover all of AWS.
+
+29:33.400 --> 29:38.400
+I would say we cover maybe, like, 2% of AWS, which is probably the 2% that most people need.
+
+29:38.400 --> 29:45.400
+We focus just on the serverless services, and we provide high-level contracts, things like APIs,
+
+29:45.400 --> 29:51.400
+databases, stuff like cron jobs, queues, long-running jobs, scheduled events, things like that
+
+29:51.400 --> 29:56.400
+that are high-level pieces that you need for most applications that you can just spin up
+
+29:56.400 --> 30:00.400
+and configure and then access in your application code.
+
+30:00.400 --> 30:02.400
+Our scope is pretty broad.
+
+30:02.400 --> 30:05.400
+We'll cover stuff that is very infrastructure-related like that.
+
+30:05.400 --> 30:09.400
+We'll also cover rough edges that show up in your application.
+
+30:09.400 --> 30:12.400
+Like I said, we're doing the open-next stuff, so we help you deploy your front-end, say,
+
+30:12.400 --> 30:13.400
+AWS as well.
+
+30:13.400 --> 30:20.400
+We just want to make it really viable for you to start a project on day 1 AWS without doing all this work
+
+30:20.400 --> 30:23.400
+of understanding and research.
+
+30:23.400 --> 30:27.400
+But, you know, as your company grows, as your product grows, day 100, day 1000,
+
+30:27.400 --> 30:32.400
+you're still built on AWS, so you're not going to really need to eject out into something else.
+
+30:32.400 --> 30:37.400
+So the idea is, you know, keep it simple in the beginning, but it's going to be able to stick with you
+
+30:37.400 --> 30:38.400
+for the long run.
+
+30:39.400 --> 30:43.400
+And if you're out there and you hear 2% of AWS, you think that's not very much,
+
+30:43.400 --> 30:46.400
+just go ahead to services in the top left of AWS,
+
+30:46.400 --> 30:50.400
+click all services and just start scrolling, and then by tomorrow you'll hit the bottom of it.
+
+30:50.400 --> 30:51.400
+Yeah, exactly.
+
+30:51.400 --> 30:53.400
+They have a lot of stuff, and you eventually will need some of it.
+
+30:53.400 --> 30:57.400
+Is this something that you would pick up before you start an application,
+
+30:57.400 --> 31:01.400
+or is I know you have adapters for frameworks, but then I'm looking at the docs,
+
+31:01.400 --> 31:06.400
+and there's also, like, if I want to just have a raw request coming in from a URL,
+
+31:06.400 --> 31:08.400
+does it have a router?
+
+31:08.400 --> 31:10.400
+Like, where does this fit in?
+
+31:10.400 --> 31:14.400
+Do I build on top of this, or do I take my existing app and put it into it?
+
+31:14.400 --> 31:16.400
+Yeah, so we have two different options.
+
+31:16.400 --> 31:19.400
+For most people, we would recommend, if you're starting fresh,
+
+31:19.400 --> 31:24.400
+you start with a fresh SSC project, it sets you up for something that will work for a pretty long time.
+
+31:24.400 --> 31:30.400
+And you can configure that with, I just want an API, or I have an API plus a GraphQL thing,
+
+31:30.400 --> 31:32.400
+or I have, you know, an XJS app.
+
+31:32.400 --> 31:34.400
+You can kind of configure however you want.
+
+31:34.400 --> 31:37.400
+We kind of think of that as an SST app that you're building.
+
+31:37.400 --> 31:42.400
+We also have something called drop-in mode, which we're releasing kind of framework by framework.
+
+31:42.400 --> 31:47.400
+We did a launch for Astro a few weeks ago, and we're doing one for next JS next week.
+
+31:47.400 --> 31:49.400
+Basically, you have an existing Astro app.
+
+31:49.400 --> 31:51.400
+You have an existing next JS app, whatever it is.
+
+31:51.400 --> 31:54.400
+You just want to, like, drop this in and get this deployment at AWS.
+
+31:54.400 --> 31:58.400
+You're not really trying to build the fully fledged SSC application.
+
+31:58.400 --> 32:01.400
+That basically requires you to just drop in a single file, and, you know,
+
+32:01.400 --> 32:04.400
+you can deploy everything you have to AWS.
+
+32:04.400 --> 32:06.400
+Oh, cool.
+
+32:06.400 --> 32:10.400
+And what about, like, a local dev experience?
+
+32:10.400 --> 32:15.400
+That's one thing that always makes me nuts, is that, like, okay,
+
+32:15.400 --> 32:19.400
+I can run this thing locally, but then I have a whole other set of whatever
+
+32:19.400 --> 32:23.400
+and trying to replicate the local environment.
+
+32:23.400 --> 32:25.400
+And, yeah, such a pain.
+
+32:25.400 --> 32:27.400
+Like, do you solve that pain?
+
+32:27.400 --> 32:29.400
+So that's actually where SSC started.
+
+32:29.400 --> 32:31.400
+And that's kind of how I even found the project.
+
+32:31.400 --> 32:33.400
+I was first going to serverless, and, like you said,
+
+32:33.400 --> 32:36.400
+the first question I had was, like, how the hell do I do local development
+
+32:36.400 --> 32:38.400
+when everything is in the cloud?
+
+32:38.400 --> 32:41.400
+And I was building, like, my own, like, crappy solution to this,
+
+32:41.400 --> 32:43.400
+and I found SSC would have just come out that time,
+
+32:43.400 --> 32:45.400
+and they launched with a really, kind of like a single feature.
+
+32:45.400 --> 32:47.400
+It was a live lambda debugging.
+
+32:47.400 --> 32:52.400
+And the idea here is the recommended setup we have for building, like,
+
+32:52.400 --> 32:57.400
+these AWS native systems is most of the stuff you do want remotely,
+
+32:57.400 --> 32:59.400
+like, your database, you want to remotely is great,
+
+32:59.400 --> 33:01.400
+like, your queues running remotely is great.
+
+33:01.400 --> 33:06.400
+The thing that sucks is when you make a change in your function code,
+
+33:06.400 --> 33:09.400
+you don't want to wait for it to upload AWS,
+
+33:09.400 --> 33:11.400
+which can take, like, five seconds to then, like,
+
+33:11.400 --> 33:13.400
+have the whole feedback loop.
+
+33:13.400 --> 33:17.400
+So SST originally has this brilliant idea of,
+
+33:17.400 --> 33:20.400
+let's deploy 99% of your application for real,
+
+33:20.400 --> 33:22.400
+because you're not changing it that frequently.
+
+33:22.400 --> 33:25.400
+But for functions, let's deploy a fake function,
+
+33:25.400 --> 33:27.400
+and when a request hits that function,
+
+33:27.400 --> 33:29.400
+we're going to forward it to your local machine, execute it locally,
+
+33:29.400 --> 33:31.400
+and then send the response back.
+
+33:31.400 --> 33:33.400
+So what that means is when you make changes,
+
+33:33.400 --> 33:35.400
+instead of waiting five seconds for the update,
+
+33:35.400 --> 33:37.400
+it's, like, how fast ES build can run.
+
+33:37.400 --> 33:40.400
+So, like, a 50 millisecond response time.
+
+33:40.400 --> 33:42.400
+So we really originally started with figuring out,
+
+33:42.400 --> 33:44.400
+it made the local development experience really good.
+
+33:44.400 --> 33:46.400
+And since then, we've added a bunch of things around this
+
+33:46.400 --> 33:48.400
+to solve other rough edges.
+
+33:48.400 --> 33:50.400
+But today, when you do SST dev,
+
+33:50.400 --> 33:53.400
+which basically brings up your SST app in local mode,
+
+33:53.400 --> 33:55.400
+it feels like a normal, locally running app,
+
+33:55.400 --> 33:57.400
+with all the benefits of most of it running in cloud.
+
+33:57.400 --> 33:59.400
+And there's not much difference when you deploy to production.
+
+33:59.400 --> 34:01.400
+It's pretty much the exact same environment
+
+34:01.400 --> 34:03.400
+as what you had in the dev mode.
+
+34:03.400 --> 34:05.400
+Oh, that's cool.
+
+34:05.400 --> 34:07.400
+And do you do any...
+
+34:07.400 --> 34:09.400
+I don't know if you said this or not.
+
+34:09.400 --> 34:11.400
+Does SST do edge functions as well?
+
+34:11.400 --> 34:14.400
+Yeah, so we don't have native contract.
+
+34:14.400 --> 34:18.400
+So SST offers, like, a set of, like, native SST contracts.
+
+34:18.400 --> 34:20.400
+We don't have one yet for edge functions.
+
+34:20.400 --> 34:24.400
+But you can drop down into CDK and deploy an edge function yourself.
+
+34:24.400 --> 34:29.400
+It's just a little more complicated and not as nice as the other SST contracts.
+
+34:29.400 --> 34:31.400
+But we probably will support this eventually.
+
+34:31.400 --> 34:33.400
+Yeah, that's one thing I've always been wondering about,
+
+34:33.400 --> 34:37.400
+like, is, like, what does the local development environment look like
+
+34:37.400 --> 34:39.400
+for developing edge functions?
+
+34:39.400 --> 34:42.400
+Because you need to constrain the thing.
+
+34:42.400 --> 34:46.400
+If you run it in Node, then someone's going to accidentally import a Node app
+
+34:46.400 --> 34:48.400
+and then it doesn't work and then you deploy it.
+
+34:48.400 --> 34:51.400
+So I know CloudFlare has MiniFlare, which is...
+
+34:51.400 --> 34:54.400
+I think it's a Node environment that is, like,
+
+34:54.400 --> 34:56.400
+they do something to pair it down.
+
+34:56.400 --> 34:58.400
+You could obviously run it in Dino.
+
+34:58.400 --> 35:01.400
+Do you have any thoughts there or is not something you've gone into?
+
+35:01.400 --> 35:05.400
+No, so the one thing I should mention is AWS's edge functions
+
+35:05.400 --> 35:07.400
+are actually just normal Node.js functions.
+
+35:07.400 --> 35:09.400
+So they are the only provider that lets you run Node at the edge.
+
+35:09.400 --> 35:10.400
+Oh, okay.
+
+35:10.400 --> 35:11.400
+So they're actually...
+
+35:11.400 --> 35:12.400
+We don't really have that problem.
+
+35:12.400 --> 35:15.400
+We're just going to, you know, run Node locally and it'll be fine.
+
+35:16.400 --> 35:19.400
+Yeah, but for the other services like CloudFlare,
+
+35:19.400 --> 35:23.400
+they basically just let you run the exact runtime they're running at edge locally
+
+35:23.400 --> 35:25.400
+and that'll kind of constrain it.
+
+35:25.400 --> 35:28.400
+So you have a replicated environment locally.
+
+35:28.400 --> 35:32.400
+And probably not an issue for all that much longer,
+
+35:32.400 --> 35:36.400
+given last week, CloudFlare announced that it now supports
+
+35:36.400 --> 35:38.400
+a whole bunch more of the Node APIs.
+
+35:38.400 --> 35:42.400
+Dino now has parity with Node and Oban.
+
+35:43.400 --> 35:46.400
+So at a certain point, we're just going to have the Node API
+
+35:46.400 --> 35:48.400
+that will literally run anywhere.
+
+35:48.400 --> 35:51.400
+And maybe at that point, we run everything in an edge function?
+
+35:51.400 --> 35:52.400
+Yeah, I think edge functions...
+
+35:52.400 --> 35:53.400
+I'm just talking about my butt here.
+
+35:53.400 --> 35:54.400
+I don't really know.
+
+35:54.400 --> 35:57.400
+Well, so the reason we haven't built Edge...
+
+35:57.400 --> 36:00.400
+So we're very user driven, so we're only really going to build stuff
+
+36:00.400 --> 36:02.400
+when people start asking for it.
+
+36:02.400 --> 36:04.400
+And no one's really asked for Edge functions.
+
+36:04.400 --> 36:08.400
+And the reason is they're kind of an awkward fit in your infrastructure.
+
+36:08.400 --> 36:11.400
+The way I like to describe it is, imagine you have a string
+
+36:11.400 --> 36:14.400
+and there's different beads that are on the string.
+
+36:14.400 --> 36:15.400
+One bead is a user.
+
+36:15.400 --> 36:17.400
+The other bead is, let's say, your API
+
+36:17.400 --> 36:20.400
+and the other bead is your database.
+
+36:20.400 --> 36:24.400
+If you start to move your API, so your functions closer to the user,
+
+36:24.400 --> 36:26.400
+they're now further away from your database.
+
+36:26.400 --> 36:29.400
+So now, round trips to your database are more expensive.
+
+36:29.400 --> 36:31.400
+So you can move the function closer to the user.
+
+36:31.400 --> 36:35.400
+But if you need to make two database calls to process that request,
+
+36:35.400 --> 36:37.400
+it might actually be slower overall.
+
+36:37.400 --> 36:39.400
+Then there's a question of moving...
+
+36:39.400 --> 36:42.400
+Okay, can we just move the database closer to the user as well?
+
+36:42.400 --> 36:45.400
+But then now that database is further away from the other database nodes.
+
+36:45.400 --> 36:50.400
+So you're always going to be constrained by distributed systems problems.
+
+36:50.400 --> 36:52.400
+I think there's a lot of hype around Edge right now,
+
+36:52.400 --> 36:56.400
+but I think outside of a front-end rendering stuff,
+
+36:56.400 --> 37:00.400
+there's not really much adoption and serving back-end requests.
+
+37:00.400 --> 37:01.400
+Interesting.
+
+37:01.400 --> 37:02.400
+That's really good to know.
+
+37:02.400 --> 37:06.400
+Can you talk a little bit about databases as well in terms of SSD?
+
+37:06.400 --> 37:07.400
+What should we be using?
+
+37:07.400 --> 37:10.400
+Yeah, so we support two databases out of the box.
+
+37:10.400 --> 37:13.400
+One is DynamoDB, and the other is RDS.
+
+37:13.400 --> 37:16.400
+AWS has a relational...
+
+37:16.400 --> 37:20.400
+It's a serverless relational database service.
+
+37:20.400 --> 37:23.400
+So my SQL or Postgres, you can deploy it in this.
+
+37:23.400 --> 37:25.400
+It's not really serverless, like fake serverless.
+
+37:25.400 --> 37:29.400
+They'll kind of turn it on and off and auto-scale it for you.
+
+37:29.400 --> 37:30.400
+We support it.
+
+37:30.400 --> 37:34.400
+We don't recommend anyone to actually use it unless they're forced to use only AWS
+
+37:34.400 --> 37:38.400
+services because things like planet scale and like neon,
+
+37:38.400 --> 37:43.400
+much better options for running relational databases in a serverless way.
+
+37:43.400 --> 37:47.400
+And on a DynamoDB side, DynamoDB is an excellent, excellent database,
+
+37:47.400 --> 37:51.400
+and it works incredibly well with serverless environments
+
+37:51.400 --> 37:53.400
+and serverless architectures.
+
+37:53.400 --> 37:55.400
+It is a challenge to learn.
+
+37:55.400 --> 37:58.400
+There's a pattern in it called single-table design.
+
+37:58.400 --> 38:01.400
+If you're coming from mostly relational databases,
+
+38:01.400 --> 38:04.400
+it's going to seem really, really weird for you.
+
+38:04.400 --> 38:07.400
+It is really great, and I think it's worth the time learning,
+
+38:07.400 --> 38:10.400
+because if you learn it, you can build systems that basically scale infinitely,
+
+38:10.400 --> 38:13.400
+and you never have to worry about database scaling ever again.
+
+38:13.400 --> 38:16.400
+But if you don't really have that burning need,
+
+38:16.400 --> 38:21.400
+then I would say go to some of these new relational database services like planet scale.
+
+38:21.400 --> 38:25.400
+So people coming from non-relational databases like a Mongo context,
+
+38:25.400 --> 38:29.400
+would they be more likely to grasp some of the context,
+
+38:29.400 --> 38:32.400
+or is it his own thing entirely?
+
+38:32.400 --> 38:34.400
+I tried it. It's freaking awful.
+
+38:34.400 --> 38:36.400
+I could not pick it up, yeah.
+
+38:36.400 --> 38:40.400
+So hypothetically, a Mongo developer should be able to pick it up,
+
+38:40.400 --> 38:43.400
+but I think a lot of just given Mongo's history,
+
+38:43.400 --> 38:46.400
+a lot of people using Mongo aren't using it the right way.
+
+38:46.400 --> 38:50.400
+But yeah, so I think if you're coming from something like Cassandra
+
+38:50.400 --> 38:55.400
+or a lot of the other maybe less popular, no-SQL databases,
+
+38:55.400 --> 38:58.400
+it's very familiar, and you kind of understand the constraints.
+
+38:58.400 --> 39:02.400
+There's a little bit of a misconception with no-SQL in that you can't use it
+
+39:02.400 --> 39:05.400
+for relational database, relational data.
+
+39:05.400 --> 39:09.400
+All data is relational, like I've never seen a non-relational dataset.
+
+39:09.400 --> 39:11.400
+You can model all of it in Dynamo.
+
+39:11.400 --> 39:13.400
+It's just very different and very weird.
+
+39:13.400 --> 39:18.400
+I use it for most of my projects, but we definitely acknowledge there's a big learning curve.
+
+39:18.400 --> 39:19.400
+That's good.
+
+39:19.400 --> 39:26.400
+So we have an entire show on serverless databases where we talked about
+
+39:26.400 --> 39:28.400
+relational versus non-relational.
+
+39:28.400 --> 39:32.400
+And I ended up saying I really like the planet scale approach,
+
+39:32.400 --> 39:37.400
+because you can just use whatever adapter, if you know MySQL,
+
+39:37.400 --> 39:40.400
+or you can use whatever library that you're used to using
+
+39:40.400 --> 39:45.400
+and whatever, then local development is great.
+
+39:45.400 --> 39:49.400
+And then you can deploy the thing to a service that does make it serverless.
+
+39:49.400 --> 39:52.400
+And I thought that was a really neat approach.
+
+39:52.400 --> 39:53.400
+Yeah, planet scale is great.
+
+39:53.400 --> 39:57.400
+And it's kind of, we're trying to push most people down that route.
+
+39:57.400 --> 40:00.400
+We just have, because we're in the AWS world, we have a lot of like
+
+40:00.400 --> 40:04.400
+enterprise users that are like, we can't deploy a single thing outside AWS.
+
+40:04.400 --> 40:10.400
+So they're stuck on RDS, which I really want AWS to catch up to planet scale there.
+
+40:10.400 --> 40:12.400
+The gap is like ridiculous.
+
+40:12.400 --> 40:13.400
+It's not even close.
+
+40:13.400 --> 40:15.400
+What about built pipelines?
+
+40:15.400 --> 40:20.400
+That's another thing that I go to Amazon and they tell you,
+
+40:20.400 --> 40:25.400
+literally zip up your serverless function and press the upload button
+
+40:25.400 --> 40:28.400
+and you can upload a zip file of a thing.
+
+40:28.400 --> 40:30.400
+And I'm like, seriously, where's the like,
+
+40:30.400 --> 40:33.400
+get deploy automatic build type of thing?
+
+40:33.400 --> 40:35.400
+What's your solution to that?
+
+40:35.400 --> 40:36.400
+Yeah, I'm going to give you some advice.
+
+40:36.400 --> 40:39.400
+Just never log into AWS console ever again.
+
+40:39.400 --> 40:42.400
+You never need to go into it.
+
+40:42.400 --> 40:44.400
+And all the information in there is wrong.
+
+40:44.400 --> 40:47.400
+So just don't go in there.
+
+40:48.400 --> 40:51.400
+So with SST, because it's an infrastructure as code tool,
+
+40:51.400 --> 40:56.400
+as a part of it is, we know everything that your application needs to deploy.
+
+40:56.400 --> 40:58.400
+And we build everything for you.
+
+40:58.400 --> 41:01.400
+So we like build all your functions in parallel, like do that all efficiently.
+
+41:01.400 --> 41:07.400
+And we output that into a single artifact that we then deploy also for you.
+
+41:07.400 --> 41:10.400
+You can split that up if you want to like build it first and then like deploy it later.
+
+41:10.400 --> 41:13.400
+But typically people just build and deploy all at once.
+
+41:14.400 --> 41:19.400
+So our CLI, you know, SST deploy will deploy everything for you.
+
+41:19.400 --> 41:23.400
+And in terms of CI, that's actually where we make money.
+
+41:23.400 --> 41:25.400
+So we have a product called seed.
+
+41:25.400 --> 41:30.400
+It is a build tool that is optimized for SST and other serverless projects.
+
+41:30.400 --> 41:34.400
+It just does a bunch of things that a generic build tool would never bother doing.
+
+41:34.400 --> 41:38.400
+Just because we know the exact structure of your application.
+
+41:38.400 --> 41:41.400
+So a lot of our users are using that to automate their builds
+
+41:41.400 --> 41:45.400
+and do like PR environments and environments for different branches, things like that.
+
+41:45.400 --> 41:48.400
+And we'll like do stuff like monitoring all this once it's deployed.
+
+41:48.400 --> 41:53.400
+So because we know all the functions are deployed, we can add hooks to watch all the logs.
+
+41:53.400 --> 41:56.400
+And if we see something that looks like an error, we can pull out the error, structure it,
+
+41:56.400 --> 41:58.400
+kind of like how sentry would do.
+
+41:58.400 --> 41:59.400
+So things like that.
+
+41:59.400 --> 42:01.400
+That's how we monetize our open source stuff.
+
+42:01.400 --> 42:02.400
+Thanks.
+
+42:02.400 --> 42:03.400
+Oh, that's cool.
+
+42:03.400 --> 42:09.400
+And would it also tell you things like how long your functions are taking to run?
+
+42:10.400 --> 42:11.400
+And why not?
+
+42:11.400 --> 42:14.400
+Or is that more you have to get into the AWS console and look at the graphs there.
+
+42:14.400 --> 42:17.400
+Our goal is to eventually make it so you never actually need to go there.
+
+42:17.400 --> 42:20.400
+We do have some basic observability tools right now.
+
+42:20.400 --> 42:24.400
+We haven't invested a ton in it, but eventually we do want to understand what types of things
+
+42:24.400 --> 42:28.400
+do people need to really see and service those?
+
+42:28.400 --> 42:32.400
+And so seed is the company that you make money on.
+
+42:32.400 --> 42:33.400
+You pay for that.
+
+42:33.400 --> 42:38.400
+And then you guys just build SST as the open source project.
+
+42:38.400 --> 42:43.400
+Yeah, the history of the company is a little bit funny because seed was originally built
+
+42:43.400 --> 42:44.400
+first.
+
+42:44.400 --> 42:46.400
+So SST didn't exist.
+
+42:46.400 --> 42:50.400
+And the idea was, okay, there's people doing serverless stuff.
+
+42:50.400 --> 42:52.400
+They're using a framework called serverless framework.
+
+42:52.400 --> 42:55.400
+But there's not really a good CI tool for serverless framework.
+
+42:55.400 --> 42:58.400
+Let's build a good CI tool for that.
+
+42:58.400 --> 43:03.400
+So seed originally, and even to this day is really optimized for this other framework.
+
+43:03.400 --> 43:07.400
+And it was launched, it grew, and it kind of continues to grow to this day.
+
+43:07.400 --> 43:12.400
+At some point, we realized, oh, okay, even if we capture 100% of the existing serverless
+
+43:12.400 --> 43:15.400
+market, that's a good business, but it's not an incredible business.
+
+43:15.400 --> 43:20.400
+And we realized that our role actually is to make it so more people are building serverless
+
+43:20.400 --> 43:22.400
+and identify, okay, what's stopping?
+
+43:22.400 --> 43:27.400
+Like you guys, what's stopping any company that's being started right now from building
+
+43:27.400 --> 43:28.400
+in this way?
+
+43:28.400 --> 43:31.400
+And the answer was like, no AWS is really hard to use.
+
+43:31.400 --> 43:32.400
+Yeah, yeah.
+
+43:32.400 --> 43:33.400
+The developer experience sucks.
+
+43:34.400 --> 43:37.400
+So that means we need to build our own framework to make this stuff more accessible.
+
+43:37.400 --> 43:42.400
+Once we grow that more, then we can come back and kind of work on seed again and make it
+
+43:42.400 --> 43:43.400
+more optimized for SSD.
+
+43:43.400 --> 43:45.400
+We're starting to hit that phase right now.
+
+43:45.400 --> 43:49.400
+I think in the second half this year, we're going to be going back to seed and really making
+
+43:49.400 --> 43:51.400
+it a good product for SSD.
+
+43:51.400 --> 43:52.400
+Nice.
+
+43:52.400 --> 43:55.400
+So you're super experienced in AWS.
+
+43:55.400 --> 44:02.400
+Do you have any tips or tricks for anybody who looks at the AWS page and has no idea what
+
+44:02.400 --> 44:03.400
+to do or where to go?
+
+44:03.400 --> 44:09.400
+Do you have any learning resources or ideas for how to pick up and understand AWS in a
+
+44:09.400 --> 44:10.400
+more complete way?
+
+44:10.400 --> 44:11.400
+Yeah.
+
+44:11.400 --> 44:15.000
+The thing that bothers me a lot is I think you're kind of screwed from the second you sign
+
+44:15.000 --> 44:21.040
+up for AWS because even setting up an account correctly, the default path is not puts you
+
+44:21.040 --> 44:22.040
+in the wrong path.
+
+44:22.040 --> 44:26.520
+It puts you into setting up like I am users and like creating credentials and like putting
+
+44:26.520 --> 44:28.320
+them in some random file.
+
+44:28.320 --> 44:31.000
+There's actually a really slick way to set all this stuff up.
+
+44:31.000 --> 44:34.160
+I made a video on it so people can go look that up.
+
+44:34.160 --> 44:35.160
+That's on your YouTube?
+
+44:35.160 --> 44:36.160
+Yeah.
+
+44:36.160 --> 44:37.160
+So that's the YouTube.
+
+44:37.160 --> 44:41.120
+We have a ton of resources there on one using SSD but also just using AWS in like a
+
+44:41.120 --> 44:42.120
+sane way.
+
+44:42.120 --> 44:46.920
+I think the thing is a little bit different about us is we're not AWS like solutions architects.
+
+44:46.920 --> 44:50.000
+Like we're not sitting here with like a bunch of certifications and doing things in this
+
+44:50.000 --> 44:53.120
+like crazy complex AWS way.
+
+44:53.120 --> 44:59.600
+We try to look at AWS and try to find like, okay, this isn't like best practice according
+
+44:59.600 --> 45:02.120
+to like the official AWS guidelines.
+
+45:02.120 --> 45:06.920
+But for most people, this is the right tradeoff and accessibility and like and something that
+
+45:06.920 --> 45:08.120
+actually makes sense.
+
+45:08.120 --> 45:12.160
+So a lot of our content is more geared to I just I'm just trying to get something done.
+
+45:12.160 --> 45:17.200
+I'm trying to be practical and this will work for, you know, the foreseeable future.
+
+45:17.200 --> 45:22.480
+So yeah, things like setting up it's called a AWS single sign on like so you can just log
+
+45:22.480 --> 45:26.640
+in AWS or Google account and don't do all your credentials through that.
+
+45:27.000 --> 45:30.960
+There's a bunch of little things like that that we try to cover in our like in the YouTube
+
+45:30.960 --> 45:33.680
+content we make.
+
+45:33.680 --> 45:37.520
+It is tricky and I think there is not a lot of good content out there for what you're
+
+45:37.520 --> 45:38.520
+asking for.
+
+45:38.520 --> 45:42.520
+There's a lot of AWS content, a lot of it's outdated and a lot of it doesn't have this
+
+45:42.520 --> 45:47.680
+like practical mindset to it and our focus for this year is we're going to be focusing
+
+45:47.680 --> 45:53.120
+a lot more on on the content stuff and helping people do this stuff a lot better.
+
+45:53.120 --> 45:57.280
+A framework does like 90% of it because you can just start using it without really understanding
+
+45:57.280 --> 46:00.840
+some of this stuff and over time you kind of naturally pick it up.
+
+46:00.840 --> 46:04.760
+But like I said, like even the moment you sign up, you probably are led down the wrong
+
+46:04.760 --> 46:05.760
+path.
+
+46:05.760 --> 46:06.760
+So there's still a lot of gaps to fill.
+
+46:06.760 --> 46:10.520
+So now it's the part of the show where we talk about basically we ask you questions.
+
+46:10.520 --> 46:15.400
+We ask everybody that the types of things that are should be kind of quick one off easy
+
+46:15.400 --> 46:16.400
+to answer questions.
+
+46:16.400 --> 46:22.080
+So first and foremost, what kind of computer and set up are you using to work on love
+
+46:22.080 --> 46:23.080
+this question.
+
+46:23.080 --> 46:29.400
+I have a custom built PC that I've been building and rebuilding for years kind of like a ship
+
+46:29.400 --> 46:31.120
+of DC situation.
+
+46:31.120 --> 46:32.120
+It runs Linux.
+
+46:32.120 --> 46:37.440
+I've been a full-time Linux user for 10 years or so, which makes me really annoying.
+
+46:37.440 --> 46:39.440
+I'm a really annoying person.
+
+46:39.440 --> 46:40.440
+Wow.
+
+46:40.440 --> 46:41.440
+What district do you run?
+
+46:41.440 --> 46:47.760
+Of course, I run Arch Linux, which is the most annoying OS to run.
+
+46:47.760 --> 46:50.360
+What text editor theme and font are you rocking?
+
+46:50.360 --> 46:52.200
+So I use NeoVim.
+
+46:52.200 --> 46:55.320
+The theme is I think it's called Tokyo Knight.
+
+46:55.320 --> 47:01.120
+The font is a Haskellogue, I think, which is like, there's a font called Haskellig and
+
+47:01.120 --> 47:04.160
+Haskellogue is like a modified version of it.
+
+47:04.160 --> 47:08.880
+I found it a long time ago and don't remember why I chose it, but here I am.
+
+47:08.880 --> 47:14.720
+If you had to start coding from scratch today, or if you were giving somebody advice who's
+
+47:14.720 --> 47:18.560
+picking up something to work on, what types of things would you recommend?
+
+47:18.560 --> 47:19.560
+Yeah.
+
+47:19.560 --> 47:25.320
+It's funny because when I first started coding, I got into it through C-sharp, which I thought
+
+47:25.320 --> 47:27.280
+was a really great entry point.
+
+47:27.280 --> 47:32.560
+It felt easy, accessible, and today I think everyone's getting into it through TypeScript,
+
+47:32.560 --> 47:34.560
+which effectively just looks exactly like C-sharp.
+
+47:34.560 --> 47:39.200
+You can just write C-sharp code into a TypeScript file and it probably will work.
+
+47:39.200 --> 47:41.320
+From my point of view, it worked really well for me.
+
+47:41.320 --> 47:46.040
+I know a lot of people worry about as a Type system in TypeScript, is that going to overwhelm
+
+47:46.040 --> 47:49.400
+a beginner, I was script first.
+
+47:49.400 --> 47:55.360
+My memory of learning C-sharp was I didn't really, that all made sense to me and having
+
+47:55.360 --> 47:57.600
+structured what I was doing was great.
+
+47:57.600 --> 48:01.400
+So I think TypeScript is a boring answer because I think it's probably what most people would
+
+48:01.400 --> 48:02.400
+say.
+
+48:02.400 --> 48:04.920
+I think it is a great entry point.
+
+48:04.920 --> 48:08.640
+Doing stuff in web is also great because you get to build stuff and you get to look
+
+48:08.640 --> 48:09.640
+at it right away.
+
+48:09.640 --> 48:14.280
+Everyone I was first learning, I loved that feedback loop of visually looking at something.
+
+48:14.760 --> 48:16.280
+I've been loving Astro for that.
+
+48:16.280 --> 48:21.720
+It reminds me of the old PHP days where I would just have a single file and I would
+
+48:21.720 --> 48:24.360
+write stuff and I could refresh the browser and see it.
+
+48:24.360 --> 48:26.560
+I think Astro reminds me a lot of that.
+
+48:26.560 --> 48:31.840
+So I think like the mix of TypeScript and Astro is a good combination because you don't
+
+48:31.840 --> 48:37.040
+have the complexity of Web Dev you would normally get, but you still are kind of learning the
+
+48:37.040 --> 48:39.800
+tools you'll need once you go down that path.
+
+48:39.800 --> 48:41.840
+What terminal and shell are you rocking?
+
+48:41.840 --> 48:48.720
+So I use Alacrity and the shell is ZSH again, just old decisions that stuck that they worked
+
+48:48.720 --> 48:49.720
+for me for years.
+
+48:49.720 --> 48:50.720
+So I haven't reevaluated.
+
+48:50.720 --> 48:51.720
+Ain't broke.
+
+48:51.720 --> 48:52.720
+Don't fix it.
+
+48:52.720 --> 48:53.720
+Yeah.
+
+48:53.720 --> 48:54.720
+That's funny.
+
+48:54.720 --> 48:55.720
+We just we just talked about Alacrity.
+
+48:55.720 --> 49:00.720
+I'm pretty sure we call the Alacrity, which is I mean, I might be saying it wrong too.
+
+49:00.720 --> 49:04.120
+These are words you never have to say out loud because you only just reading them on the
+
+49:04.120 --> 49:06.720
+screen, especially a word like that.
+
+49:06.720 --> 49:07.720
+Yeah.
+
+49:07.720 --> 49:10.280
+Why do you use that terminal is that the best one on Linux?
+
+49:10.320 --> 49:14.000
+So Alacrity, I think just has a lot of energy around it, like it's being actively developed.
+
+49:14.000 --> 49:16.160
+It is somewhat newer.
+
+49:16.160 --> 49:21.320
+It's written in Rust, which, you know, does a lot for a lot of people, but we got excited.
+
+49:21.320 --> 49:23.000
+But yeah, it performs really well.
+
+49:23.000 --> 49:24.240
+I actually don't know.
+
+49:24.240 --> 49:30.160
+I think I used to use something called URVXT, I think it was called.
+
+49:30.160 --> 49:32.200
+To be honest, the terminal wise, I can't really.
+
+49:32.200 --> 49:37.040
+So I use something called i3 in Linux.
+
+49:37.040 --> 49:41.360
+The tiling window manager, it basically puts everything on my screen.
+
+49:41.360 --> 49:45.240
+It's a tiles, whether it's a browser or a terminal, whatever it is, manage all of it
+
+49:45.240 --> 49:47.480
+through my keyboard and I have to use a mouse.
+
+49:47.480 --> 49:52.320
+So the terminal itself doesn't really matter because it's kind of like all the terminal
+
+49:52.320 --> 49:56.600
+specific features you'd expect, like tabs and stuff, it's picked in at a lower layer.
+
+49:56.600 --> 49:57.600
+Nice.
+
+49:57.600 --> 49:58.600
+Yeah.
+
+49:58.600 --> 49:59.600
+Yeah.
+
+49:59.600 --> 50:01.280
+That really is the way to be.
+
+50:01.280 --> 50:07.800
+I'm starting to get into really getting my whole, oh, the entire OS, essentially on
+
+50:07.800 --> 50:12.920
+the same keyboard shortcuts to do everything and just try to lock that down because so
+
+50:12.920 --> 50:17.560
+often I think even like, you know, Wes and I, we write these keyboard shortcuts, we set
+
+50:17.560 --> 50:22.960
+up these macros for like our text editor specifically, but not OS wide.
+
+50:22.960 --> 50:26.840
+I'm sure Linux is way better for that anyways.
+
+50:26.840 --> 50:30.640
+What about, what's something that you're excited for in the future of dev?
+
+50:31.320 --> 50:35.640
+So I'm going to talk a little bit about Cloudflare because I think I'm very interested in their
+
+50:35.640 --> 50:36.640
+path.
+
+50:36.640 --> 50:41.440
+There's a lot of cloud providers or people trying to become cloud providers, but the
+
+50:41.440 --> 50:45.440
+reality is AWS is the only one that really makes any money.
+
+50:45.440 --> 50:49.640
+You can, of course, Azure makes money, but that's more just, they're like monetizing
+
+50:49.640 --> 50:52.960
+the same customer base they've had for decades now.
+
+50:52.960 --> 50:53.960
+Yeah.
+
+50:53.960 --> 51:00.760
+And in terms of like making real money, like having young companies start on your platform
+
+51:00.760 --> 51:05.320
+and grow into a billion dollar companies, AWS is really the only one playing that game
+
+51:05.320 --> 51:11.360
+and winning it because you need to have a lot of primitives in place for it to really
+
+51:11.360 --> 51:15.200
+be viable for you to serve these, you know, like these public companies that are operating
+
+51:15.200 --> 51:16.400
+at huge scale.
+
+51:16.400 --> 51:22.800
+I think Cloudflare is the first company that I'm seeing where they actually have a shot
+
+51:22.800 --> 51:24.720
+at taking the same market share.
+
+51:24.720 --> 51:28.720
+The primitives they have, they have way fewer primitives, but they're starting serverless
+
+51:28.720 --> 51:29.720
+first.
+
+51:29.720 --> 51:33.160
+So they don't have all these like, I'm going to call anything not service like a legacy
+
+51:33.160 --> 51:34.160
+model.
+
+51:34.160 --> 51:36.480
+It doesn't really make sense in the modern world.
+
+51:36.480 --> 51:40.840
+They basically, so Cloudflare basically has like 10 primitives and these 10 primitives
+
+51:40.840 --> 51:45.600
+are everything you need to build like 99% of applications.
+
+51:45.600 --> 51:50.880
+I don't think a lot of people realize this yet, but it is technically possible today.
+
+51:50.880 --> 51:56.480
+I'm really looking forward to new companies realize this and try to build like fully Cloudflare
+
+51:56.480 --> 51:57.480
+native.
+
+51:57.480 --> 52:02.320
+There's a lot of potential there, and I think I'm excited to see what that looks like.
+
+52:02.320 --> 52:07.760
+Yeah, I've been a big Cloudflare user for a while, and I've been dipping into a lot
+
+52:07.760 --> 52:13.240
+of their, both a lot of their hosting products, but also just like a lot of their pro features
+
+52:13.240 --> 52:14.240
+as well.
+
+52:14.240 --> 52:19.080
+And it's funny, whenever I ask about any of the Cloudflare features on Twitter, people
+
+52:19.080 --> 52:22.440
+are just like, it's DNS and DDoS protection.
+
+52:22.440 --> 52:25.480
+That's all they know about Cloudflare second man.
+
+52:25.480 --> 52:30.200
+Little do you know that they're a massive, massive cloud company, and I think they're
+
+52:30.200 --> 52:33.680
+going to really pull up in the next couple of years, if not already have.
+
+52:33.680 --> 52:35.440
+Yeah, I've heavily invested in them also.
+
+52:35.440 --> 52:39.280
+So I'm just going to put that to the slimmer.
+
+52:39.280 --> 52:40.280
+I work on it.
+
+52:40.280 --> 52:44.680
+It'll be a stuff in my hedges, my Cloudflare position in case Cloudflare dominates them.
+
+52:44.680 --> 52:45.680
+That's fine.
+
+52:45.680 --> 52:46.680
+Cool.
+
+52:46.680 --> 52:47.680
+All right.
+
+52:48.680 --> 52:49.880
+Oh, no, sick pics.
+
+52:49.880 --> 52:51.280
+Do you have a sick pic for us today?
+
+52:51.280 --> 52:53.280
+Yeah, I guess I already talked about it.
+
+52:53.280 --> 52:56.280
+So planet scale, which we just talked about a little bit.
+
+52:56.280 --> 53:00.520
+It is, I'm sure a lot of people have heard about it already, is an awesome solution.
+
+53:00.520 --> 53:07.120
+I think what systems look like with and without planet scale, massively different and complexity.
+
+53:07.120 --> 53:11.840
+At this point, if you're starting a new service or starting a new product, you need a database.
+
+53:11.840 --> 53:12.840
+Just go to planet scale.
+
+53:12.840 --> 53:15.560
+It's going to work for you really well and work for you for a long time.
+
+53:15.560 --> 53:20.040
+So yeah, really, really excited about what they're doing, their roadmap and everything.
+
+53:20.040 --> 53:21.040
+It's awesome.
+
+53:21.040 --> 53:24.640
+It's solving problems that I've had for like my whole career, pretty much.
+
+53:24.640 --> 53:25.640
+Sick.
+
+53:25.640 --> 53:26.640
+Awesome.
+
+53:26.640 --> 53:27.640
+And shameless plugs.
+
+53:27.640 --> 53:28.640
+Would you like to plug?
+
+53:28.640 --> 53:29.640
+Where can we find you?
+
+53:29.640 --> 53:30.640
+Yeah.
+
+53:30.640 --> 53:31.640
+So I'm mostly on Twitter.
+
+53:31.640 --> 53:33.920
+THDXR is my username.
+
+53:33.920 --> 53:39.720
+I'm working on something kind of funny that I don't know if you maybe have seen, we announced
+
+53:39.720 --> 53:41.840
+it like a week ago.
+
+53:41.840 --> 53:45.960
+We're working on a game show for developers.
+
+53:45.960 --> 53:49.680
+So if you guys remember HQ trivia, you know, I would like your app would like light up
+
+53:49.680 --> 53:52.840
+once a day and there'd be like a 10 minute game show that everyone could kind of take
+
+53:52.840 --> 53:54.360
+part in live.
+
+53:54.360 --> 53:56.160
+We're doing, we're trying to launch something like that.
+
+53:56.160 --> 53:57.160
+It's called rebase.tv.
+
+53:57.160 --> 54:01.760
+You can find it on Twitter or rebase.tv.
+
+54:01.760 --> 54:05.240
+We haven't like launched our first game yet, but we're like in the process of building
+
+54:05.240 --> 54:09.640
+the app and doing all the production and we want to have really great production quality.
+
+54:10.640 --> 54:13.880
+But yeah, I think it would just be fun to have a thing that like, you know, the whole
+
+54:13.880 --> 54:18.120
+developer community is doing at the same time once a week or whatever it is.
+
+54:18.120 --> 54:19.120
+That's cool.
+
+54:19.120 --> 54:21.800
+Yeah, it's amazing how HQ just came and went, right?
+
+54:21.800 --> 54:24.400
+Well, we'll have to share the link for that, by the way, in the show notes.
+
+54:24.400 --> 54:31.080
+But there was a, um, there's a really fantastic podcast that detailed the entirety of the
+
+54:31.080 --> 54:35.480
+HQ rise and fall boom, bust HQ trivia.
+
+54:35.480 --> 54:36.480
+Yeah.
+
+54:36.480 --> 54:39.320
+And I think there's actually a documentary coming out about it.
+
+54:39.320 --> 54:43.640
+We had this idea last week or two weeks ago as we were looking at HQ and yeah, we really
+
+54:43.640 --> 54:47.120
+coincidentally, there's a new documentary coming out, but it might have, might already
+
+54:47.120 --> 54:48.120
+be out.
+
+54:48.120 --> 54:52.720
+I think TikTok is launching like an HQ concept as well.
+
+54:52.720 --> 54:53.720
+It's smart.
+
+54:53.720 --> 54:54.720
+Yeah.
+
+54:54.720 --> 54:56.520
+It was a, I mean, it was a lot of fun.
+
+54:56.520 --> 54:57.520
+Sick.
+
+54:57.520 --> 54:58.520
+Awesome.
+
+54:58.520 --> 54:59.520
+Well, thank you so much for coming on.
+
+54:59.520 --> 55:05.520
+Appreciate all your time and insights into the world of serverless and AWS and SST.
+
+55:05.520 --> 55:06.520
+Thanks so much for coming on.
+
+55:06.520 --> 55:10.520
+You guys are, you know, moving some of your stuff, AWS and you're understandably confused.
+
+55:10.520 --> 55:11.520
+Yeah.
+
+55:11.520 --> 55:12.520
+Please let me know.
+
+55:12.520 --> 55:14.520
+I kind of love helping people figure that out.
+
+55:14.520 --> 55:15.920
+Free migrations, you say.
+
+55:15.920 --> 55:16.920
+All right.
+
+55:16.920 --> 55:18.920
+I'll take you up on it.
+
+55:18.920 --> 55:19.920
+Cool.
+
+55:19.920 --> 55:20.920
+All right.
+
+55:20.920 --> 55:21.920
+Thanks again.
+
+55:21.920 --> 55:22.920
+I'll talk to you later.
+
+55:22.920 --> 55:29.800
+Head on over to syntax.fm for a full archive of all of our shows.
+
+55:29.800 --> 55:33.760
+And don't forget to subscribe in your podcast player or drop a review.
+
+55:33.760 --> 55:34.760
+If you like this show.
+
