@@ -1,0 +1,32 @@
+{
+  "name": "webworker-listening",
+  "version": "1.0.0",
+  "description": "听听老外在讲什么",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebWorkerTech/webworker-listening.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebWorkerTech/webworker-listening/issues"
+  },
+  "homepage": "https://github.com/WebWorkerTech/webworker-listening#readme",
+  "devDependencies": {
+    "vitepress": "1.0.0-alpha.60"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    }
+  }
+}
