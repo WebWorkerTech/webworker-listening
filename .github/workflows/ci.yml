@@ -1,0 +1,30 @@
+# 基于 github action 制作的 ci 流程，使用node 执行 npm run build
+name: CI
+on: [push]
+branches:
+  - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout
+      - uses: actions/checkout@v3
+      # 使用 pnpm 安装依赖
+      - uses: pnpm/action-setup@v2
+      with:
+        version: 7.13.4
+      # 使用 node 18
+       - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+          # 使用 pnpm 安装依赖
+      - run: pnpm i --frozen-lockfile
+      # 执行 npm run build
+      - run: npm run docs:build
+      # 执行 npm run deploy
+       - name: Deploy Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          publish_dir: dist
