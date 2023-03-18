@@ -1,8 +1,10 @@
 # 基于 github action 制作的 ci 流程，使用node 执行 npm run build
 name: CI
-on: [push]
-branches:
-  - main
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
