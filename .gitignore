@@ -105,3 +105,6 @@ dist
 
 .vitepress/dist
 **/.vitepress/cache/
+
+# 过滤 mp3
+*.mp3

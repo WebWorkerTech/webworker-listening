@@ -1,0 +1,801 @@
+start	end	text
+0	24520	You're listening to the Modern Web Podcast.
+24520	30320	For more podcasts, videos, and events, find us online at modern-web.org or follow us
+30320	35960	on Twitter at modern.web, that's M-O-D-E-R-N-D-O-T-W-E-B.
+35960	39960	Hello, everybody, and welcome to the Modern Web Podcast.
+39960	42720	My name is Rob O'Sell, and I'm an architect at this.labs.
+42720	48240	Today, we are excited to be talking to Trisha Cat, who is a self-taught developer and dev
+48240	50320	rel engineer from South Africa.
+50320	55240	Trisha is going to be talking to us about getting started in development and in developer relations
+55240	56240	and developer advocacy.
+56240	59880	We're going to be talking about CSS, and who knows, a whole bunch of other topics.
+59880	62080	So Trisha, how are you doing today?
+62080	63720	Hi, Rob.
+63720	65560	Hello, everyone who's listening.
+65560	71680	I am doing amazing, I'm doing well, enjoying the weather as always, and yeah, man, I hope
+71680	74840	everyone will enjoy listening to this episode.
+74840	79480	Now talk to people, because when we release this, it's still going to be sort of the
+79480	85760	dead of winter in the United States, and a lot of people might be listening from, and
+85760	90240	we just had Groundhog's Day as the time of recording this, who condemned us to six more
+90240	91240	weeks of winter.
+91240	95960	So can you tell everybody, they're imagining you're enjoying the weather, they're thinking
+95960	101200	it's tropical and sunny, wherever you are, can you tell them what's actually happening?
+101200	105920	What's actually happening is I have the lights on inside the house, because it's so
+105920	106920	dark.
+106920	112880	It's like, it's like, the clouds are dark, actually, and it's, it's looking like it's
+112880	115240	going to be a violent rain.
+115240	120120	So I'm looking forward to all the thunderstorms, the lightning, hopefully it strikes somewhere
+120120	125320	okay, I'm joking, but yeah, man, I'm, I'm that kind of a person, I love rainy weather.
+125320	130680	I think it's amazing, it brings water to relaxing, and so I'm looking forward to that.
+130680	131680	Absolutely.
+131680	135280	I'm, I'm, I was mentioning this just before we started that I'm the same way, I'm from
+135280	141120	the Midwest, the United States, and I feel like that is our, our calming, healing energy
+141120	146360	is just opening all the windows and listening to the rumble of thunder from off in the distance
+146360	151800	as it slowly comes up and catches up to you, and you can kind of hear the water as it hits
+151800	155200	like a lake or something, and you can hear it moving across the lake until it gets to
+155200	156200	your house.
+156200	160480	I mean, that is, that is just childhood in a, in a single image to me.
+160480	167080	So hopefully you get a, a, an enjoyable storm where you are.
+167080	168080	Thanks.
+168080	169080	I hope I do too.
+169080	170080	All right.
+170080	171480	Well, let's jump right into it.
+171480	175000	And you know, to get us started, I think people are going to be interested to hear about your
+175000	176840	journey, at least just the beginnings of it.
+176840	182560	So could you give us like a condensed version of kind of how you came to be in development,
+182560	185760	because I think people would be interested to hear how that came to be.
+186240	187400	Yes, of course.
+187400	194440	So Rob mentioned that I am self-taught and I am based in South Africa, which is like
+194440	200920	the hardest place to actually land your first job as a self-taught without any degree diploma.
+200920	208560	And so my journey started when I dropped out of college in 2021.
+208560	212720	And I decided to self-teach myself with pre-code camp.
+212760	218000	And after that, a few months later, I think three months into my starting journey, I'm
+218000	219080	not sure.
+219080	227640	I landed my first U.S. freelance gig, which I worked on for six months until January 2022,
+227640	229320	which was last year.
+229320	235840	And then after that, I sort of discovered Debrell and what it was and I wanted to join
+235840	238560	and be a developer advocate.
+238560	246240	And months, I think two months, I joined Strapi as a developer advocate intern.
+246240	249800	And so that's basically how my journey has started.
+249800	254880	It all started with dropping out of college, starting a course in pre-code camp and being
+254880	261760	exposed to my first remote freelance gig and then lending my internship at Strapi.
+261760	267440	You know, it's such an interesting decision that I know was difficult at times for you,
+267440	273840	because everybody is sort of told, going to college, that's the pathway to your life
+273840	274840	working out.
+274840	279320	And maybe you're being told that from being a young child and then to decide to drop out
+279320	285560	to pursue this vision, it's not only difficult, it's a lot of work, but it's got to be difficult
+285560	291080	because you were on supposedly a track that was going to inevitably lead to success.
+291080	298120	So how did you stay focused, motivated, and not want to give up and go back to the path
+298120	299120	that you were on before?
+299120	306800	Like how did you stay committed to that when sort of that doubt might be crept in?
+306800	313000	That's a good question and I must be honest with you, I felt like giving up most of the
+313000	320240	time because I've never actually found anyone who was in the exact same position.
+320240	325880	And as I was at that time, who was South African, who was Black South African, who was
+325880	331680	working for companies outside of South Africa as a self-taught developer.
+331680	339520	And so having no one to look out for was difficult on its own because I had no role model.
+339520	345880	I had no certainty that whatever I'm doing, is it worth it, must I go back to college?
+345880	351720	And I would say what gave me motivation was tech Twitter.
+351720	356880	When I saw that other people, even though they were in other provinces, not provinces,
+356880	362360	other countries, they also felt the same way in my shoes.
+362360	370000	And when I saw people posting their good news that they finally landed a role as a self-taught
+370000	375480	developer in some remote company, that just helped me to not give up.
+375480	383480	It helped me to move forward and it's like, I was like, okay, if it does happen for me,
+383480	389840	then I can also be a role model for someone who is in the same shoes as I am.
+389840	395200	And so I went on ahead, I joined communities, I found like-minded people and those people
+395200	400560	helped me to be motivated and they really helped me too much.
+400560	407240	And I wouldn't have found that you as a remote freelance role, if it wasn't for the connection
+407240	412400	I made with someone else, because that someone referred me to that person and that's how
+412400	413360	I got the role.
+413360	418200	And so it's all about making great connections.
+418200	424520	And once you have those great connections, then you have a great motivation to go on.
+425520	431960	You know, it's such a great point because when you come up, especially you're starting out
+431960	435960	in a self-taught environment, so not necessarily in a program, you're doing it in the pandemic
+435960	441960	when we're all already more isolated than we had been in the past, community and finding
+441960	442960	it.
+442960	447200	I mean, what an amazing opportunity that you found on Twitter.
+447200	451880	But I think I remember reading that your decision to join Twitter was also sort of serendipitous
+451880	454080	in some ways.
+454080	458760	It wasn't necessarily something that had a ton of forethought or was quite inevitable
+458760	459760	itself.
+459760	464360	So how did you decide to stumble into tech Twitter, right?
+464360	466480	Because there's a million communities on Twitter.
+466480	472000	So what made you sort of look there and get on Twitter in the first place?
+472000	473000	Okay.
+473000	474000	So, Twitter.
+474000	475000	Okay.
+475000	481240	So I joined Twitter, I think 2020, that was like my first day in college.
+481240	487040	So throughout my life in high school, you can see that I had no social media whatsoever.
+487040	493560	That's how, I don't know, I was like, anti-social media, I'm not the kind of person who like
+493560	496600	social media, I just thought it was a waste of time.
+496600	504040	Maybe it's my father's mentality talking here, but it's just, and I was like, okay, I need
+504040	509480	to like have some social presence because I heard that when people hire somebody, they
+509480	515440	look out for their social life so that they can see if they have a digital footprint.
+515440	521000	And if you don't have a digital footprint, then you are considered weird, like, why don't
+521000	522320	you have social media?
+522320	526080	And so I was like, okay, let me join Twitter.
+526080	531920	And I joined Twitter initially just to like follow some trends and I don't know, like
+531920	533520	do all nonsense.
+533520	541320	And then after, so okay, so my cousin, she was doing her online business at the time
+541320	545840	and she was like, she wants someone to make a website for her and she told me to make
+545840	549240	a website for her and then I did the whole Google process.
+549240	554960	It's in my blog, I wrote a blog about this, so I'm just like doing a summary.
+554960	563760	So after that, I found a media travesty, travesty media to do the HTML course.
+563760	568960	And then I went to Twitter, I created my account, went to Twitter and I followed Brad
+568960	574480	travesty and along with Brad travesty, you know how Twitter suggests some people to follow
+574480	577280	and that's how it came to be.
+577280	584040	And then somehow I got, I saw this hashtag 100 days of code and I clicked on that hashtag
+584040	587800	and I saw like what was happening, I see people are learning, people are sharing what
+587800	589520	they're learning.
+589520	596240	And I was like, okay, so this is how I'm going to dip my toes into tech Twitter.
+596240	601720	And that didn't happen that same year, I became active on Twitter in 2021 because I joined
+601720	603480	in 2020.
+603480	610280	And so yeah, that's how I did my toes into tech Twitter, 100 days of code became what
+610280	611280	is it?
+611280	616080	These code newbies, I follow people, people make connections, comments and everything
+616080	622200	and then my timeline was filled with web development stuff and that's how I came to be.
+622200	625720	And that's my Twitter, my Twitter stuff.
+625720	630800	It's so fascinating because yeah, when I got on, I mean, I was on Twitter very early on,
+630800	633840	but I didn't use it much at the beginning, it was just sort of a playful thing to keep
+633840	634840	up with news.
+634840	640520	But when I got on found the tech sphere, I don't know what it was about my mentality
+640520	645120	that I just assumed that like all the developers in the universe were at the company I worked
+645120	646840	at and the companies my friends worked at.
+646840	650320	Like, I don't know why for some reason it just never occurred to me that there must
+650320	654080	be hundreds of thousands, millions of us around.
+654080	657920	And so getting on to Twitter, it was like, oh, this is such a cool place to find good
+657920	660960	blogs to read and to share blogs.
+660960	664600	But then it's when you make those connections that you're talking about, like you get on
+664600	671560	that hashtag and you find somebody who posted their first sample project and they just
+671560	673400	ask for advice.
+673400	676960	And you know, I got the opportunity to reach out to somebody, they posted their project,
+676960	679800	I had a couple of minutes, so I looked at it, I said, oh, this is really great.
+679800	683840	Maybe here's some advice and things to look at and followed them.
+683840	689680	And then, you know, a few months later, they get a project and it's shared by Sarah Drasner
+689680	693400	and then they have a, you know, a course that they sell and they're making a bunch of money
+693400	698040	and then all of a sudden they get like an amazing job and you're like, that was so cool
+698040	700200	to watch somebody blow up like that.
+700200	705920	I don't know what it is, but it really is a great place despite all of the other things
+705920	707840	going on on the platform.
+707840	713280	It's not perfect from end to end, but it's those connections and those moments that I
+713280	719120	think still make it so worth it for people, even people starting now.
+719120	722440	I don't know if you, if you would agree, if you would suggest to somebody get involved
+722440	727080	in Twitter if they were just starting today, but I just feel like those connections you
+727080	733000	can make are so valuable to, you know, finding a job, sure, but even just finding a community
+733000	738040	or a network of people or role models to look up to that have, that are walking your, maybe
+738040	739680	your similar path.
+739680	747000	Yes, I definitely agree with you and as someone who has, I might not look it, but I have social
+747000	753120	anxiety people, believe me, I am not a social person.
+753120	757400	I'm afraid of approaching people, I don't want to disturb anyone's peace.
+757400	764600	And so when I, I was like starting out with creating connections on Twitter, it usually
+764600	771440	starts with the comment sections because I'm not someone who DMs people, I don't do that.
+771440	775920	It's like, it's too personal, I'm invading a space directly by doing that.
+775920	781440	So like the comment sections, 100 days of code, like I said, it's the perfect place
+781440	786000	to find people who are like learning the exact same thing as you.
+786000	792000	And so that's how like, I started my early connections, I saw someone was learning JavaScript
+792000	795880	and they were facing the exact same problem as I was.
+795880	801000	And I kept on asking questions in the comment section, each time they posted, I look forward
+801000	806640	to the post so that I can reply to them and have a conversation from there.
+806640	813080	And I think like a few months later, that exact same person, like I said, got me the
+813080	818440	opportunity to the remote US freelance opportunity.
+818440	825880	So it's like, it doesn't have to be you approaching big accounts to make great connections.
+825880	831000	It's someone small, someone at that small hashtag, someone with two, three likes can
+831000	837400	help you in so many ways than someone with, I don't know, like 90k followers.
+837400	842840	And so it's really important to not look at the numbers when you're creating connections.
+842840	847200	Just look at the person, look at what they are, what they're bringing out and reach out
+847200	852440	to them, compliment them, ask them questions, start small and it would lead to something
+852440	853440	big.
+853440	860160	And so it's a great place to make connections with people outside of your own country because
+860160	862640	like Twitter is worldwide.
+862640	869000	And so it gives you a sense of being open-minded, being introduced to people's different work
+869000	870560	cultures and everything.
+870560	873560	And so take advantage of it.
+873560	877000	That's all I can say.
+877000	880560	It's so great to meet another person that has the same opinion on DMs.
+880560	883320	I was having that conversation with someone recently.
+883320	887360	They were like, how many DMs conversations do you have active at any given point in time?
+887360	889040	And I was like, what are you talking about?
+889040	890640	Like one every couple months?
+890640	893600	And they're like, I have 10 every single day going on.
+893600	895800	And I'm like, how?
+895800	896960	How does that even happen?
+896960	899520	Like, how does that even initiate?
+899520	902320	So yeah, I'm really familiar with you.
+902320	911160	You know, I think it's funny to, I need to sort of break the illusion here of humility
+911160	915800	because we need to call attention to the fact that you are knocking on the door as the time
+915800	920520	of this recording of 40K followers on Twitter right now.
+920520	925880	So you know, all of the things that you're talking about that you've overcome notwithstanding,
+925880	928040	it's been very successful for you.
+928080	933680	And what I like about that is that, you know, you've done it, as you said, not as someone
+933680	939440	who is setting out to become famous or coming to build this with an objective and maybe
+939440	942400	not even to necessarily do it with a particular strategy.
+942400	944760	You've probably developed things, maybe that work well.
+944760	950120	But I like that you've built this a bit on the back of being authentic and humorous
+950120	952600	and a little bit self-deprecating, but also serious.
+952600	960000	So I don't know, can you explain to me, if you try to reflect on it, how that happened
+960000	964920	and how you approach Twitter and how you kind of, you know, want to engage with it just
+964920	966840	from your own content?
+968480	972080	Okay, so how do I overcome?
+972080	973800	I don't know.
+973800	976640	I can be a weird individual sometimes.
+976640	981000	What did you say, self-deprecating?
+981840	985000	Sometimes some of your tweets are humorous, but sometimes they're humorous because it's
+985000	988920	like, I'll never figure out JavaScript or like, you know, this kind of stuff.
+988920	996560	So it's very relatable, it's like the thoughts that flip through our mind sometimes in the
+996560	1003160	midst of a hard problem, you find a way to put them as one line very succinctly on your
+1003160	1004160	Twitter.
+1004160	1005160	It's incredibly relatable.
+1005240	1011240	I assume that's why so many people have followed you is to the relatability of what you're
+1011240	1012240	putting down there.
+1012240	1018020	Yes, actually, I have been told, but in our honesty, people, if you follow at Trisha
+1018020	1023160	KS, please do let me know why you follow me because I don't know why I have no idea
+1023160	1032120	why people follow me, but okay, so I would say it's like, okay, I treat Twitter as my,
+1032360	1037880	should I say like my diary, like my confession, like my, like my everything, like where I
+1037880	1042920	trash talk or if I have some unfunny funny jokes, maybe funny jokes for me.
+1042920	1046040	And then I'm like, oh, actually, people are liking this.
+1046040	1047920	It's like, I just post them out.
+1047920	1052280	And also, my tweets are short because I don't like to read long things.
+1052280	1059040	I'm not someone who likes to read long stuff, even like threads, unless it's like, it's
+1059120	1061280	really something I have to learn.
+1061280	1062280	I want to understand.
+1062280	1066680	But otherwise, I'm not someone who likes to read a long sentence.
+1066680	1071280	Like one sentence that is effective straight to the point touches your soul, you're related
+1071280	1075400	to it, then that's, that's like, that's like good enough for me.
+1075400	1081240	And so I always try to keep my tweets short because that's the kind of tweets I would
+1081240	1082240	like to see.
+1082240	1085000	I'm not judging anyone on anything.
+1085000	1086160	You are your own person.
+1086160	1087160	I'm my own person.
+1087160	1088160	I like short things.
+1088160	1091680	You might like long things, but then I do what works for me.
+1091680	1094920	And if you like it, then thank you so much.
+1094920	1097160	I, I don't try to be relatable.
+1097160	1102520	I just, I post things that just randomly go through my mind or the thing I faced for the
+1102520	1103880	day.
+1103880	1110320	And so yeah, I, yeah, I guess that's like, that's it on that.
+1110320	1114880	Well, you know, it's interesting because there is something to be said about finding your
+1114880	1117440	style or knowing your style and being authentic.
+1117440	1121060	It's a much easier to be yourself than to, you know, if you were going to approach Twitter
+1121060	1124160	and say, well, it seems like all of tech Twitter is long post and thread.
+1124160	1128440	So I need to find a way to do what I would normally do as long posts and threads.
+1128440	1129760	It wouldn't sound like you.
+1129760	1131720	It maybe wouldn't be interesting to follow.
+1131720	1138760	So you know, as you sort of develop that style, like, have you adopted any of what we'll call
+1138760	1139760	the Twitter meta?
+1139760	1144680	Like, have you, have you become more aware of the, the times when posting gets more engagement
+1144680	1147240	or, or is this truly sort of incidental?
+1147240	1152120	Like, you're just posting what you're thinking when you're thinking of it and it's still
+1152120	1153120	connecting.
+1153120	1159280	Well, I would say I'm just, I'm just the person you see people as the person you see
+1159280	1166400	on my timeline, I, I, I post what I like, I post what I think, but I will admit starting
+1166400	1172760	my early days of content creation on tech, Twitter, it's, it's, it's really hard to like
+1172800	1178280	immediately find a niche, something you, you would like to be known for.
+1178280	1182960	And so I have dipped and doubled on some few things that creating threads.
+1182960	1186720	Like I just said, I don't like threads and I created threads.
+1186720	1193040	And I guess I wouldn't say I expressed myself authentically doing that.
+1193040	1197880	And then also, if you are on Twitter, Rob, you, you always, you must have seen people
+1197880	1204080	posting eight AI tools and, you know, yeah, you know,
+1204080	1205000	right, exactly.
+1205000	1213880	Yeah, the eight AI tools, he has how to find them a thread and all that stuff.
+1213880	1215400	I've tried all of those.
+1215400	1217160	They didn't work for me.
+1217160	1220440	And then I was like, okay, everyone is doing it.
+1220440	1222240	Every account is doing it.
+1222240	1227240	Everyone is like, I don't know how do I set you apart from someone else?
+1227240	1231640	Because it's like, I will follow five people and then post the same thing,
+1231640	1233800	the same syntax, whatever.
+1233800	1235640	I'm saying syntax on Twitter people.
+1235640	1242520	I don't know why, but it's like, I had to think of like setting myself apart.
+1242520	1245720	You know, like, what, what is it I would like to be known for?
+1245720	1248360	I don't want to be like everyone else, you know?
+1248360	1251920	And so it's like, okay, what do I like to do?
+1251920	1253520	I like to do CSS.
+1253520	1255120	I like to do CSS code.
+1255120	1256600	I like to do CSS arts.
+1257080	1258320	And then I started by that.
+1258320	1260120	I started sharing my CSS arts.
+1260120	1262960	I started to share my CSS project.
+1262960	1265480	And then from project, it went to CSS puns.
+1265480	1269320	And I was like, hmm, I'm a sucker for dead jokes.
+1269320	1271680	Let me post those and people like them.
+1271680	1276880	And then I was like, hmm, the more I learned JavaScript, I could be able to make a pun
+1276880	1279840	out of JavaScript and make some unfunny jokes.
+1279840	1281760	And then I posted those two.
+1281760	1284600	And so over time, people liked it.
+1284600	1289320	And then I have what, close to 40K followers on Twitter.
+1289320	1293800	I don't know why people, but yes, it's, it's like that.
+1293800	1295320	It took some time.
+1295320	1301560	So just, just be yourself, be authentic self, set yourself apart, make people think
+1301560	1302720	about you.
+1302720	1306480	And when they think about you, they must associate something with you.
+1306480	1311120	Like when they think of CSS, they're like, okay, I'm going to follow Tricia.
+1311480	1314840	Sorry, I'm going to follow Tricia or web three.
+1314840	1318160	I'm going to follow Francesco or Denny Thompson.
+1318160	1322080	I'm going to follow for motivation, inspiration, that sort of thing.
+1322440	1327560	And so your goal is to be identified by something and have that something
+1327560	1330120	associated with your name on tech Twitter.
+1330600	1331720	That's my advice.
+1331720	1334480	I can give you on growing on tech to be yourself.
+1334480	1338280	Share your niche and just, just do what you like.
+1338280	1340120	And then people will like you for it.
+1340280	1342040	You don't have to do a lot of things.
+1342600	1345400	It just, it will grow on its own.
+1345600	1346240	Be patient.
+1347720	1348720	Patience is a big one.
+1349240	1353560	But, you know, I like this idea too that, you know, when everybody is, if
+1353560	1358920	everybody's doing a certain thing, then people feel compelled to do it and they
+1358920	1361680	feel a little bit like you did at the beginning, which is to say, like people
+1361680	1365160	without a community, they say, well, I like weird silly jokes.
+1365160	1366760	And I like not taking things too seriously.
+1366760	1369200	And I like talking about CSS, but everybody's talking about React.
+1369200	1371120	So I guess I need to talk about React on Twitter.
+1371480	1375600	And it's like, you know, I was a, a gamer many years ago, long before it was
+1375600	1376880	quite as mainstream as it was now.
+1376880	1379640	And I remember being in conversations with people and, you know, you're like, oh,
+1379640	1381880	the weather, oh, sports, oh, business.
+1381880	1383440	And you kind of just have in that conversation.
+1383680	1386160	And then maybe it slips that one of you plays a video game.
+1386160	1389000	And then the other person goes, wait, you play, you play video games.
+1390280	1395160	And all of a sudden then this, all this animation and, you know, this, this nerd
+1395160	1398760	found another nerd and they have a moment of community and bonding.
+1399000	1401160	And a deeper conversation than they ever would have had.
+1401560	1403040	And you can be that on Twitter, right?
+1403040	1406280	Like you can be that person that is talking about the thing that maybe
+1406280	1409320	nobody else is talking about, but people really want to, but think they're not
+1409320	1409920	allowed to.
+1410240	1413480	Uh, and you know, it's like you said, when clearly people were hungry for that
+1413480	1418960	kind of, uh, you know, silliness as well as CSS talk, uh, in a world full of a
+1418960	1420000	lot of JavaScript talks.
+1420000	1422520	So, um, you know, happy that you found a niche.
+1422680	1425920	Maybe not everybody will find quite as potent of a niche, but you'll certainly
+1425920	1427720	enjoy your experience on Twitter a lot more.
+1427720	1432200	You will find your tribe, even if your tribe isn't extremely large, uh, as long
+1432200	1433080	as you're being yourself.
+1433120	1434800	So yeah, absolutely.
+1436760	1437080	Okay.
+1437080	1441960	So then you sort of progress from, from, uh, well, I mean, you're still on Twitter,
+1441960	1445200	but we've progressed the story from, from Twitter to getting a job.
+1445200	1449480	And what's fascinating about your job journey is that you pretty quickly went,
+1449560	1454400	um, from self taught developer to developer relations engineer or developer
+1454400	1459760	advocate and, um, you know, this is certainly a career that has over gone a
+1459760	1463880	lot of changes, certainly during the pandemic, but, but over the last many
+1463880	1468880	years as the, as it's matured, um, and, you know, I don't know that there's been a
+1468880	1472760	ton of people talking about starting with developer relations or developer
+1472760	1477520	advocacy as opposed to like maybe, um, switching over to it after a little bit
+1477520	1478480	of time of being a developer.
+1478480	1482480	So can you kind of explain, um, how you, I mean, you talked a little bit about how
+1482480	1486920	you got the job, but kind of how you got into this, uh, this career and how you
+1486920	1491880	sort of, uh, dealt with it coming from maybe not, you know, a 10 year career
+1491880	1495120	being a developer already and kind of what challenges and opportunities that,
+1495160	1496000	that provided for you.
+1498200	1498720	Okay.
+1498720	1507760	So how I, I would say how I discovered developer advocacy was because of
+1507840	1511520	Pratham does, there's a user by the name of Pratham.
+1511520	1518560	She's an Indian, uh, developer advocate at N host, which is an open source company.
+1518560	1525560	I forgot for what, but she is the sole responsible person that I am in developer
+1525560	1526160	advocacy.
+1526160	1528440	Well, I was interested in it.
+1528440	1530000	I am still in interested in it.
+1530440	1537000	Um, and so I discovered that last year, like January, February,
+1537000	1546400	summer day, and I, what, what really brought me into liking Devra was how it was
+1546400	1548920	described the role of the job.
+1549440	1553760	So the role of the job, basically, it involves, I think, four pillars.
+1553760	1556680	If I'm not mistaken, one is education.
+1556680	1562600	So creating content for developers, making sure that they are learning, uh, about the
+1562600	1564720	product they, they are representing.
+1564720	1569440	And so, uh, the education you create is to help developers be successful with the
+1569440	1570520	product they're using.
+1570760	1576120	And then the second pillar is marketing, bringing awareness, going to tech conferences,
+1576120	1578440	speaking about the product you're representing.
+1578440	1587160	The third thing is, um, if I'm not mistaken, it's community, community management.
+1587520	1592360	So you're going to be engaging a lot with community management, uh, community
+1592360	1595600	members and helping them out.
+1595600	1600360	And, you know, just basically forming relationships with your community.
+1600360	1602720	And then the fourth one is coding.
+1603040	1608600	So you must have some technical skill to be able to relate with the community you
+1608600	1612040	are representing for to the company.
+1612560	1615720	And so I was like, that's a nice job.
+1615720	1620360	That is what I am doing as a, as a tech tweeter person.
+1620520	1621640	I'm not an influencer.
+1621640	1623840	I refuse to be known as that.
+1625800	1632760	That is what I'm doing here on Twitter.
+1633760	1641360	So I, what I, what led me into believing that I can also be a developer advocate was
+1641360	1643560	that I'm so, I have a blog.
+1644200	1645640	I love writing things down.
+1645640	1650520	I, I would say I communicate so much better when I write things down.
+1650520	1653120	It's an actual verbal communication.
+1653120	1655520	And so I love creating content.
+1655920	1659760	I love, uh, showing people how they can use something.
+1659760	1663520	I remember there was a time where Tylen CSS was something new to me.
+1663840	1665240	And I started using it.
+1665240	1670400	And then I went all in to convince people that, hey, leave bootstrap behind.
+1670440	1672080	Bootstrap is not for you.
+1672080	1673400	Go to Tylen CSS.
+1673680	1675720	I will convince you, I will show you.
+1676000	1677080	And that's what I did.
+1677080	1681680	I would make demos and show people that this is how you build a button in less
+1681680	1685280	than five minutes, of course, if my typing speed suffices.
+1685600	1688480	But, you know, I, I used to do those things.
+1688480	1690240	I used to like advocate.
+1690240	1695440	I used to, I, I, I like communicating with people, the community and all that stuff.
+1695440	1697920	I know I said I have social anxiety.
+1697920	1703480	I don't like to talk to people, but I do enjoy to talk to somebody to help them
+1703480	1704520	achieve something.
+1704520	1706640	And so I was enjoying that.
+1706640	1707920	And I was like coding.
+1707920	1708800	I, I code.
+1708800	1709760	I love to code.
+1709760	1711520	I would say it's fun.
+1711520	1713960	It's, it's, it's a combination of things that I like.
+1713960	1715760	And I want to experience this field.
+1715760	1717840	I want to work as a developer advocate.
+1718440	1719600	I got the job.
+1719600	1720840	I worked at Strapi.
+1720840	1721800	It was amazing.
+1721800	1724400	It was everything I imagined and even more.
+1724920	1730240	And, and so, yeah, man, I, I don't know if I should go on from this point.
+1730240	1735040	But the point is developer advocacy is an amazing role.
+1735040	1740080	It's, it's just like you work with people, you meet amazing people.
+1740080	1745720	And you, you get to do the things you like as a job and you get paid for it.
+1745720	1750040	I mean, who gets paid to write blogs for fun?
+1750320	1752400	I mean, I find it writing fun.
+1752400	1756040	And, and you know, it's, it's like, it's a dream position.
+1756280	1761560	And also you travel, but I didn't get the chance to, but still you travel because
+1761560	1762320	of your job.
+1762760	1764960	And so it has a lot of con.
+1765200	1766920	No, wait, is it cons or pros?
+1766920	1767720	Which one is good?
+1767960	1769040	Which one is the pros?
+1769560	1770360	OK, it's the pros.
+1771320	1774200	Oh, my God, the pros are good.
+1775120	1775920	That's what I mean.
+1775920	1777040	The pros are good.
+1777200	1778040	That's what I meant.
+1778040	1784040	So yeah, it's interesting because, you know, I think I think people have gotten
+1784040	1787200	better in the community of understanding this role a little bit more.
+1787200	1792280	But I think there are still some, maybe perceptions or misperceptions exist.
+1792800	1798520	Um, one of them is that, oh, I want to be in DevRel because I would just get
+1798520	1803120	to code demos all day and then travel to conferences and it would be the coolest
+1803120	1803560	job.
+1803800	1807280	I hear a lot of people talking about it the same way they talk about like being
+1807480	1809720	like a Twitch streamer or like a YouTuber.
+1809720	1812720	They're like, oh, I get to play video games all day for a living.
+1812720	1814120	What an amazing life.
+1814480	1819480	And I don't think they fully understand the hard bits behind it, the metrics, the
+1819480	1821960	parts that are not as glamorous, but are difficult.
+1822280	1825800	Um, and other people worry that, you know, if I go to DevRel, maybe all I'll be
+1825800	1828760	doing is blogs or all I'll be doing is talking to people.
+1828760	1830640	I lose all my technical acumen.
+1830640	1831920	I won't grow anymore.
+1832160	1836240	So I wonder if you could speak to both of those perceptions, both that DevRel is
+1836240	1842200	this glamorous, enjoyable, never ending fun of all the best parts of development
+1842200	1845600	and none of the hard parts like deadlines and clients.
+1846080	1850240	And the other side of people that feel like it's non-technical and maybe they
+1850240	1854600	would, they would not be as much of a developer or, or struggle in their growth
+1854600	1855360	if they were DevRel.
+1858080	1858600	Okay.
+1858600	1865480	So I would say developer relations is, like you said, there are good parts and
+1865480	1867080	then there are bad parts to it.
+1867600	1873400	But for me personally speaking, oh no, personally speaking for myself, I would
+1873400	1878480	say the bad part is there's a lot of things going on.
+1878480	1883640	Like as much as the schedule, like you don't know how your day is going to go,
+1883880	1884960	which is awesome.
+1885040	1886720	I, I like that about it.
+1887240	1890760	But at the same time, it's like, you don't know how your day is going to go.
+1891080	1892840	And you have so much to learn.
+1892840	1894680	There's a lot of things to learn.
+1895200	1900640	And I remember there was, I, we were working on an initiative at Strapi.
+1900640	1905160	And one of the initiatives was to form a partnership with Versell.
+1905520	1908800	And it's not exactly marketing.
+1908800	1914400	It's not exactly, you know, community and, and, um, you know, education.
+1914400	1915680	It's more like sales.
+1916000	1921360	So you have to like get into other departments and to work with other teams.
+1921360	1926400	You have to be someone who collaborates openly with other teams within the company
+1926640	1931280	to make sure that you, you know, you, you make things work.
+1931280	1935520	So sales, I don't know anything about salespeople.
+1935880	1940680	I was like, how am I going to do this for Sal me?
+1941240	1945680	But anyway, it's, it's like there's a lot to learn and you also have to be
+1945680	1947400	comfortable with being flexible.
+1947760	1951920	So like I said, I don't know anything about sales, but you have to be comfortable
+1951920	1957520	about not knowing what sales is and being able to take the role and being like, okay,
+1957520	1958640	let's break it down.
+1958640	1960640	What's the first step to achieving this goal?
+1960640	1961760	What do we have to do?
+1961760	1962800	Blah, blah, blah, blah, blah.
+1963360	1965360	So I'd say those are difficult.
+1965360	1971440	And also when it comes to like community, community management is not as easy as it looks.
+1971440	1975840	Just having a lot of people in your community, the numbers don't matter.
+1975840	1980640	It, what matters is how are you going to make the community grow?
+1980720	1985040	How are you going to help everyone to grow while using your product?
+1985040	1988560	Because, you know, like with, with community, they are people too.
+1988560	1989600	We are people too.
+1989600	1996480	People get frustrated and it just so happens that it's, it's so hard to, to, to, to, to manage
+1996480	1999440	a community because you always have to think of something else.
+1999440	2000720	How do I make it better?
+2000720	2002240	How do I introduce new things?
+2002240	2003680	Will they like, will they not?
+2004720	2007840	How do we help everyone with questions about Strapi?
+2007840	2010320	Because we, we can't, we can't do that too.
+2010320	2011360	We, we are people.
+2011360	2016560	We, we, yeah, it's just, those are the few things I can, oh yes.
+2016560	2022880	And when it comes to video people, even, even if you are an expert on creating videos,
+2022880	2029840	you will spend, I don't know, there was a time I had to record a simple, simple video on how
+2029840	2032240	you can upgrade just Strapi application.
+2032800	2039120	Believe you me, I sat here at 9am and finally got off my chair, I think at 3pm.
+2039680	2042000	It was a less than three minute video.
+2043280	2047200	And, and I had to like do a lot of pre-shoots and all that stuff.
+2047200	2051440	Like it's, it's, it's, it's like not as simple as it seems.
+2051440	2056800	And also, even after you shoot, you have to get feedback and then do it again.
+2056800	2062160	So it's like, yeah man, this, this, this, this challenges everywhere.
+2062160	2067040	Even with blog writing, the blogs you write, they have to accommodate the community.
+2067040	2069200	It's not about what you like to write about.
+2069200	2071360	It's about what the community needs.
+2071360	2076000	And so you're going to have to write about something you have no clue about.
+2076000	2078720	And so that's, that's on that.
+2079440	2082080	It's, that's my views on that.
+2082080	2084080	Yeah, it's, it's, it's so fascinating.
+2084080	2088720	I, I love this idea because it's so true that there is nothing more difficult
+2088720	2090240	than looking effortless.
+2090240	2092800	Like, uh, people maybe learned this.
+2092800	2095120	I think we still get fooled by it often on like Instagram.
+2095120	2097920	People are like, wow, this person is so glamorous.
+2097920	2100000	They take such amazing photos.
+2100000	2103360	How could that be your first, your, the first selfie you took out of bed?
+2103360	2109520	It's like, it's, it's not got up, put on makeup, set everything up right,
+2109520	2113200	put up lights, took a thousand photos and that was the best one.
+2113280	2115520	Like, you know, but it looks effortless.
+2115520	2119440	And I think good developer relations, good videos and things like that are like that,
+2119440	2124800	right? It's born of a lot of, of iteration, of a lot of retries and a lot of reshoots
+2125440	2131120	to produce something that feels, uh, solid, that feels good, that feels effortless
+2131120	2132160	when somebody watches it.
+2132160	2136160	Doesn't mean that it's perfect, um, but it, but it, but it, it sort of melds.
+2136160	2137760	And I mean, we have that in development too.
+2137760	2141840	I, I like to tell people that like when you get a good designer that puts a good design
+2141840	2143760	together for you, it's like a website.
+2143760	2147360	It's like you can't tell what the HTML elements are that built it.
+2147360	2149600	It just turns into a painting.
+2149600	2155440	And I said, it doesn't take a lot sometimes, a little bit of spacing mess up, a little bit
+2155440	2160160	of style, oddness and the whole cohesiveness of the design fractures.
+2160160	2162480	And you go, that's clearly a div.
+2162480	2163440	That's clearly an input.
+2163440	2164480	That's clearly a button.
+2164480	2164960	That's clear.
+2164960	2167200	And it just turns into all the constituent elements.
+2167200	2168320	So there's just something about that.
+2168480	2173840	Like when, when something finally congeals at the end, it looks well polished.
+2173840	2179520	Um, and, uh, it doesn't take a lot of deviance from that for people to see
+2179520	2182880	behind the scenes of it a little bit, which is, I think is super interesting.
+2183440	2185360	I guess that sounds like that should be intimidating.
+2185360	2190080	I actually get inspired by it because I think it's really cool to find that point
+2190080	2191760	when everything kind of blends together.
+2193280	2197600	I think so too, because from challenges, that's where you learn the most,
+2197600	2203360	you know, it's, it's like, as much as I was intimidated by this whole partnership with
+2203360	2206880	Vercel, I got to learn a lot from it.
+2206880	2211600	Like how you, um, you started actually forming partnership.
+2211600	2212480	What is the point?
+2212480	2215200	What are we trying to do and create sales pipeline?
+2215200	2216240	All that stuff.
+2216240	2217520	Community management.
+2217520	2223520	It gives you that mindset that, you know what, community is more than just the number.
+2223600	2231840	It's more about how you help the people succeed, you know, what it's, it's more than that.
+2231840	2233360	That's, that's what I learned.
+2233360	2239360	And with blogging as well, I mean, as much as I was a blog myself, a blogger myself,
+2239360	2244400	as a hobby, I learned that there's a lot of work that goes into blogging
+2244400	2249280	and how you can make a blog stand out, how you can communicate with your target audience,
+2249280	2251280	how to capture people's attention.
+2251360	2255920	That kind of stuff, I learned that in my role.
+2255920	2264480	And so being flexible too, it does help to, to, to expect the unexpected and learning how to
+2264480	2268160	adapt to those circumstances is really important.
+2268160	2275520	And I would say those are one of the skills I also gained and community and communication
+2275520	2278480	with different departments within the team.
+2279200	2286400	And so it might seem intimidating, but it is for a good cause because it does open your mind
+2286400	2289680	to a lot of things, things that you have never thought about.
+2289680	2294080	And when you face something like that, again, then you know what to do.
+2294080	2297600	And if you face another problem, then it's, it's a learning opportunity.
+2297600	2301360	So I take these challenges as a learning opportunity.
+2302320	2305040	And, you know, I like how this connects to the Twitter piece.
+2305040	2308240	And I think it's maybe part of the reason why you enjoy it is I think one of the
+2308240	2312160	recipes for success in developer relations and advocacy is, is authenticity.
+2312960	2319040	Developers are better than average at sniffing out inauthentic contributors
+2319040	2321840	or brands hiding behind developer relations.
+2321840	2326720	They know when they're being sold to, but they love when they're being related to
+2326720	2328400	and when they're really being engaged.
+2328400	2332800	And so I think that can sometimes be challenging for people at the beginning,
+2332800	2336880	because if you don't feel strong in your own brand or in the brand of the company,
+2337520	2339520	in your approach, that can be tough.
+2339520	2342400	And it can be tough sometimes to sustain.
+2342400	2345440	I tell people like, you can make a discord all you want,
+2345440	2347520	and you can get a couple people to join.
+2347520	2350560	But can you get the conversation to keep going so that it's there in a month?
+2350560	2354160	So that it's there in a year, you know, you can get somebody to read a blog.
+2354160	2358480	But can you create a platform where people will want to keep coming back to read your blogs?
+2358480	2359920	That is hard.
+2359920	2361200	There's not a shortcut for it.
+2361200	2362640	There's no magic recipe for it.
+2362640	2367040	But it is a lot harder, or not harder, again, not to be intimidating.
+2367040	2370160	It's a lot more of a challenge than people might give it credit for.
+2371600	2375440	It's even a slightly different skill set than just producing an individual piece of content,
+2375440	2380480	is to slot that into where is my community that's sort of starting to grow,
+2380480	2383120	and it's starting to smoke and turn into a small flame,
+2383120	2387200	and how do I keep feeding them with more outlets, more videos, more content,
+2387200	2388640	so that it actually catches.
+2388720	2392080	And then to see a community begin to self-sustain,
+2393040	2398240	I mean, that has to be such a feeling of pride and happiness in that job.
+2398240	2400320	I don't know if you've got to experience that as well.
+2402480	2405280	Well, I do experience that.
+2405280	2410960	It's like, I don't know, we must remember that behind these communities,
+2410960	2412720	it's real people.
+2412720	2414240	Those are real people.
+2414240	2415840	The same with Tech Twitter.
+2415840	2417680	Those accounts, the actual people.
+2417760	2418880	I'm an actual person.
+2418880	2420320	I'm not an AI robot.
+2420880	2425360	And so people cannot be programmed to come back for more.
+2425360	2426800	They're not callback functions.
+2427600	2428560	Okay, that was lousy.
+2428560	2429920	I should have said that.
+2429920	2438640	But it's really hard to get someone to come back,
+2438640	2442000	to actually like your things, and come back for more.
+2442000	2447280	And so it's a skill that I think it's so hard to craft,
+2447280	2451520	and to what is the word, to master.
+2451520	2456320	And so it's like you find what people are looking for,
+2456320	2458560	and you pay attention to what people need.
+2459200	2462880	And once you give people what they want,
+2462880	2464800	and they see that you're listening to them,
+2464800	2466960	they see that you hear the cries they're paying,
+2467600	2472720	then I guess that will also help with them being able to trust
+2472720	2474160	that you are doing this for them.
+2474160	2476720	And then they can come back for more.
+2476720	2480560	And if someone else they know are facing similar problems,
+2480560	2482240	they know which community,
+2482240	2485600	which company they can direct those people to.
+2485600	2488720	And that also creates marketing.
+2488720	2493520	You know, word of mouth is the most powerful marketing tool out there.
+2493520	2499600	And so you do want to make sure that the people you are taking care of,
+2499600	2503280	they feel safe, they feel appreciated.
+2503280	2506560	And once they feel the trust, the credibility,
+2506560	2510160	then they have no doubt but to come back.
+2510160	2512880	And yeah, like I said, it's not easy.
+2512880	2514560	I'm not mastering it.
+2514560	2516000	It's something I'm learning to.
+2516720	2519360	And yeah, that's the job.
+2519360	2520640	It's all about learning.
+2520640	2522640	It's all about facing challenges.
+2522640	2527200	And yeah, crying sometimes, but tears of joy.
+2529040	2530480	And that's where the community helps.
+2530480	2534320	You know, what I love about some of the names in the community
+2534320	2539920	that you've talked about is that a lot of them are relatively junior in their careers.
+2539920	2544720	And I love that learning in public became a trend.
+2544720	2546720	And supporting each other, learning in public,
+2546720	2549680	became one of the foundational elements of Tech Twitter.
+2549680	2552560	Again, I know there's a lot of noise out there and a lot of nastiness at times.
+2552560	2556640	But that core of it, I think, is exciting.
+2556640	2559120	Because it does mean that when things are hard,
+2559120	2560880	you at least have some people you can go to and say,
+2560880	2561920	wow, this is really hard.
+2561920	2563440	And people can say, I agree.
+2563440	2566000	It is actually sometimes really hard.
+2566720	2570480	And I like that word that we can at times be a humble community
+2570480	2575120	and not be afraid to admit that sometimes this is overwhelming for all of us.
+2575120	2578400	And so that if you're feeling that way as somebody who's either just starting out
+2578400	2582320	on their self-taught journey or is lost looking for a job right now,
+2583600	2587360	there are a lot of people like you out there that you can connect with
+2588080	2589920	on Twitter or other spaces as well.
+2589920	2592800	Discord's been a great place these days to find those people as well.
+2594800	2600000	Yes, but I must admit, I am actually not as active on Discord.
+2600000	2604800	Like, it's like, Twitter's my cave, like my bad cave.
+2604800	2607280	I'm always on Twitter all the time.
+2607280	2608640	Discord for some reason.
+2608640	2613440	I don't know what, but it's not doing it for me for some reason.
+2614080	2615280	But I do try.
+2615280	2619040	I would say there are a lot of great communities that I've joined on Discord.
+2619680	2623200	For example, the 4C community, which is ran by Francesco.
+2623600	2629040	It also does have a lot of newbies, a lot of people who are interested in tech.
+2629040	2634720	And he also helps them out with resources for learning and for web-free resources.
+2634720	2642000	So that's Francesco and another community is, I think coding newbies does have one too.
+2642000	2646320	On Discord, if I'm not mistaken, the name itself, it says it all,
+2646320	2647200	coding newbies.
+2647200	2650400	So that's a great place to also connect with people.
+2650400	2655920	It might not be people who are like new in tech, but you will find that
+2655920	2660880	someone is learning the exact same thing as you and the conversation can skyrocket
+2660880	2665840	into something else, a great connection, friendship, whatever you would like to name it.
+2665840	2668640	And so Discord does have great communities.
+2668640	2670320	Oh, and Eddie Hub, and Eddie Hub.
+2670320	2671440	How can I forget, Eddie Hub?
+2672720	2673600	Yes, Eddie.
+2674160	2678480	And yeah, those are a few communities I can name the great communities.
+2679200	2681600	And yeah, people use Discord.
+2681600	2682800	Don't be like me.
+2682800	2684080	You'll find a lot of value.
+2685840	2686320	You'll find.
+2687840	2689760	Yeah, use Discord.
+2690640	2691600	It's taste their own.
+2691600	2692960	I mean, I think that's the lesson, right?
+2693760	2697040	Just finding your niche to contribute to any particular platform is find the platform that
+2697040	2697920	works best for you.
+2697920	2701600	I know people who never resonated with any platform they sell, they started contributing
+2701600	2702480	on LinkedIn.
+2702480	2704080	And that's where they found their tribe.
+2704080	2706000	And that's where they really resonated with people.
+2706000	2711440	And it's like, yeah, let's take advantage of the existence of so many social networks and
+2711440	2714240	not feel compelled to necessarily engage with all of them.
+2714240	2717680	But to find the tribe again, that works best for us.
+2718640	2719840	I agree.
+2719840	2720320	I agree.
+2720320	2721200	Thank you so much.
+2721760	2726560	I'm just like, it doesn't help to be everywhere at once.
+2726560	2729760	So just stick with one place that you like.
+2729760	2731680	I grew on Twitter.
+2731680	2735200	I can't imagine starting my growth on LinkedIn.
+2735200	2738000	It's like, well, people are serious.
+2739120	2740720	It's all seriousness.
+2740720	2745760	So it's like, yeah, stick to one platform, grow, make friends there.
+2745760	2748480	And you don't have to worry about anything else.
+2748480	2751760	I guess, you know, just find what works for you.
+2751760	2752560	Don't be pressured.
+2753840	2755280	Now, we're wrapping things up here.
+2755280	2757520	But at the end, we like to ask a little bit of a fun question.
+2757520	2761040	And I happen to see, well, looking into your profile that you are a big
+2761600	2762960	Marvel cinematic universe fan.
+2762960	2763520	Oh, yes.
+2763520	2767600	So at the time that this will come out, it'll be pretty close to when the movie comes out.
+2767600	2770720	But I'm curious, how excited are you for Ant-Man and the Wals?
+2770720	2772800	Are you going to be there day one?
+2773440	2774560	Are you super excited?
+2776560	2778080	Let me tell you something.
+2778080	2782240	I bought the ticket two weeks ago.
+2782240	2784000	That's how prepared I am.
+2784000	2789120	I was like, on Friday, 2pm, because that's the time it's going to play for us.
+2789120	2792160	2pm afternoon, Ant-Man is playing.
+2792160	2794480	And to be honest, I'm actually afraid.
+2800720	2803120	Ant-Man is my favorite.
+2803680	2805760	It's my favorite MCU character.
+2805760	2809040	You will even see on my bio, I have a spider.
+2809040	2810880	I mean, not a spider, an ant.
+2810880	2815120	That ant, a lot of people don't figure it out that, oh, that ant is for Ant-Man.
+2815120	2816480	That emojis for Ant-Man.
+2816480	2822240	So if Ant-Man dies, if Paul Rudd dies, oh, no, people, I don't think I'll recover.
+2822240	2826880	So hopefully it might be, it might be if you're listening to this podcast
+2826880	2828320	that you have now seen the movie.
+2828880	2831360	And so if the unfortunate has happened,
+2831360	2834480	please reach out to Tricia and make sure that she's doing well in her time of mourning.
+2834480	2838000	But I didn't know, I thought that was just because of the movie coming out.
+2838000	2839760	I didn't realize that was more of a global thing.
+2839760	2842480	Well, I wish you luck then watching the movie.
+2842480	2845600	So I will also be there the first weekend,
+2845600	2850480	because I cannot avoid spoilers for very long, you know, there's the downside of social media.
+2850480	2852640	So I need to see things on opening night or else.
+2852640	2855840	The spoilers, the spoilers are so bad.
+2855840	2860560	I tell you, the people who spoil Marvel movies are not Marvel fans.
+2860560	2866560	I said it because if you are a true Marvel fan, you would never spoil that for another fellow person.
+2866560	2873040	So if you are DC, please stop, stop posting, please.
+2874880	2876240	All right, well, we'll leave it there.
+2876240	2878560	We hope that it, we hope that it's enjoyable.
+2878560	2879920	I certainly hope that it's enjoyable as well.
+2879920	2881120	I hope so.
+2881120	2884880	I hope so, dude, like you have no idea how stressed I am.
+2884880	2888080	I'm like, do I, do I have to buy it another time?
+2888080	2890160	Because like, I'm so stressed out.
+2890160	2893600	But anyway, I just hope Paul Rudd doesn't die or anyone doesn't die.
+2894240	2899360	Like, but knowing Marvel in every third movie, someone dies.
+2899360	2901680	So I have to be emotionally prepared.
+2904320	2904800	All right.
+2905600	2907040	Well, that's going to be it for us today.
+2907040	2911200	Thank you everybody for listening to this modern web podcast and good luck to Paul Rudd.
+2911200	2913520	And thank you, of course, to our guest, Trisha.
+2913520	2915440	As always, the conversation does not stop here.
+2915440	2920000	So you can find Trisha on Twitter, as we've talked about a lot today, at TrishaKS.
+2920000	2923280	That's T-R-E-C-I-A-K-S.
+2923280	2925840	You can find me online at Robosel.
+2925840	2929760	As for the podcast, you can find us online at moderndotweb.com
+2929760	2931440	or on Twitter at modern.web.
+2931440	2932480	Hope to see you all next time.
+2932480	2933120	Thanks, Trisha.
+2934400	2935120	Thank you.
+2935120	2935440	Bye.
+2937040	2938080	Come on.
+2938080	2938720	Come on.
+2939520	2946880	This podcast is sponsored by VISTOT Labs, a firmware-cognostic consultancy that specializes
+2946880	2948080	in JavaScript.
+2948080	2951280	You can find them at VISTOT.C-O slash labs.
+2951280	2957600	That's T-H-I-S-D-O-T dot C-O slash labs.
+2968720	2975360	Come on, now, because we know the shuttle for you.

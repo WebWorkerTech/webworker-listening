@@ -1,0 +1,3200 @@
+1
+00:00:00,000 --> 00:00:24,520
+You're listening to the Modern Web Podcast.
+
+2
+00:00:24,520 --> 00:00:30,320
+For more podcasts, videos, and events, find us online at modern-web.org or follow us
+
+3
+00:00:30,320 --> 00:00:35,960
+on Twitter at modern.web, that's M-O-D-E-R-N-D-O-T-W-E-B.
+
+4
+00:00:35,960 --> 00:00:39,960
+Hello, everybody, and welcome to the Modern Web Podcast.
+
+5
+00:00:39,960 --> 00:00:42,720
+My name is Rob O'Sell, and I'm an architect at this.labs.
+
+6
+00:00:42,720 --> 00:00:48,240
+Today, we are excited to be talking to Trisha Cat, who is a self-taught developer and dev
+
+7
+00:00:48,240 --> 00:00:50,320
+rel engineer from South Africa.
+
+8
+00:00:50,320 --> 00:00:55,240
+Trisha is going to be talking to us about getting started in development and in developer relations
+
+9
+00:00:55,240 --> 00:00:56,240
+and developer advocacy.
+
+10
+00:00:56,240 --> 00:00:59,880
+We're going to be talking about CSS, and who knows, a whole bunch of other topics.
+
+11
+00:00:59,880 --> 00:01:02,080
+So Trisha, how are you doing today?
+
+12
+00:01:02,080 --> 00:01:03,720
+Hi, Rob.
+
+13
+00:01:03,720 --> 00:01:05,560
+Hello, everyone who's listening.
+
+14
+00:01:05,560 --> 00:01:11,680
+I am doing amazing, I'm doing well, enjoying the weather as always, and yeah, man, I hope
+
+15
+00:01:11,680 --> 00:01:14,840
+everyone will enjoy listening to this episode.
+
+16
+00:01:14,840 --> 00:01:19,480
+Now talk to people, because when we release this, it's still going to be sort of the
+
+17
+00:01:19,480 --> 00:01:25,760
+dead of winter in the United States, and a lot of people might be listening from, and
+
+18
+00:01:25,760 --> 00:01:30,240
+we just had Groundhog's Day as the time of recording this, who condemned us to six more
+
+19
+00:01:30,240 --> 00:01:31,240
+weeks of winter.
+
+20
+00:01:31,240 --> 00:01:35,960
+So can you tell everybody, they're imagining you're enjoying the weather, they're thinking
+
+21
+00:01:35,960 --> 00:01:41,200
+it's tropical and sunny, wherever you are, can you tell them what's actually happening?
+
+22
+00:01:41,200 --> 00:01:45,920
+What's actually happening is I have the lights on inside the house, because it's so
+
+23
+00:01:45,920 --> 00:01:46,920
+dark.
+
+24
+00:01:46,920 --> 00:01:52,880
+It's like, it's like, the clouds are dark, actually, and it's, it's looking like it's
+
+25
+00:01:52,880 --> 00:01:55,240
+going to be a violent rain.
+
+26
+00:01:55,240 --> 00:02:00,120
+So I'm looking forward to all the thunderstorms, the lightning, hopefully it strikes somewhere
+
+27
+00:02:00,120 --> 00:02:05,320
+okay, I'm joking, but yeah, man, I'm, I'm that kind of a person, I love rainy weather.
+
+28
+00:02:05,320 --> 00:02:10,680
+I think it's amazing, it brings water to relaxing, and so I'm looking forward to that.
+
+29
+00:02:10,680 --> 00:02:11,680
+Absolutely.
+
+30
+00:02:11,680 --> 00:02:15,280
+I'm, I'm, I was mentioning this just before we started that I'm the same way, I'm from
+
+31
+00:02:15,280 --> 00:02:21,120
+the Midwest, the United States, and I feel like that is our, our calming, healing energy
+
+32
+00:02:21,120 --> 00:02:26,360
+is just opening all the windows and listening to the rumble of thunder from off in the distance
+
+33
+00:02:26,360 --> 00:02:31,800
+as it slowly comes up and catches up to you, and you can kind of hear the water as it hits
+
+34
+00:02:31,800 --> 00:02:35,200
+like a lake or something, and you can hear it moving across the lake until it gets to
+
+35
+00:02:35,200 --> 00:02:36,200
+your house.
+
+36
+00:02:36,200 --> 00:02:40,480
+I mean, that is, that is just childhood in a, in a single image to me.
+
+37
+00:02:40,480 --> 00:02:47,080
+So hopefully you get a, a, an enjoyable storm where you are.
+
+38
+00:02:47,080 --> 00:02:48,080
+Thanks.
+
+39
+00:02:48,080 --> 00:02:49,080
+I hope I do too.
+
+40
+00:02:49,080 --> 00:02:50,080
+All right.
+
+41
+00:02:50,080 --> 00:02:51,480
+Well, let's jump right into it.
+
+42
+00:02:51,480 --> 00:02:55,000
+And you know, to get us started, I think people are going to be interested to hear about your
+
+43
+00:02:55,000 --> 00:02:56,840
+journey, at least just the beginnings of it.
+
+44
+00:02:56,840 --> 00:03:02,560
+So could you give us like a condensed version of kind of how you came to be in development,
+
+45
+00:03:02,560 --> 00:03:05,760
+because I think people would be interested to hear how that came to be.
+
+46
+00:03:06,240 --> 00:03:07,400
+Yes, of course.
+
+47
+00:03:07,400 --> 00:03:14,440
+So Rob mentioned that I am self-taught and I am based in South Africa, which is like
+
+48
+00:03:14,440 --> 00:03:20,920
+the hardest place to actually land your first job as a self-taught without any degree diploma.
+
+49
+00:03:20,920 --> 00:03:28,560
+And so my journey started when I dropped out of college in 2021.
+
+50
+00:03:28,560 --> 00:03:32,720
+And I decided to self-teach myself with pre-code camp.
+
+51
+00:03:32,760 --> 00:03:38,000
+And after that, a few months later, I think three months into my starting journey, I'm
+
+52
+00:03:38,000 --> 00:03:39,080
+not sure.
+
+53
+00:03:39,080 --> 00:03:47,640
+I landed my first U.S. freelance gig, which I worked on for six months until January 2022,
+
+54
+00:03:47,640 --> 00:03:49,320
+which was last year.
+
+55
+00:03:49,320 --> 00:03:55,840
+And then after that, I sort of discovered Debrell and what it was and I wanted to join
+
+56
+00:03:55,840 --> 00:03:58,560
+and be a developer advocate.
+
+57
+00:03:58,560 --> 00:04:06,240
+And months, I think two months, I joined Strapi as a developer advocate intern.
+
+58
+00:04:06,240 --> 00:04:09,800
+And so that's basically how my journey has started.
+
+59
+00:04:09,800 --> 00:04:14,880
+It all started with dropping out of college, starting a course in pre-code camp and being
+
+60
+00:04:14,880 --> 00:04:21,760
+exposed to my first remote freelance gig and then lending my internship at Strapi.
+
+61
+00:04:21,760 --> 00:04:27,440
+You know, it's such an interesting decision that I know was difficult at times for you,
+
+62
+00:04:27,440 --> 00:04:33,840
+because everybody is sort of told, going to college, that's the pathway to your life
+
+63
+00:04:33,840 --> 00:04:34,840
+working out.
+
+64
+00:04:34,840 --> 00:04:39,320
+And maybe you're being told that from being a young child and then to decide to drop out
+
+65
+00:04:39,320 --> 00:04:45,560
+to pursue this vision, it's not only difficult, it's a lot of work, but it's got to be difficult
+
+66
+00:04:45,560 --> 00:04:51,080
+because you were on supposedly a track that was going to inevitably lead to success.
+
+67
+00:04:51,080 --> 00:04:58,120
+So how did you stay focused, motivated, and not want to give up and go back to the path
+
+68
+00:04:58,120 --> 00:04:59,120
+that you were on before?
+
+69
+00:04:59,120 --> 00:05:06,800
+Like how did you stay committed to that when sort of that doubt might be crept in?
+
+70
+00:05:06,800 --> 00:05:13,000
+That's a good question and I must be honest with you, I felt like giving up most of the
+
+71
+00:05:13,000 --> 00:05:20,240
+time because I've never actually found anyone who was in the exact same position.
+
+72
+00:05:20,240 --> 00:05:25,880
+And as I was at that time, who was South African, who was Black South African, who was
+
+73
+00:05:25,880 --> 00:05:31,680
+working for companies outside of South Africa as a self-taught developer.
+
+74
+00:05:31,680 --> 00:05:39,520
+And so having no one to look out for was difficult on its own because I had no role model.
+
+75
+00:05:39,520 --> 00:05:45,880
+I had no certainty that whatever I'm doing, is it worth it, must I go back to college?
+
+76
+00:05:45,880 --> 00:05:51,720
+And I would say what gave me motivation was tech Twitter.
+
+77
+00:05:51,720 --> 00:05:56,880
+When I saw that other people, even though they were in other provinces, not provinces,
+
+78
+00:05:56,880 --> 00:06:02,360
+other countries, they also felt the same way in my shoes.
+
+79
+00:06:02,360 --> 00:06:10,000
+And when I saw people posting their good news that they finally landed a role as a self-taught
+
+80
+00:06:10,000 --> 00:06:15,480
+developer in some remote company, that just helped me to not give up.
+
+81
+00:06:15,480 --> 00:06:23,480
+It helped me to move forward and it's like, I was like, okay, if it does happen for me,
+
+82
+00:06:23,480 --> 00:06:29,840
+then I can also be a role model for someone who is in the same shoes as I am.
+
+83
+00:06:29,840 --> 00:06:35,200
+And so I went on ahead, I joined communities, I found like-minded people and those people
+
+84
+00:06:35,200 --> 00:06:40,560
+helped me to be motivated and they really helped me too much.
+
+85
+00:06:40,560 --> 00:06:47,240
+And I wouldn't have found that you as a remote freelance role, if it wasn't for the connection
+
+86
+00:06:47,240 --> 00:06:52,400
+I made with someone else, because that someone referred me to that person and that's how
+
+87
+00:06:52,400 --> 00:06:53,360
+I got the role.
+
+88
+00:06:53,360 --> 00:06:58,200
+And so it's all about making great connections.
+
+89
+00:06:58,200 --> 00:07:04,520
+And once you have those great connections, then you have a great motivation to go on.
+
+90
+00:07:05,520 --> 00:07:11,960
+You know, it's such a great point because when you come up, especially you're starting out
+
+91
+00:07:11,960 --> 00:07:15,960
+in a self-taught environment, so not necessarily in a program, you're doing it in the pandemic
+
+92
+00:07:15,960 --> 00:07:21,960
+when we're all already more isolated than we had been in the past, community and finding
+
+93
+00:07:21,960 --> 00:07:22,960
+it.
+
+94
+00:07:22,960 --> 00:07:27,200
+I mean, what an amazing opportunity that you found on Twitter.
+
+95
+00:07:27,200 --> 00:07:31,880
+But I think I remember reading that your decision to join Twitter was also sort of serendipitous
+
+96
+00:07:31,880 --> 00:07:34,080
+in some ways.
+
+97
+00:07:34,080 --> 00:07:38,760
+It wasn't necessarily something that had a ton of forethought or was quite inevitable
+
+98
+00:07:38,760 --> 00:07:39,760
+itself.
+
+99
+00:07:39,760 --> 00:07:44,360
+So how did you decide to stumble into tech Twitter, right?
+
+100
+00:07:44,360 --> 00:07:46,480
+Because there's a million communities on Twitter.
+
+101
+00:07:46,480 --> 00:07:52,000
+So what made you sort of look there and get on Twitter in the first place?
+
+102
+00:07:52,000 --> 00:07:53,000
+Okay.
+
+103
+00:07:53,000 --> 00:07:54,000
+So, Twitter.
+
+104
+00:07:54,000 --> 00:07:55,000
+Okay.
+
+105
+00:07:55,000 --> 00:08:01,240
+So I joined Twitter, I think 2020, that was like my first day in college.
+
+106
+00:08:01,240 --> 00:08:07,040
+So throughout my life in high school, you can see that I had no social media whatsoever.
+
+107
+00:08:07,040 --> 00:08:13,560
+That's how, I don't know, I was like, anti-social media, I'm not the kind of person who like
+
+108
+00:08:13,560 --> 00:08:16,600
+social media, I just thought it was a waste of time.
+
+109
+00:08:16,600 --> 00:08:24,040
+Maybe it's my father's mentality talking here, but it's just, and I was like, okay, I need
+
+110
+00:08:24,040 --> 00:08:29,480
+to like have some social presence because I heard that when people hire somebody, they
+
+111
+00:08:29,480 --> 00:08:35,440
+look out for their social life so that they can see if they have a digital footprint.
+
+112
+00:08:35,440 --> 00:08:41,000
+And if you don't have a digital footprint, then you are considered weird, like, why don't
+
+113
+00:08:41,000 --> 00:08:42,320
+you have social media?
+
+114
+00:08:42,320 --> 00:08:46,080
+And so I was like, okay, let me join Twitter.
+
+115
+00:08:46,080 --> 00:08:51,920
+And I joined Twitter initially just to like follow some trends and I don't know, like
+
+116
+00:08:51,920 --> 00:08:53,520
+do all nonsense.
+
+117
+00:08:53,520 --> 00:09:01,320
+And then after, so okay, so my cousin, she was doing her online business at the time
+
+118
+00:09:01,320 --> 00:09:05,840
+and she was like, she wants someone to make a website for her and she told me to make
+
+119
+00:09:05,840 --> 00:09:09,240
+a website for her and then I did the whole Google process.
+
+120
+00:09:09,240 --> 00:09:14,960
+It's in my blog, I wrote a blog about this, so I'm just like doing a summary.
+
+121
+00:09:14,960 --> 00:09:23,760
+So after that, I found a media travesty, travesty media to do the HTML course.
+
+122
+00:09:23,760 --> 00:09:28,960
+And then I went to Twitter, I created my account, went to Twitter and I followed Brad
+
+123
+00:09:28,960 --> 00:09:34,480
+travesty and along with Brad travesty, you know how Twitter suggests some people to follow
+
+124
+00:09:34,480 --> 00:09:37,280
+and that's how it came to be.
+
+125
+00:09:37,280 --> 00:09:44,040
+And then somehow I got, I saw this hashtag 100 days of code and I clicked on that hashtag
+
+126
+00:09:44,040 --> 00:09:47,800
+and I saw like what was happening, I see people are learning, people are sharing what
+
+127
+00:09:47,800 --> 00:09:49,520
+they're learning.
+
+128
+00:09:49,520 --> 00:09:56,240
+And I was like, okay, so this is how I'm going to dip my toes into tech Twitter.
+
+129
+00:09:56,240 --> 00:10:01,720
+And that didn't happen that same year, I became active on Twitter in 2021 because I joined
+
+130
+00:10:01,720 --> 00:10:03,480
+in 2020.
+
+131
+00:10:03,480 --> 00:10:10,280
+And so yeah, that's how I did my toes into tech Twitter, 100 days of code became what
+
+132
+00:10:10,280 --> 00:10:11,280
+is it?
+
+133
+00:10:11,280 --> 00:10:16,080
+These code newbies, I follow people, people make connections, comments and everything
+
+134
+00:10:16,080 --> 00:10:22,200
+and then my timeline was filled with web development stuff and that's how I came to be.
+
+135
+00:10:22,200 --> 00:10:25,720
+And that's my Twitter, my Twitter stuff.
+
+136
+00:10:25,720 --> 00:10:30,800
+It's so fascinating because yeah, when I got on, I mean, I was on Twitter very early on,
+
+137
+00:10:30,800 --> 00:10:33,840
+but I didn't use it much at the beginning, it was just sort of a playful thing to keep
+
+138
+00:10:33,840 --> 00:10:34,840
+up with news.
+
+139
+00:10:34,840 --> 00:10:40,520
+But when I got on found the tech sphere, I don't know what it was about my mentality
+
+140
+00:10:40,520 --> 00:10:45,120
+that I just assumed that like all the developers in the universe were at the company I worked
+
+141
+00:10:45,120 --> 00:10:46,840
+at and the companies my friends worked at.
+
+142
+00:10:46,840 --> 00:10:50,320
+Like, I don't know why for some reason it just never occurred to me that there must
+
+143
+00:10:50,320 --> 00:10:54,080
+be hundreds of thousands, millions of us around.
+
+144
+00:10:54,080 --> 00:10:57,920
+And so getting on to Twitter, it was like, oh, this is such a cool place to find good
+
+145
+00:10:57,920 --> 00:11:00,960
+blogs to read and to share blogs.
+
+146
+00:11:00,960 --> 00:11:04,600
+But then it's when you make those connections that you're talking about, like you get on
+
+147
+00:11:04,600 --> 00:11:11,560
+that hashtag and you find somebody who posted their first sample project and they just
+
+148
+00:11:11,560 --> 00:11:13,400
+ask for advice.
+
+149
+00:11:13,400 --> 00:11:16,960
+And you know, I got the opportunity to reach out to somebody, they posted their project,
+
+150
+00:11:16,960 --> 00:11:19,800
+I had a couple of minutes, so I looked at it, I said, oh, this is really great.
+
+151
+00:11:19,800 --> 00:11:23,840
+Maybe here's some advice and things to look at and followed them.
+
+152
+00:11:23,840 --> 00:11:29,680
+And then, you know, a few months later, they get a project and it's shared by Sarah Drasner
+
+153
+00:11:29,680 --> 00:11:33,400
+and then they have a, you know, a course that they sell and they're making a bunch of money
+
+154
+00:11:33,400 --> 00:11:38,040
+and then all of a sudden they get like an amazing job and you're like, that was so cool
+
+155
+00:11:38,040 --> 00:11:40,200
+to watch somebody blow up like that.
+
+156
+00:11:40,200 --> 00:11:45,920
+I don't know what it is, but it really is a great place despite all of the other things
+
+157
+00:11:45,920 --> 00:11:47,840
+going on on the platform.
+
+158
+00:11:47,840 --> 00:11:53,280
+It's not perfect from end to end, but it's those connections and those moments that I
+
+159
+00:11:53,280 --> 00:11:59,120
+think still make it so worth it for people, even people starting now.
+
+160
+00:11:59,120 --> 00:12:02,440
+I don't know if you, if you would agree, if you would suggest to somebody get involved
+
+161
+00:12:02,440 --> 00:12:07,080
+in Twitter if they were just starting today, but I just feel like those connections you
+
+162
+00:12:07,080 --> 00:12:13,000
+can make are so valuable to, you know, finding a job, sure, but even just finding a community
+
+163
+00:12:13,000 --> 00:12:18,040
+or a network of people or role models to look up to that have, that are walking your, maybe
+
+164
+00:12:18,040 --> 00:12:19,680
+your similar path.
+
+165
+00:12:19,680 --> 00:12:27,000
+Yes, I definitely agree with you and as someone who has, I might not look it, but I have social
+
+166
+00:12:27,000 --> 00:12:33,120
+anxiety people, believe me, I am not a social person.
+
+167
+00:12:33,120 --> 00:12:37,400
+I'm afraid of approaching people, I don't want to disturb anyone's peace.
+
+168
+00:12:37,400 --> 00:12:44,600
+And so when I, I was like starting out with creating connections on Twitter, it usually
+
+169
+00:12:44,600 --> 00:12:51,440
+starts with the comment sections because I'm not someone who DMs people, I don't do that.
+
+170
+00:12:51,440 --> 00:12:55,920
+It's like, it's too personal, I'm invading a space directly by doing that.
+
+171
+00:12:55,920 --> 00:13:01,440
+So like the comment sections, 100 days of code, like I said, it's the perfect place
+
+172
+00:13:01,440 --> 00:13:06,000
+to find people who are like learning the exact same thing as you.
+
+173
+00:13:06,000 --> 00:13:12,000
+And so that's how like, I started my early connections, I saw someone was learning JavaScript
+
+174
+00:13:12,000 --> 00:13:15,880
+and they were facing the exact same problem as I was.
+
+175
+00:13:15,880 --> 00:13:21,000
+And I kept on asking questions in the comment section, each time they posted, I look forward
+
+176
+00:13:21,000 --> 00:13:26,640
+to the post so that I can reply to them and have a conversation from there.
+
+177
+00:13:26,640 --> 00:13:33,080
+And I think like a few months later, that exact same person, like I said, got me the
+
+178
+00:13:33,080 --> 00:13:38,440
+opportunity to the remote US freelance opportunity.
+
+179
+00:13:38,440 --> 00:13:45,880
+So it's like, it doesn't have to be you approaching big accounts to make great connections.
+
+180
+00:13:45,880 --> 00:13:51,000
+It's someone small, someone at that small hashtag, someone with two, three likes can
+
+181
+00:13:51,000 --> 00:13:57,400
+help you in so many ways than someone with, I don't know, like 90k followers.
+
+182
+00:13:57,400 --> 00:14:02,840
+And so it's really important to not look at the numbers when you're creating connections.
+
+183
+00:14:02,840 --> 00:14:07,200
+Just look at the person, look at what they are, what they're bringing out and reach out
+
+184
+00:14:07,200 --> 00:14:12,440
+to them, compliment them, ask them questions, start small and it would lead to something
+
+185
+00:14:12,440 --> 00:14:13,440
+big.
+
+186
+00:14:13,440 --> 00:14:20,160
+And so it's a great place to make connections with people outside of your own country because
+
+187
+00:14:20,160 --> 00:14:22,640
+like Twitter is worldwide.
+
+188
+00:14:22,640 --> 00:14:29,000
+And so it gives you a sense of being open-minded, being introduced to people's different work
+
+189
+00:14:29,000 --> 00:14:30,560
+cultures and everything.
+
+190
+00:14:30,560 --> 00:14:33,560
+And so take advantage of it.
+
+191
+00:14:33,560 --> 00:14:37,000
+That's all I can say.
+
+192
+00:14:37,000 --> 00:14:40,560
+It's so great to meet another person that has the same opinion on DMs.
+
+193
+00:14:40,560 --> 00:14:43,320
+I was having that conversation with someone recently.
+
+194
+00:14:43,320 --> 00:14:47,360
+They were like, how many DMs conversations do you have active at any given point in time?
+
+195
+00:14:47,360 --> 00:14:49,040
+And I was like, what are you talking about?
+
+196
+00:14:49,040 --> 00:14:50,640
+Like one every couple months?
+
+197
+00:14:50,640 --> 00:14:53,600
+And they're like, I have 10 every single day going on.
+
+198
+00:14:53,600 --> 00:14:55,800
+And I'm like, how?
+
+199
+00:14:55,800 --> 00:14:56,960
+How does that even happen?
+
+200
+00:14:56,960 --> 00:14:59,520
+Like, how does that even initiate?
+
+201
+00:14:59,520 --> 00:15:02,320
+So yeah, I'm really familiar with you.
+
+202
+00:15:02,320 --> 00:15:11,160
+You know, I think it's funny to, I need to sort of break the illusion here of humility
+
+203
+00:15:11,160 --> 00:15:15,800
+because we need to call attention to the fact that you are knocking on the door as the time
+
+204
+00:15:15,800 --> 00:15:20,520
+of this recording of 40K followers on Twitter right now.
+
+205
+00:15:20,520 --> 00:15:25,880
+So you know, all of the things that you're talking about that you've overcome notwithstanding,
+
+206
+00:15:25,880 --> 00:15:28,040
+it's been very successful for you.
+
+207
+00:15:28,080 --> 00:15:33,680
+And what I like about that is that, you know, you've done it, as you said, not as someone
+
+208
+00:15:33,680 --> 00:15:39,440
+who is setting out to become famous or coming to build this with an objective and maybe
+
+209
+00:15:39,440 --> 00:15:42,400
+not even to necessarily do it with a particular strategy.
+
+210
+00:15:42,400 --> 00:15:44,760
+You've probably developed things, maybe that work well.
+
+211
+00:15:44,760 --> 00:15:50,120
+But I like that you've built this a bit on the back of being authentic and humorous
+
+212
+00:15:50,120 --> 00:15:52,600
+and a little bit self-deprecating, but also serious.
+
+213
+00:15:52,600 --> 00:16:00,000
+So I don't know, can you explain to me, if you try to reflect on it, how that happened
+
+214
+00:16:00,000 --> 00:16:04,920
+and how you approach Twitter and how you kind of, you know, want to engage with it just
+
+215
+00:16:04,920 --> 00:16:06,840
+from your own content?
+
+216
+00:16:08,480 --> 00:16:12,080
+Okay, so how do I overcome?
+
+217
+00:16:12,080 --> 00:16:13,800
+I don't know.
+
+218
+00:16:13,800 --> 00:16:16,640
+I can be a weird individual sometimes.
+
+219
+00:16:16,640 --> 00:16:21,000
+What did you say, self-deprecating?
+
+220
+00:16:21,840 --> 00:16:25,000
+Sometimes some of your tweets are humorous, but sometimes they're humorous because it's
+
+221
+00:16:25,000 --> 00:16:28,920
+like, I'll never figure out JavaScript or like, you know, this kind of stuff.
+
+222
+00:16:28,920 --> 00:16:36,560
+So it's very relatable, it's like the thoughts that flip through our mind sometimes in the
+
+223
+00:16:36,560 --> 00:16:43,160
+midst of a hard problem, you find a way to put them as one line very succinctly on your
+
+224
+00:16:43,160 --> 00:16:44,160
+Twitter.
+
+225
+00:16:44,160 --> 00:16:45,160
+It's incredibly relatable.
+
+226
+00:16:45,240 --> 00:16:51,240
+I assume that's why so many people have followed you is to the relatability of what you're
+
+227
+00:16:51,240 --> 00:16:52,240
+putting down there.
+
+228
+00:16:52,240 --> 00:16:58,020
+Yes, actually, I have been told, but in our honesty, people, if you follow at Trisha
+
+229
+00:16:58,020 --> 00:17:03,160
+KS, please do let me know why you follow me because I don't know why I have no idea
+
+230
+00:17:03,160 --> 00:17:12,120
+why people follow me, but okay, so I would say it's like, okay, I treat Twitter as my,
+
+231
+00:17:12,360 --> 00:17:17,880
+should I say like my diary, like my confession, like my, like my everything, like where I
+
+232
+00:17:17,880 --> 00:17:22,920
+trash talk or if I have some unfunny funny jokes, maybe funny jokes for me.
+
+233
+00:17:22,920 --> 00:17:26,040
+And then I'm like, oh, actually, people are liking this.
+
+234
+00:17:26,040 --> 00:17:27,920
+It's like, I just post them out.
+
+235
+00:17:27,920 --> 00:17:32,280
+And also, my tweets are short because I don't like to read long things.
+
+236
+00:17:32,280 --> 00:17:39,040
+I'm not someone who likes to read long stuff, even like threads, unless it's like, it's
+
+237
+00:17:39,120 --> 00:17:41,280
+really something I have to learn.
+
+238
+00:17:41,280 --> 00:17:42,280
+I want to understand.
+
+239
+00:17:42,280 --> 00:17:46,680
+But otherwise, I'm not someone who likes to read a long sentence.
+
+240
+00:17:46,680 --> 00:17:51,280
+Like one sentence that is effective straight to the point touches your soul, you're related
+
+241
+00:17:51,280 --> 00:17:55,400
+to it, then that's, that's like, that's like good enough for me.
+
+242
+00:17:55,400 --> 00:18:01,240
+And so I always try to keep my tweets short because that's the kind of tweets I would
+
+243
+00:18:01,240 --> 00:18:02,240
+like to see.
+
+244
+00:18:02,240 --> 00:18:05,000
+I'm not judging anyone on anything.
+
+245
+00:18:05,000 --> 00:18:06,160
+You are your own person.
+
+246
+00:18:06,160 --> 00:18:07,160
+I'm my own person.
+
+247
+00:18:07,160 --> 00:18:08,160
+I like short things.
+
+248
+00:18:08,160 --> 00:18:11,680
+You might like long things, but then I do what works for me.
+
+249
+00:18:11,680 --> 00:18:14,920
+And if you like it, then thank you so much.
+
+250
+00:18:14,920 --> 00:18:17,160
+I, I don't try to be relatable.
+
+251
+00:18:17,160 --> 00:18:22,520
+I just, I post things that just randomly go through my mind or the thing I faced for the
+
+252
+00:18:22,520 --> 00:18:23,880
+day.
+
+253
+00:18:23,880 --> 00:18:30,320
+And so yeah, I, yeah, I guess that's like, that's it on that.
+
+254
+00:18:30,320 --> 00:18:34,880
+Well, you know, it's interesting because there is something to be said about finding your
+
+255
+00:18:34,880 --> 00:18:37,440
+style or knowing your style and being authentic.
+
+256
+00:18:37,440 --> 00:18:41,060
+It's a much easier to be yourself than to, you know, if you were going to approach Twitter
+
+257
+00:18:41,060 --> 00:18:44,160
+and say, well, it seems like all of tech Twitter is long post and thread.
+
+258
+00:18:44,160 --> 00:18:48,440
+So I need to find a way to do what I would normally do as long posts and threads.
+
+259
+00:18:48,440 --> 00:18:49,760
+It wouldn't sound like you.
+
+260
+00:18:49,760 --> 00:18:51,720
+It maybe wouldn't be interesting to follow.
+
+261
+00:18:51,720 --> 00:18:58,760
+So you know, as you sort of develop that style, like, have you adopted any of what we'll call
+
+262
+00:18:58,760 --> 00:18:59,760
+the Twitter meta?
+
+263
+00:18:59,760 --> 00:19:04,680
+Like, have you, have you become more aware of the, the times when posting gets more engagement
+
+264
+00:19:04,680 --> 00:19:07,240
+or, or is this truly sort of incidental?
+
+265
+00:19:07,240 --> 00:19:12,120
+Like, you're just posting what you're thinking when you're thinking of it and it's still
+
+266
+00:19:12,120 --> 00:19:13,120
+connecting.
+
+267
+00:19:13,120 --> 00:19:19,280
+Well, I would say I'm just, I'm just the person you see people as the person you see
+
+268
+00:19:19,280 --> 00:19:26,400
+on my timeline, I, I, I post what I like, I post what I think, but I will admit starting
+
+269
+00:19:26,400 --> 00:19:32,760
+my early days of content creation on tech, Twitter, it's, it's, it's really hard to like
+
+270
+00:19:32,800 --> 00:19:38,280
+immediately find a niche, something you, you would like to be known for.
+
+271
+00:19:38,280 --> 00:19:42,960
+And so I have dipped and doubled on some few things that creating threads.
+
+272
+00:19:42,960 --> 00:19:46,720
+Like I just said, I don't like threads and I created threads.
+
+273
+00:19:46,720 --> 00:19:53,040
+And I guess I wouldn't say I expressed myself authentically doing that.
+
+274
+00:19:53,040 --> 00:19:57,880
+And then also, if you are on Twitter, Rob, you, you always, you must have seen people
+
+275
+00:19:57,880 --> 00:20:04,080
+posting eight AI tools and, you know, yeah, you know,
+
+276
+00:20:04,080 --> 00:20:05,000
+right, exactly.
+
+277
+00:20:05,000 --> 00:20:13,880
+Yeah, the eight AI tools, he has how to find them a thread and all that stuff.
+
+278
+00:20:13,880 --> 00:20:15,400
+I've tried all of those.
+
+279
+00:20:15,400 --> 00:20:17,160
+They didn't work for me.
+
+280
+00:20:17,160 --> 00:20:20,440
+And then I was like, okay, everyone is doing it.
+
+281
+00:20:20,440 --> 00:20:22,240
+Every account is doing it.
+
+282
+00:20:22,240 --> 00:20:27,240
+Everyone is like, I don't know how do I set you apart from someone else?
+
+283
+00:20:27,240 --> 00:20:31,640
+Because it's like, I will follow five people and then post the same thing,
+
+284
+00:20:31,640 --> 00:20:33,800
+the same syntax, whatever.
+
+285
+00:20:33,800 --> 00:20:35,640
+I'm saying syntax on Twitter people.
+
+286
+00:20:35,640 --> 00:20:42,520
+I don't know why, but it's like, I had to think of like setting myself apart.
+
+287
+00:20:42,520 --> 00:20:45,720
+You know, like, what, what is it I would like to be known for?
+
+288
+00:20:45,720 --> 00:20:48,360
+I don't want to be like everyone else, you know?
+
+289
+00:20:48,360 --> 00:20:51,920
+And so it's like, okay, what do I like to do?
+
+290
+00:20:51,920 --> 00:20:53,520
+I like to do CSS.
+
+291
+00:20:53,520 --> 00:20:55,120
+I like to do CSS code.
+
+292
+00:20:55,120 --> 00:20:56,600
+I like to do CSS arts.
+
+293
+00:20:57,080 --> 00:20:58,320
+And then I started by that.
+
+294
+00:20:58,320 --> 00:21:00,120
+I started sharing my CSS arts.
+
+295
+00:21:00,120 --> 00:21:02,960
+I started to share my CSS project.
+
+296
+00:21:02,960 --> 00:21:05,480
+And then from project, it went to CSS puns.
+
+297
+00:21:05,480 --> 00:21:09,320
+And I was like, hmm, I'm a sucker for dead jokes.
+
+298
+00:21:09,320 --> 00:21:11,680
+Let me post those and people like them.
+
+299
+00:21:11,680 --> 00:21:16,880
+And then I was like, hmm, the more I learned JavaScript, I could be able to make a pun
+
+300
+00:21:16,880 --> 00:21:19,840
+out of JavaScript and make some unfunny jokes.
+
+301
+00:21:19,840 --> 00:21:21,760
+And then I posted those two.
+
+302
+00:21:21,760 --> 00:21:24,600
+And so over time, people liked it.
+
+303
+00:21:24,600 --> 00:21:29,320
+And then I have what, close to 40K followers on Twitter.
+
+304
+00:21:29,320 --> 00:21:33,800
+I don't know why people, but yes, it's, it's like that.
+
+305
+00:21:33,800 --> 00:21:35,320
+It took some time.
+
+306
+00:21:35,320 --> 00:21:41,560
+So just, just be yourself, be authentic self, set yourself apart, make people think
+
+307
+00:21:41,560 --> 00:21:42,720
+about you.
+
+308
+00:21:42,720 --> 00:21:46,480
+And when they think about you, they must associate something with you.
+
+309
+00:21:46,480 --> 00:21:51,120
+Like when they think of CSS, they're like, okay, I'm going to follow Tricia.
+
+310
+00:21:51,480 --> 00:21:54,840
+Sorry, I'm going to follow Tricia or web three.
+
+311
+00:21:54,840 --> 00:21:58,160
+I'm going to follow Francesco or Denny Thompson.
+
+312
+00:21:58,160 --> 00:22:02,080
+I'm going to follow for motivation, inspiration, that sort of thing.
+
+313
+00:22:02,440 --> 00:22:07,560
+And so your goal is to be identified by something and have that something
+
+314
+00:22:07,560 --> 00:22:10,120
+associated with your name on tech Twitter.
+
+315
+00:22:10,600 --> 00:22:11,720
+That's my advice.
+
+316
+00:22:11,720 --> 00:22:14,480
+I can give you on growing on tech to be yourself.
+
+317
+00:22:14,480 --> 00:22:18,280
+Share your niche and just, just do what you like.
+
+318
+00:22:18,280 --> 00:22:20,120
+And then people will like you for it.
+
+319
+00:22:20,280 --> 00:22:22,040
+You don't have to do a lot of things.
+
+320
+00:22:22,600 --> 00:22:25,400
+It just, it will grow on its own.
+
+321
+00:22:25,600 --> 00:22:26,240
+Be patient.
+
+322
+00:22:27,720 --> 00:22:28,720
+Patience is a big one.
+
+323
+00:22:29,240 --> 00:22:33,560
+But, you know, I like this idea too that, you know, when everybody is, if
+
+324
+00:22:33,560 --> 00:22:38,920
+everybody's doing a certain thing, then people feel compelled to do it and they
+
+325
+00:22:38,920 --> 00:22:41,680
+feel a little bit like you did at the beginning, which is to say, like people
+
+326
+00:22:41,680 --> 00:22:45,160
+without a community, they say, well, I like weird silly jokes.
+
+327
+00:22:45,160 --> 00:22:46,760
+And I like not taking things too seriously.
+
+328
+00:22:46,760 --> 00:22:49,200
+And I like talking about CSS, but everybody's talking about React.
+
+329
+00:22:49,200 --> 00:22:51,120
+So I guess I need to talk about React on Twitter.
+
+330
+00:22:51,480 --> 00:22:55,600
+And it's like, you know, I was a, a gamer many years ago, long before it was
+
+331
+00:22:55,600 --> 00:22:56,880
+quite as mainstream as it was now.
+
+332
+00:22:56,880 --> 00:22:59,640
+And I remember being in conversations with people and, you know, you're like, oh,
+
+333
+00:22:59,640 --> 00:23:01,880
+the weather, oh, sports, oh, business.
+
+334
+00:23:01,880 --> 00:23:03,440
+And you kind of just have in that conversation.
+
+335
+00:23:03,680 --> 00:23:06,160
+And then maybe it slips that one of you plays a video game.
+
+336
+00:23:06,160 --> 00:23:09,000
+And then the other person goes, wait, you play, you play video games.
+
+337
+00:23:10,280 --> 00:23:15,160
+And all of a sudden then this, all this animation and, you know, this, this nerd
+
+338
+00:23:15,160 --> 00:23:18,760
+found another nerd and they have a moment of community and bonding.
+
+339
+00:23:19,000 --> 00:23:21,160
+And a deeper conversation than they ever would have had.
+
+340
+00:23:21,560 --> 00:23:23,040
+And you can be that on Twitter, right?
+
+341
+00:23:23,040 --> 00:23:26,280
+Like you can be that person that is talking about the thing that maybe
+
+342
+00:23:26,280 --> 00:23:29,320
+nobody else is talking about, but people really want to, but think they're not
+
+343
+00:23:29,320 --> 00:23:29,920
+allowed to.
+
+344
+00:23:30,240 --> 00:23:33,480
+Uh, and you know, it's like you said, when clearly people were hungry for that
+
+345
+00:23:33,480 --> 00:23:38,960
+kind of, uh, you know, silliness as well as CSS talk, uh, in a world full of a
+
+346
+00:23:38,960 --> 00:23:40,000
+lot of JavaScript talks.
+
+347
+00:23:40,000 --> 00:23:42,520
+So, um, you know, happy that you found a niche.
+
+348
+00:23:42,680 --> 00:23:45,920
+Maybe not everybody will find quite as potent of a niche, but you'll certainly
+
+349
+00:23:45,920 --> 00:23:47,720
+enjoy your experience on Twitter a lot more.
+
+350
+00:23:47,720 --> 00:23:52,200
+You will find your tribe, even if your tribe isn't extremely large, uh, as long
+
+351
+00:23:52,200 --> 00:23:53,080
+as you're being yourself.
+
+352
+00:23:53,120 --> 00:23:54,800
+So yeah, absolutely.
+
+353
+00:23:56,760 --> 00:23:57,080
+Okay.
+
+354
+00:23:57,080 --> 00:24:01,960
+So then you sort of progress from, from, uh, well, I mean, you're still on Twitter,
+
+355
+00:24:01,960 --> 00:24:05,200
+but we've progressed the story from, from Twitter to getting a job.
+
+356
+00:24:05,200 --> 00:24:09,480
+And what's fascinating about your job journey is that you pretty quickly went,
+
+357
+00:24:09,560 --> 00:24:14,400
+um, from self taught developer to developer relations engineer or developer
+
+358
+00:24:14,400 --> 00:24:19,760
+advocate and, um, you know, this is certainly a career that has over gone a
+
+359
+00:24:19,760 --> 00:24:23,880
+lot of changes, certainly during the pandemic, but, but over the last many
+
+360
+00:24:23,880 --> 00:24:28,880
+years as the, as it's matured, um, and, you know, I don't know that there's been a
+
+361
+00:24:28,880 --> 00:24:32,760
+ton of people talking about starting with developer relations or developer
+
+362
+00:24:32,760 --> 00:24:37,520
+advocacy as opposed to like maybe, um, switching over to it after a little bit
+
+363
+00:24:37,520 --> 00:24:38,480
+of time of being a developer.
+
+364
+00:24:38,480 --> 00:24:42,480
+So can you kind of explain, um, how you, I mean, you talked a little bit about how
+
+365
+00:24:42,480 --> 00:24:46,920
+you got the job, but kind of how you got into this, uh, this career and how you
+
+366
+00:24:46,920 --> 00:24:51,880
+sort of, uh, dealt with it coming from maybe not, you know, a 10 year career
+
+367
+00:24:51,880 --> 00:24:55,120
+being a developer already and kind of what challenges and opportunities that,
+
+368
+00:24:55,160 --> 00:24:56,000
+that provided for you.
+
+369
+00:24:58,200 --> 00:24:58,720
+Okay.
+
+370
+00:24:58,720 --> 00:25:07,760
+So how I, I would say how I discovered developer advocacy was because of
+
+371
+00:25:07,840 --> 00:25:11,520
+Pratham does, there's a user by the name of Pratham.
+
+372
+00:25:11,520 --> 00:25:18,560
+She's an Indian, uh, developer advocate at N host, which is an open source company.
+
+373
+00:25:18,560 --> 00:25:25,560
+I forgot for what, but she is the sole responsible person that I am in developer
+
+374
+00:25:25,560 --> 00:25:26,160
+advocacy.
+
+375
+00:25:26,160 --> 00:25:28,440
+Well, I was interested in it.
+
+376
+00:25:28,440 --> 00:25:30,000
+I am still in interested in it.
+
+377
+00:25:30,440 --> 00:25:37,000
+Um, and so I discovered that last year, like January, February,
+
+378
+00:25:37,000 --> 00:25:46,400
+summer day, and I, what, what really brought me into liking Devra was how it was
+
+379
+00:25:46,400 --> 00:25:48,920
+described the role of the job.
+
+380
+00:25:49,440 --> 00:25:53,760
+So the role of the job, basically, it involves, I think, four pillars.
+
+381
+00:25:53,760 --> 00:25:56,680
+If I'm not mistaken, one is education.
+
+382
+00:25:56,680 --> 00:26:02,600
+So creating content for developers, making sure that they are learning, uh, about the
+
+383
+00:26:02,600 --> 00:26:04,720
+product they, they are representing.
+
+384
+00:26:04,720 --> 00:26:09,440
+And so, uh, the education you create is to help developers be successful with the
+
+385
+00:26:09,440 --> 00:26:10,520
+product they're using.
+
+386
+00:26:10,760 --> 00:26:16,120
+And then the second pillar is marketing, bringing awareness, going to tech conferences,
+
+387
+00:26:16,120 --> 00:26:18,440
+speaking about the product you're representing.
+
+388
+00:26:18,440 --> 00:26:27,160
+The third thing is, um, if I'm not mistaken, it's community, community management.
+
+389
+00:26:27,520 --> 00:26:32,360
+So you're going to be engaging a lot with community management, uh, community
+
+390
+00:26:32,360 --> 00:26:35,600
+members and helping them out.
+
+391
+00:26:35,600 --> 00:26:40,360
+And, you know, just basically forming relationships with your community.
+
+392
+00:26:40,360 --> 00:26:42,720
+And then the fourth one is coding.
+
+393
+00:26:43,040 --> 00:26:48,600
+So you must have some technical skill to be able to relate with the community you
+
+394
+00:26:48,600 --> 00:26:52,040
+are representing for to the company.
+
+395
+00:26:52,560 --> 00:26:55,720
+And so I was like, that's a nice job.
+
+396
+00:26:55,720 --> 00:27:00,360
+That is what I am doing as a, as a tech tweeter person.
+
+397
+00:27:00,520 --> 00:27:01,640
+I'm not an influencer.
+
+398
+00:27:01,640 --> 00:27:03,840
+I refuse to be known as that.
+
+399
+00:27:05,800 --> 00:27:12,760
+That is what I'm doing here on Twitter.
+
+400
+00:27:13,760 --> 00:27:21,360
+So I, what I, what led me into believing that I can also be a developer advocate was
+
+401
+00:27:21,360 --> 00:27:23,560
+that I'm so, I have a blog.
+
+402
+00:27:24,200 --> 00:27:25,640
+I love writing things down.
+
+403
+00:27:25,640 --> 00:27:30,520
+I, I would say I communicate so much better when I write things down.
+
+404
+00:27:30,520 --> 00:27:33,120
+It's an actual verbal communication.
+
+405
+00:27:33,120 --> 00:27:35,520
+And so I love creating content.
+
+406
+00:27:35,920 --> 00:27:39,760
+I love, uh, showing people how they can use something.
+
+407
+00:27:39,760 --> 00:27:43,520
+I remember there was a time where Tylen CSS was something new to me.
+
+408
+00:27:43,840 --> 00:27:45,240
+And I started using it.
+
+409
+00:27:45,240 --> 00:27:50,400
+And then I went all in to convince people that, hey, leave bootstrap behind.
+
+410
+00:27:50,440 --> 00:27:52,080
+Bootstrap is not for you.
+
+411
+00:27:52,080 --> 00:27:53,400
+Go to Tylen CSS.
+
+412
+00:27:53,680 --> 00:27:55,720
+I will convince you, I will show you.
+
+413
+00:27:56,000 --> 00:27:57,080
+And that's what I did.
+
+414
+00:27:57,080 --> 00:28:01,680
+I would make demos and show people that this is how you build a button in less
+
+415
+00:28:01,680 --> 00:28:05,280
+than five minutes, of course, if my typing speed suffices.
+
+416
+00:28:05,600 --> 00:28:08,480
+But, you know, I, I used to do those things.
+
+417
+00:28:08,480 --> 00:28:10,240
+I used to like advocate.
+
+418
+00:28:10,240 --> 00:28:15,440
+I used to, I, I, I like communicating with people, the community and all that stuff.
+
+419
+00:28:15,440 --> 00:28:17,920
+I know I said I have social anxiety.
+
+420
+00:28:17,920 --> 00:28:23,480
+I don't like to talk to people, but I do enjoy to talk to somebody to help them
+
+421
+00:28:23,480 --> 00:28:24,520
+achieve something.
+
+422
+00:28:24,520 --> 00:28:26,640
+And so I was enjoying that.
+
+423
+00:28:26,640 --> 00:28:27,920
+And I was like coding.
+
+424
+00:28:27,920 --> 00:28:28,800
+I, I code.
+
+425
+00:28:28,800 --> 00:28:29,760
+I love to code.
+
+426
+00:28:29,760 --> 00:28:31,520
+I would say it's fun.
+
+427
+00:28:31,520 --> 00:28:33,960
+It's, it's, it's a combination of things that I like.
+
+428
+00:28:33,960 --> 00:28:35,760
+And I want to experience this field.
+
+429
+00:28:35,760 --> 00:28:37,840
+I want to work as a developer advocate.
+
+430
+00:28:38,440 --> 00:28:39,600
+I got the job.
+
+431
+00:28:39,600 --> 00:28:40,840
+I worked at Strapi.
+
+432
+00:28:40,840 --> 00:28:41,800
+It was amazing.
+
+433
+00:28:41,800 --> 00:28:44,400
+It was everything I imagined and even more.
+
+434
+00:28:44,920 --> 00:28:50,240
+And, and so, yeah, man, I, I don't know if I should go on from this point.
+
+435
+00:28:50,240 --> 00:28:55,040
+But the point is developer advocacy is an amazing role.
+
+436
+00:28:55,040 --> 00:29:00,080
+It's, it's just like you work with people, you meet amazing people.
+
+437
+00:29:00,080 --> 00:29:05,720
+And you, you get to do the things you like as a job and you get paid for it.
+
+438
+00:29:05,720 --> 00:29:10,040
+I mean, who gets paid to write blogs for fun?
+
+439
+00:29:10,320 --> 00:29:12,400
+I mean, I find it writing fun.
+
+440
+00:29:12,400 --> 00:29:16,040
+And, and you know, it's, it's like, it's a dream position.
+
+441
+00:29:16,280 --> 00:29:21,560
+And also you travel, but I didn't get the chance to, but still you travel because
+
+442
+00:29:21,560 --> 00:29:22,320
+of your job.
+
+443
+00:29:22,760 --> 00:29:24,960
+And so it has a lot of con.
+
+444
+00:29:25,200 --> 00:29:26,920
+No, wait, is it cons or pros?
+
+445
+00:29:26,920 --> 00:29:27,720
+Which one is good?
+
+446
+00:29:27,960 --> 00:29:29,040
+Which one is the pros?
+
+447
+00:29:29,560 --> 00:29:30,360
+OK, it's the pros.
+
+448
+00:29:31,320 --> 00:29:34,200
+Oh, my God, the pros are good.
+
+449
+00:29:35,120 --> 00:29:35,920
+That's what I mean.
+
+450
+00:29:35,920 --> 00:29:37,040
+The pros are good.
+
+451
+00:29:37,200 --> 00:29:38,040
+That's what I meant.
+
+452
+00:29:38,040 --> 00:29:44,040
+So yeah, it's interesting because, you know, I think I think people have gotten
+
+453
+00:29:44,040 --> 00:29:47,200
+better in the community of understanding this role a little bit more.
+
+454
+00:29:47,200 --> 00:29:52,280
+But I think there are still some, maybe perceptions or misperceptions exist.
+
+455
+00:29:52,800 --> 00:29:58,520
+Um, one of them is that, oh, I want to be in DevRel because I would just get
+
+456
+00:29:58,520 --> 00:30:03,120
+to code demos all day and then travel to conferences and it would be the coolest
+
+457
+00:30:03,120 --> 00:30:03,560
+job.
+
+458
+00:30:03,800 --> 00:30:07,280
+I hear a lot of people talking about it the same way they talk about like being
+
+459
+00:30:07,480 --> 00:30:09,720
+like a Twitch streamer or like a YouTuber.
+
+460
+00:30:09,720 --> 00:30:12,720
+They're like, oh, I get to play video games all day for a living.
+
+461
+00:30:12,720 --> 00:30:14,120
+What an amazing life.
+
+462
+00:30:14,480 --> 00:30:19,480
+And I don't think they fully understand the hard bits behind it, the metrics, the
+
+463
+00:30:19,480 --> 00:30:21,960
+parts that are not as glamorous, but are difficult.
+
+464
+00:30:22,280 --> 00:30:25,800
+Um, and other people worry that, you know, if I go to DevRel, maybe all I'll be
+
+465
+00:30:25,800 --> 00:30:28,760
+doing is blogs or all I'll be doing is talking to people.
+
+466
+00:30:28,760 --> 00:30:30,640
+I lose all my technical acumen.
+
+467
+00:30:30,640 --> 00:30:31,920
+I won't grow anymore.
+
+468
+00:30:32,160 --> 00:30:36,240
+So I wonder if you could speak to both of those perceptions, both that DevRel is
+
+469
+00:30:36,240 --> 00:30:42,200
+this glamorous, enjoyable, never ending fun of all the best parts of development
+
+470
+00:30:42,200 --> 00:30:45,600
+and none of the hard parts like deadlines and clients.
+
+471
+00:30:46,080 --> 00:30:50,240
+And the other side of people that feel like it's non-technical and maybe they
+
+472
+00:30:50,240 --> 00:30:54,600
+would, they would not be as much of a developer or, or struggle in their growth
+
+473
+00:30:54,600 --> 00:30:55,360
+if they were DevRel.
+
+474
+00:30:58,080 --> 00:30:58,600
+Okay.
+
+475
+00:30:58,600 --> 00:31:05,480
+So I would say developer relations is, like you said, there are good parts and
+
+476
+00:31:05,480 --> 00:31:07,080
+then there are bad parts to it.
+
+477
+00:31:07,600 --> 00:31:13,400
+But for me personally speaking, oh no, personally speaking for myself, I would
+
+478
+00:31:13,400 --> 00:31:18,480
+say the bad part is there's a lot of things going on.
+
+479
+00:31:18,480 --> 00:31:23,640
+Like as much as the schedule, like you don't know how your day is going to go,
+
+480
+00:31:23,880 --> 00:31:24,960
+which is awesome.
+
+481
+00:31:25,040 --> 00:31:26,720
+I, I like that about it.
+
+482
+00:31:27,240 --> 00:31:30,760
+But at the same time, it's like, you don't know how your day is going to go.
+
+483
+00:31:31,080 --> 00:31:32,840
+And you have so much to learn.
+
+484
+00:31:32,840 --> 00:31:34,680
+There's a lot of things to learn.
+
+485
+00:31:35,200 --> 00:31:40,640
+And I remember there was, I, we were working on an initiative at Strapi.
+
+486
+00:31:40,640 --> 00:31:45,160
+And one of the initiatives was to form a partnership with Versell.
+
+487
+00:31:45,520 --> 00:31:48,800
+And it's not exactly marketing.
+
+488
+00:31:48,800 --> 00:31:54,400
+It's not exactly, you know, community and, and, um, you know, education.
+
+489
+00:31:54,400 --> 00:31:55,680
+It's more like sales.
+
+490
+00:31:56,000 --> 00:32:01,360
+So you have to like get into other departments and to work with other teams.
+
+491
+00:32:01,360 --> 00:32:06,400
+You have to be someone who collaborates openly with other teams within the company
+
+492
+00:32:06,640 --> 00:32:11,280
+to make sure that you, you know, you, you make things work.
+
+493
+00:32:11,280 --> 00:32:15,520
+So sales, I don't know anything about salespeople.
+
+494
+00:32:15,880 --> 00:32:20,680
+I was like, how am I going to do this for Sal me?
+
+495
+00:32:21,240 --> 00:32:25,680
+But anyway, it's, it's like there's a lot to learn and you also have to be
+
+496
+00:32:25,680 --> 00:32:27,400
+comfortable with being flexible.
+
+497
+00:32:27,760 --> 00:32:31,920
+So like I said, I don't know anything about sales, but you have to be comfortable
+
+498
+00:32:31,920 --> 00:32:37,520
+about not knowing what sales is and being able to take the role and being like, okay,
+
+499
+00:32:37,520 --> 00:32:38,640
+let's break it down.
+
+500
+00:32:38,640 --> 00:32:40,640
+What's the first step to achieving this goal?
+
+501
+00:32:40,640 --> 00:32:41,760
+What do we have to do?
+
+502
+00:32:41,760 --> 00:32:42,800
+Blah, blah, blah, blah, blah.
+
+503
+00:32:43,360 --> 00:32:45,360
+So I'd say those are difficult.
+
+504
+00:32:45,360 --> 00:32:51,440
+And also when it comes to like community, community management is not as easy as it looks.
+
+505
+00:32:51,440 --> 00:32:55,840
+Just having a lot of people in your community, the numbers don't matter.
+
+506
+00:32:55,840 --> 00:33:00,640
+It, what matters is how are you going to make the community grow?
+
+507
+00:33:00,720 --> 00:33:05,040
+How are you going to help everyone to grow while using your product?
+
+508
+00:33:05,040 --> 00:33:08,560
+Because, you know, like with, with community, they are people too.
+
+509
+00:33:08,560 --> 00:33:09,600
+We are people too.
+
+510
+00:33:09,600 --> 00:33:16,480
+People get frustrated and it just so happens that it's, it's so hard to, to, to, to, to manage
+
+511
+00:33:16,480 --> 00:33:19,440
+a community because you always have to think of something else.
+
+512
+00:33:19,440 --> 00:33:20,720
+How do I make it better?
+
+513
+00:33:20,720 --> 00:33:22,240
+How do I introduce new things?
+
+514
+00:33:22,240 --> 00:33:23,680
+Will they like, will they not?
+
+515
+00:33:24,720 --> 00:33:27,840
+How do we help everyone with questions about Strapi?
+
+516
+00:33:27,840 --> 00:33:30,320
+Because we, we can't, we can't do that too.
+
+517
+00:33:30,320 --> 00:33:31,360
+We, we are people.
+
+518
+00:33:31,360 --> 00:33:36,560
+We, we, yeah, it's just, those are the few things I can, oh yes.
+
+519
+00:33:36,560 --> 00:33:42,880
+And when it comes to video people, even, even if you are an expert on creating videos,
+
+520
+00:33:42,880 --> 00:33:49,840
+you will spend, I don't know, there was a time I had to record a simple, simple video on how
+
+521
+00:33:49,840 --> 00:33:52,240
+you can upgrade just Strapi application.
+
+522
+00:33:52,800 --> 00:33:59,120
+Believe you me, I sat here at 9am and finally got off my chair, I think at 3pm.
+
+523
+00:33:59,680 --> 00:34:02,000
+It was a less than three minute video.
+
+524
+00:34:03,280 --> 00:34:07,200
+And, and I had to like do a lot of pre-shoots and all that stuff.
+
+525
+00:34:07,200 --> 00:34:11,440
+Like it's, it's, it's, it's like not as simple as it seems.
+
+526
+00:34:11,440 --> 00:34:16,800
+And also, even after you shoot, you have to get feedback and then do it again.
+
+527
+00:34:16,800 --> 00:34:22,160
+So it's like, yeah man, this, this, this, this challenges everywhere.
+
+528
+00:34:22,160 --> 00:34:27,040
+Even with blog writing, the blogs you write, they have to accommodate the community.
+
+529
+00:34:27,040 --> 00:34:29,200
+It's not about what you like to write about.
+
+530
+00:34:29,200 --> 00:34:31,360
+It's about what the community needs.
+
+531
+00:34:31,360 --> 00:34:36,000
+And so you're going to have to write about something you have no clue about.
+
+532
+00:34:36,000 --> 00:34:38,720
+And so that's, that's on that.
+
+533
+00:34:39,440 --> 00:34:42,080
+It's, that's my views on that.
+
+534
+00:34:42,080 --> 00:34:44,080
+Yeah, it's, it's, it's so fascinating.
+
+535
+00:34:44,080 --> 00:34:48,720
+I, I love this idea because it's so true that there is nothing more difficult
+
+536
+00:34:48,720 --> 00:34:50,240
+than looking effortless.
+
+537
+00:34:50,240 --> 00:34:52,800
+Like, uh, people maybe learned this.
+
+538
+00:34:52,800 --> 00:34:55,120
+I think we still get fooled by it often on like Instagram.
+
+539
+00:34:55,120 --> 00:34:57,920
+People are like, wow, this person is so glamorous.
+
+540
+00:34:57,920 --> 00:35:00,000
+They take such amazing photos.
+
+541
+00:35:00,000 --> 00:35:03,360
+How could that be your first, your, the first selfie you took out of bed?
+
+542
+00:35:03,360 --> 00:35:09,520
+It's like, it's, it's not got up, put on makeup, set everything up right,
+
+543
+00:35:09,520 --> 00:35:13,200
+put up lights, took a thousand photos and that was the best one.
+
+544
+00:35:13,280 --> 00:35:15,520
+Like, you know, but it looks effortless.
+
+545
+00:35:15,520 --> 00:35:19,440
+And I think good developer relations, good videos and things like that are like that,
+
+546
+00:35:19,440 --> 00:35:24,800
+right? It's born of a lot of, of iteration, of a lot of retries and a lot of reshoots
+
+547
+00:35:25,440 --> 00:35:31,120
+to produce something that feels, uh, solid, that feels good, that feels effortless
+
+548
+00:35:31,120 --> 00:35:32,160
+when somebody watches it.
+
+549
+00:35:32,160 --> 00:35:36,160
+Doesn't mean that it's perfect, um, but it, but it, but it, it sort of melds.
+
+550
+00:35:36,160 --> 00:35:37,760
+And I mean, we have that in development too.
+
+551
+00:35:37,760 --> 00:35:41,840
+I, I like to tell people that like when you get a good designer that puts a good design
+
+552
+00:35:41,840 --> 00:35:43,760
+together for you, it's like a website.
+
+553
+00:35:43,760 --> 00:35:47,360
+It's like you can't tell what the HTML elements are that built it.
+
+554
+00:35:47,360 --> 00:35:49,600
+It just turns into a painting.
+
+555
+00:35:49,600 --> 00:35:55,440
+And I said, it doesn't take a lot sometimes, a little bit of spacing mess up, a little bit
+
+556
+00:35:55,440 --> 00:36:00,160
+of style, oddness and the whole cohesiveness of the design fractures.
+
+557
+00:36:00,160 --> 00:36:02,480
+And you go, that's clearly a div.
+
+558
+00:36:02,480 --> 00:36:03,440
+That's clearly an input.
+
+559
+00:36:03,440 --> 00:36:04,480
+That's clearly a button.
+
+560
+00:36:04,480 --> 00:36:04,960
+That's clear.
+
+561
+00:36:04,960 --> 00:36:07,200
+And it just turns into all the constituent elements.
+
+562
+00:36:07,200 --> 00:36:08,320
+So there's just something about that.
+
+563
+00:36:08,480 --> 00:36:13,840
+Like when, when something finally congeals at the end, it looks well polished.
+
+564
+00:36:13,840 --> 00:36:19,520
+Um, and, uh, it doesn't take a lot of deviance from that for people to see
+
+565
+00:36:19,520 --> 00:36:22,880
+behind the scenes of it a little bit, which is, I think is super interesting.
+
+566
+00:36:23,440 --> 00:36:25,360
+I guess that sounds like that should be intimidating.
+
+567
+00:36:25,360 --> 00:36:30,080
+I actually get inspired by it because I think it's really cool to find that point
+
+568
+00:36:30,080 --> 00:36:31,760
+when everything kind of blends together.
+
+569
+00:36:33,280 --> 00:36:37,600
+I think so too, because from challenges, that's where you learn the most,
+
+570
+00:36:37,600 --> 00:36:43,360
+you know, it's, it's like, as much as I was intimidated by this whole partnership with
+
+571
+00:36:43,360 --> 00:36:46,880
+Vercel, I got to learn a lot from it.
+
+572
+00:36:46,880 --> 00:36:51,600
+Like how you, um, you started actually forming partnership.
+
+573
+00:36:51,600 --> 00:36:52,480
+What is the point?
+
+574
+00:36:52,480 --> 00:36:55,200
+What are we trying to do and create sales pipeline?
+
+575
+00:36:55,200 --> 00:36:56,240
+All that stuff.
+
+576
+00:36:56,240 --> 00:36:57,520
+Community management.
+
+577
+00:36:57,520 --> 00:37:03,520
+It gives you that mindset that, you know what, community is more than just the number.
+
+578
+00:37:03,600 --> 00:37:11,840
+It's more about how you help the people succeed, you know, what it's, it's more than that.
+
+579
+00:37:11,840 --> 00:37:13,360
+That's, that's what I learned.
+
+580
+00:37:13,360 --> 00:37:19,360
+And with blogging as well, I mean, as much as I was a blog myself, a blogger myself,
+
+581
+00:37:19,360 --> 00:37:24,400
+as a hobby, I learned that there's a lot of work that goes into blogging
+
+582
+00:37:24,400 --> 00:37:29,280
+and how you can make a blog stand out, how you can communicate with your target audience,
+
+583
+00:37:29,280 --> 00:37:31,280
+how to capture people's attention.
+
+584
+00:37:31,360 --> 00:37:35,920
+That kind of stuff, I learned that in my role.
+
+585
+00:37:35,920 --> 00:37:44,480
+And so being flexible too, it does help to, to, to expect the unexpected and learning how to
+
+586
+00:37:44,480 --> 00:37:48,160
+adapt to those circumstances is really important.
+
+587
+00:37:48,160 --> 00:37:55,520
+And I would say those are one of the skills I also gained and community and communication
+
+588
+00:37:55,520 --> 00:37:58,480
+with different departments within the team.
+
+589
+00:37:59,200 --> 00:38:06,400
+And so it might seem intimidating, but it is for a good cause because it does open your mind
+
+590
+00:38:06,400 --> 00:38:09,680
+to a lot of things, things that you have never thought about.
+
+591
+00:38:09,680 --> 00:38:14,080
+And when you face something like that, again, then you know what to do.
+
+592
+00:38:14,080 --> 00:38:17,600
+And if you face another problem, then it's, it's a learning opportunity.
+
+593
+00:38:17,600 --> 00:38:21,360
+So I take these challenges as a learning opportunity.
+
+594
+00:38:22,320 --> 00:38:25,040
+And, you know, I like how this connects to the Twitter piece.
+
+595
+00:38:25,040 --> 00:38:28,240
+And I think it's maybe part of the reason why you enjoy it is I think one of the
+
+596
+00:38:28,240 --> 00:38:32,160
+recipes for success in developer relations and advocacy is, is authenticity.
+
+597
+00:38:32,960 --> 00:38:39,040
+Developers are better than average at sniffing out inauthentic contributors
+
+598
+00:38:39,040 --> 00:38:41,840
+or brands hiding behind developer relations.
+
+599
+00:38:41,840 --> 00:38:46,720
+They know when they're being sold to, but they love when they're being related to
+
+600
+00:38:46,720 --> 00:38:48,400
+and when they're really being engaged.
+
+601
+00:38:48,400 --> 00:38:52,800
+And so I think that can sometimes be challenging for people at the beginning,
+
+602
+00:38:52,800 --> 00:38:56,880
+because if you don't feel strong in your own brand or in the brand of the company,
+
+603
+00:38:57,520 --> 00:38:59,520
+in your approach, that can be tough.
+
+604
+00:38:59,520 --> 00:39:02,400
+And it can be tough sometimes to sustain.
+
+605
+00:39:02,400 --> 00:39:05,440
+I tell people like, you can make a discord all you want,
+
+606
+00:39:05,440 --> 00:39:07,520
+and you can get a couple people to join.
+
+607
+00:39:07,520 --> 00:39:10,560
+But can you get the conversation to keep going so that it's there in a month?
+
+608
+00:39:10,560 --> 00:39:14,160
+So that it's there in a year, you know, you can get somebody to read a blog.
+
+609
+00:39:14,160 --> 00:39:18,480
+But can you create a platform where people will want to keep coming back to read your blogs?
+
+610
+00:39:18,480 --> 00:39:19,920
+That is hard.
+
+611
+00:39:19,920 --> 00:39:21,200
+There's not a shortcut for it.
+
+612
+00:39:21,200 --> 00:39:22,640
+There's no magic recipe for it.
+
+613
+00:39:22,640 --> 00:39:27,040
+But it is a lot harder, or not harder, again, not to be intimidating.
+
+614
+00:39:27,040 --> 00:39:30,160
+It's a lot more of a challenge than people might give it credit for.
+
+615
+00:39:31,600 --> 00:39:35,440
+It's even a slightly different skill set than just producing an individual piece of content,
+
+616
+00:39:35,440 --> 00:39:40,480
+is to slot that into where is my community that's sort of starting to grow,
+
+617
+00:39:40,480 --> 00:39:43,120
+and it's starting to smoke and turn into a small flame,
+
+618
+00:39:43,120 --> 00:39:47,200
+and how do I keep feeding them with more outlets, more videos, more content,
+
+619
+00:39:47,200 --> 00:39:48,640
+so that it actually catches.
+
+620
+00:39:48,720 --> 00:39:52,080
+And then to see a community begin to self-sustain,
+
+621
+00:39:53,040 --> 00:39:58,240
+I mean, that has to be such a feeling of pride and happiness in that job.
+
+622
+00:39:58,240 --> 00:40:00,320
+I don't know if you've got to experience that as well.
+
+623
+00:40:02,480 --> 00:40:05,280
+Well, I do experience that.
+
+624
+00:40:05,280 --> 00:40:10,960
+It's like, I don't know, we must remember that behind these communities,
+
+625
+00:40:10,960 --> 00:40:12,720
+it's real people.
+
+626
+00:40:12,720 --> 00:40:14,240
+Those are real people.
+
+627
+00:40:14,240 --> 00:40:15,840
+The same with Tech Twitter.
+
+628
+00:40:15,840 --> 00:40:17,680
+Those accounts, the actual people.
+
+629
+00:40:17,760 --> 00:40:18,880
+I'm an actual person.
+
+630
+00:40:18,880 --> 00:40:20,320
+I'm not an AI robot.
+
+631
+00:40:20,880 --> 00:40:25,360
+And so people cannot be programmed to come back for more.
+
+632
+00:40:25,360 --> 00:40:26,800
+They're not callback functions.
+
+633
+00:40:27,600 --> 00:40:28,560
+Okay, that was lousy.
+
+634
+00:40:28,560 --> 00:40:29,920
+I should have said that.
+
+635
+00:40:29,920 --> 00:40:38,640
+But it's really hard to get someone to come back,
+
+636
+00:40:38,640 --> 00:40:42,000
+to actually like your things, and come back for more.
+
+637
+00:40:42,000 --> 00:40:47,280
+And so it's a skill that I think it's so hard to craft,
+
+638
+00:40:47,280 --> 00:40:51,520
+and to what is the word, to master.
+
+639
+00:40:51,520 --> 00:40:56,320
+And so it's like you find what people are looking for,
+
+640
+00:40:56,320 --> 00:40:58,560
+and you pay attention to what people need.
+
+641
+00:40:59,200 --> 00:41:02,880
+And once you give people what they want,
+
+642
+00:41:02,880 --> 00:41:04,800
+and they see that you're listening to them,
+
+643
+00:41:04,800 --> 00:41:06,960
+they see that you hear the cries they're paying,
+
+644
+00:41:07,600 --> 00:41:12,720
+then I guess that will also help with them being able to trust
+
+645
+00:41:12,720 --> 00:41:14,160
+that you are doing this for them.
+
+646
+00:41:14,160 --> 00:41:16,720
+And then they can come back for more.
+
+647
+00:41:16,720 --> 00:41:20,560
+And if someone else they know are facing similar problems,
+
+648
+00:41:20,560 --> 00:41:22,240
+they know which community,
+
+649
+00:41:22,240 --> 00:41:25,600
+which company they can direct those people to.
+
+650
+00:41:25,600 --> 00:41:28,720
+And that also creates marketing.
+
+651
+00:41:28,720 --> 00:41:33,520
+You know, word of mouth is the most powerful marketing tool out there.
+
+652
+00:41:33,520 --> 00:41:39,600
+And so you do want to make sure that the people you are taking care of,
+
+653
+00:41:39,600 --> 00:41:43,280
+they feel safe, they feel appreciated.
+
+654
+00:41:43,280 --> 00:41:46,560
+And once they feel the trust, the credibility,
+
+655
+00:41:46,560 --> 00:41:50,160
+then they have no doubt but to come back.
+
+656
+00:41:50,160 --> 00:41:52,880
+And yeah, like I said, it's not easy.
+
+657
+00:41:52,880 --> 00:41:54,560
+I'm not mastering it.
+
+658
+00:41:54,560 --> 00:41:56,000
+It's something I'm learning to.
+
+659
+00:41:56,720 --> 00:41:59,360
+And yeah, that's the job.
+
+660
+00:41:59,360 --> 00:42:00,640
+It's all about learning.
+
+661
+00:42:00,640 --> 00:42:02,640
+It's all about facing challenges.
+
+662
+00:42:02,640 --> 00:42:07,200
+And yeah, crying sometimes, but tears of joy.
+
+663
+00:42:09,040 --> 00:42:10,480
+And that's where the community helps.
+
+664
+00:42:10,480 --> 00:42:14,320
+You know, what I love about some of the names in the community
+
+665
+00:42:14,320 --> 00:42:19,920
+that you've talked about is that a lot of them are relatively junior in their careers.
+
+666
+00:42:19,920 --> 00:42:24,720
+And I love that learning in public became a trend.
+
+667
+00:42:24,720 --> 00:42:26,720
+And supporting each other, learning in public,
+
+668
+00:42:26,720 --> 00:42:29,680
+became one of the foundational elements of Tech Twitter.
+
+669
+00:42:29,680 --> 00:42:32,560
+Again, I know there's a lot of noise out there and a lot of nastiness at times.
+
+670
+00:42:32,560 --> 00:42:36,640
+But that core of it, I think, is exciting.
+
+671
+00:42:36,640 --> 00:42:39,120
+Because it does mean that when things are hard,
+
+672
+00:42:39,120 --> 00:42:40,880
+you at least have some people you can go to and say,
+
+673
+00:42:40,880 --> 00:42:41,920
+wow, this is really hard.
+
+674
+00:42:41,920 --> 00:42:43,440
+And people can say, I agree.
+
+675
+00:42:43,440 --> 00:42:46,000
+It is actually sometimes really hard.
+
+676
+00:42:46,720 --> 00:42:50,480
+And I like that word that we can at times be a humble community
+
+677
+00:42:50,480 --> 00:42:55,120
+and not be afraid to admit that sometimes this is overwhelming for all of us.
+
+678
+00:42:55,120 --> 00:42:58,400
+And so that if you're feeling that way as somebody who's either just starting out
+
+679
+00:42:58,400 --> 00:43:02,320
+on their self-taught journey or is lost looking for a job right now,
+
+680
+00:43:03,600 --> 00:43:07,360
+there are a lot of people like you out there that you can connect with
+
+681
+00:43:08,080 --> 00:43:09,920
+on Twitter or other spaces as well.
+
+682
+00:43:09,920 --> 00:43:12,800
+Discord's been a great place these days to find those people as well.
+
+683
+00:43:14,800 --> 00:43:20,000
+Yes, but I must admit, I am actually not as active on Discord.
+
+684
+00:43:20,000 --> 00:43:24,800
+Like, it's like, Twitter's my cave, like my bad cave.
+
+685
+00:43:24,800 --> 00:43:27,280
+I'm always on Twitter all the time.
+
+686
+00:43:27,280 --> 00:43:28,640
+Discord for some reason.
+
+687
+00:43:28,640 --> 00:43:33,440
+I don't know what, but it's not doing it for me for some reason.
+
+688
+00:43:34,080 --> 00:43:35,280
+But I do try.
+
+689
+00:43:35,280 --> 00:43:39,040
+I would say there are a lot of great communities that I've joined on Discord.
+
+690
+00:43:39,680 --> 00:43:43,200
+For example, the 4C community, which is ran by Francesco.
+
+691
+00:43:43,600 --> 00:43:49,040
+It also does have a lot of newbies, a lot of people who are interested in tech.
+
+692
+00:43:49,040 --> 00:43:54,720
+And he also helps them out with resources for learning and for web-free resources.
+
+693
+00:43:54,720 --> 00:44:02,000
+So that's Francesco and another community is, I think coding newbies does have one too.
+
+694
+00:44:02,000 --> 00:44:06,320
+On Discord, if I'm not mistaken, the name itself, it says it all,
+
+695
+00:44:06,320 --> 00:44:07,200
+coding newbies.
+
+696
+00:44:07,200 --> 00:44:10,400
+So that's a great place to also connect with people.
+
+697
+00:44:10,400 --> 00:44:15,920
+It might not be people who are like new in tech, but you will find that
+
+698
+00:44:15,920 --> 00:44:20,880
+someone is learning the exact same thing as you and the conversation can skyrocket
+
+699
+00:44:20,880 --> 00:44:25,840
+into something else, a great connection, friendship, whatever you would like to name it.
+
+700
+00:44:25,840 --> 00:44:28,640
+And so Discord does have great communities.
+
+701
+00:44:28,640 --> 00:44:30,320
+Oh, and Eddie Hub, and Eddie Hub.
+
+702
+00:44:30,320 --> 00:44:31,440
+How can I forget, Eddie Hub?
+
+703
+00:44:32,720 --> 00:44:33,600
+Yes, Eddie.
+
+704
+00:44:34,160 --> 00:44:38,480
+And yeah, those are a few communities I can name the great communities.
+
+705
+00:44:39,200 --> 00:44:41,600
+And yeah, people use Discord.
+
+706
+00:44:41,600 --> 00:44:42,800
+Don't be like me.
+
+707
+00:44:42,800 --> 00:44:44,080
+You'll find a lot of value.
+
+708
+00:44:45,840 --> 00:44:46,320
+You'll find.
+
+709
+00:44:47,840 --> 00:44:49,760
+Yeah, use Discord.
+
+710
+00:44:50,640 --> 00:44:51,600
+It's taste their own.
+
+711
+00:44:51,600 --> 00:44:52,960
+I mean, I think that's the lesson, right?
+
+712
+00:44:53,760 --> 00:44:57,040
+Just finding your niche to contribute to any particular platform is find the platform that
+
+713
+00:44:57,040 --> 00:44:57,920
+works best for you.
+
+714
+00:44:57,920 --> 00:45:01,600
+I know people who never resonated with any platform they sell, they started contributing
+
+715
+00:45:01,600 --> 00:45:02,480
+on LinkedIn.
+
+716
+00:45:02,480 --> 00:45:04,080
+And that's where they found their tribe.
+
+717
+00:45:04,080 --> 00:45:06,000
+And that's where they really resonated with people.
+
+718
+00:45:06,000 --> 00:45:11,440
+And it's like, yeah, let's take advantage of the existence of so many social networks and
+
+719
+00:45:11,440 --> 00:45:14,240
+not feel compelled to necessarily engage with all of them.
+
+720
+00:45:14,240 --> 00:45:17,680
+But to find the tribe again, that works best for us.
+
+721
+00:45:18,640 --> 00:45:19,840
+I agree.
+
+722
+00:45:19,840 --> 00:45:20,320
+I agree.
+
+723
+00:45:20,320 --> 00:45:21,200
+Thank you so much.
+
+724
+00:45:21,760 --> 00:45:26,560
+I'm just like, it doesn't help to be everywhere at once.
+
+725
+00:45:26,560 --> 00:45:29,760
+So just stick with one place that you like.
+
+726
+00:45:29,760 --> 00:45:31,680
+I grew on Twitter.
+
+727
+00:45:31,680 --> 00:45:35,200
+I can't imagine starting my growth on LinkedIn.
+
+728
+00:45:35,200 --> 00:45:38,000
+It's like, well, people are serious.
+
+729
+00:45:39,120 --> 00:45:40,720
+It's all seriousness.
+
+730
+00:45:40,720 --> 00:45:45,760
+So it's like, yeah, stick to one platform, grow, make friends there.
+
+731
+00:45:45,760 --> 00:45:48,480
+And you don't have to worry about anything else.
+
+732
+00:45:48,480 --> 00:45:51,760
+I guess, you know, just find what works for you.
+
+733
+00:45:51,760 --> 00:45:52,560
+Don't be pressured.
+
+734
+00:45:53,840 --> 00:45:55,280
+Now, we're wrapping things up here.
+
+735
+00:45:55,280 --> 00:45:57,520
+But at the end, we like to ask a little bit of a fun question.
+
+736
+00:45:57,520 --> 00:46:01,040
+And I happen to see, well, looking into your profile that you are a big
+
+737
+00:46:01,600 --> 00:46:02,960
+Marvel cinematic universe fan.
+
+738
+00:46:02,960 --> 00:46:03,520
+Oh, yes.
+
+739
+00:46:03,520 --> 00:46:07,600
+So at the time that this will come out, it'll be pretty close to when the movie comes out.
+
+740
+00:46:07,600 --> 00:46:10,720
+But I'm curious, how excited are you for Ant-Man and the Wals?
+
+741
+00:46:10,720 --> 00:46:12,800
+Are you going to be there day one?
+
+742
+00:46:13,440 --> 00:46:14,560
+Are you super excited?
+
+743
+00:46:16,560 --> 00:46:18,080
+Let me tell you something.
+
+744
+00:46:18,080 --> 00:46:22,240
+I bought the ticket two weeks ago.
+
+745
+00:46:22,240 --> 00:46:24,000
+That's how prepared I am.
+
+746
+00:46:24,000 --> 00:46:29,120
+I was like, on Friday, 2pm, because that's the time it's going to play for us.
+
+747
+00:46:29,120 --> 00:46:32,160
+2pm afternoon, Ant-Man is playing.
+
+748
+00:46:32,160 --> 00:46:34,480
+And to be honest, I'm actually afraid.
+
+749
+00:46:40,720 --> 00:46:43,120
+Ant-Man is my favorite.
+
+750
+00:46:43,680 --> 00:46:45,760
+It's my favorite MCU character.
+
+751
+00:46:45,760 --> 00:46:49,040
+You will even see on my bio, I have a spider.
+
+752
+00:46:49,040 --> 00:46:50,880
+I mean, not a spider, an ant.
+
+753
+00:46:50,880 --> 00:46:55,120
+That ant, a lot of people don't figure it out that, oh, that ant is for Ant-Man.
+
+754
+00:46:55,120 --> 00:46:56,480
+That emojis for Ant-Man.
+
+755
+00:46:56,480 --> 00:47:02,240
+So if Ant-Man dies, if Paul Rudd dies, oh, no, people, I don't think I'll recover.
+
+756
+00:47:02,240 --> 00:47:06,880
+So hopefully it might be, it might be if you're listening to this podcast
+
+757
+00:47:06,880 --> 00:47:08,320
+that you have now seen the movie.
+
+758
+00:47:08,880 --> 00:47:11,360
+And so if the unfortunate has happened,
+
+759
+00:47:11,360 --> 00:47:14,480
+please reach out to Tricia and make sure that she's doing well in her time of mourning.
+
+760
+00:47:14,480 --> 00:47:18,000
+But I didn't know, I thought that was just because of the movie coming out.
+
+761
+00:47:18,000 --> 00:47:19,760
+I didn't realize that was more of a global thing.
+
+762
+00:47:19,760 --> 00:47:22,480
+Well, I wish you luck then watching the movie.
+
+763
+00:47:22,480 --> 00:47:25,600
+So I will also be there the first weekend,
+
+764
+00:47:25,600 --> 00:47:30,480
+because I cannot avoid spoilers for very long, you know, there's the downside of social media.
+
+765
+00:47:30,480 --> 00:47:32,640
+So I need to see things on opening night or else.
+
+766
+00:47:32,640 --> 00:47:35,840
+The spoilers, the spoilers are so bad.
+
+767
+00:47:35,840 --> 00:47:40,560
+I tell you, the people who spoil Marvel movies are not Marvel fans.
+
+768
+00:47:40,560 --> 00:47:46,560
+I said it because if you are a true Marvel fan, you would never spoil that for another fellow person.
+
+769
+00:47:46,560 --> 00:47:53,040
+So if you are DC, please stop, stop posting, please.
+
+770
+00:47:54,880 --> 00:47:56,240
+All right, well, we'll leave it there.
+
+771
+00:47:56,240 --> 00:47:58,560
+We hope that it, we hope that it's enjoyable.
+
+772
+00:47:58,560 --> 00:47:59,920
+I certainly hope that it's enjoyable as well.
+
+773
+00:47:59,920 --> 00:48:01,120
+I hope so.
+
+774
+00:48:01,120 --> 00:48:04,880
+I hope so, dude, like you have no idea how stressed I am.
+
+775
+00:48:04,880 --> 00:48:08,080
+I'm like, do I, do I have to buy it another time?
+
+776
+00:48:08,080 --> 00:48:10,160
+Because like, I'm so stressed out.
+
+777
+00:48:10,160 --> 00:48:13,600
+But anyway, I just hope Paul Rudd doesn't die or anyone doesn't die.
+
+778
+00:48:14,240 --> 00:48:19,360
+Like, but knowing Marvel in every third movie, someone dies.
+
+779
+00:48:19,360 --> 00:48:21,680
+So I have to be emotionally prepared.
+
+780
+00:48:24,320 --> 00:48:24,800
+All right.
+
+781
+00:48:25,600 --> 00:48:27,040
+Well, that's going to be it for us today.
+
+782
+00:48:27,040 --> 00:48:31,200
+Thank you everybody for listening to this modern web podcast and good luck to Paul Rudd.
+
+783
+00:48:31,200 --> 00:48:33,520
+And thank you, of course, to our guest, Trisha.
+
+784
+00:48:33,520 --> 00:48:35,440
+As always, the conversation does not stop here.
+
+785
+00:48:35,440 --> 00:48:40,000
+So you can find Trisha on Twitter, as we've talked about a lot today, at TrishaKS.
+
+786
+00:48:40,000 --> 00:48:43,280
+That's T-R-E-C-I-A-K-S.
+
+787
+00:48:43,280 --> 00:48:45,840
+You can find me online at Robosel.
+
+788
+00:48:45,840 --> 00:48:49,760
+As for the podcast, you can find us online at moderndotweb.com
+
+789
+00:48:49,760 --> 00:48:51,440
+or on Twitter at modern.web.
+
+790
+00:48:51,440 --> 00:48:52,480
+Hope to see you all next time.
+
+791
+00:48:52,480 --> 00:48:53,120
+Thanks, Trisha.
+
+792
+00:48:54,400 --> 00:48:55,120
+Thank you.
+
+793
+00:48:55,120 --> 00:48:55,440
+Bye.
+
+794
+00:48:57,040 --> 00:48:58,080
+Come on.
+
+795
+00:48:58,080 --> 00:48:58,720
+Come on.
+
+796
+00:48:59,520 --> 00:49:06,880
+This podcast is sponsored by VISTOT Labs, a firmware-cognostic consultancy that specializes
+
+797
+00:49:06,880 --> 00:49:08,080
+in JavaScript.
+
+798
+00:49:08,080 --> 00:49:11,280
+You can find them at VISTOT.C-O slash labs.
+
+799
+00:49:11,280 --> 00:49:17,600
+That's T-H-I-S-D-O-T dot C-O slash labs.
+
+800
+00:49:28,720 --> 00:49:35,360
+Come on, now, because we know the shuttle for you.
+
